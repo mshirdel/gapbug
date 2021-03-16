@@ -1,0 +1,13 @@
+{% if form.errors %}
+<div class="row margin-top-20">
+    <div class="col-md-12">
+        <div class='message-alert'>
+            {% for error, desc in form.errors.items %}
+            <div class="alert alert-danger">
+                {{ error }} : {{ desc }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}

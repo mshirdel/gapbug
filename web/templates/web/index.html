@@ -1,0 +1,18 @@
+{% extends 'web/base.html' %} 
+{% load static %} 
+{% load i18n %} 
+{% block title %} 
+{% trans "Home page of gapcode project" %} {% endblock title %} 
+{% block content %}
+<div class="row">
+    <div class="col-sm">
+        <img src="{% static 'img/code.png' %}" alt="" class="img-fluid" />
+    </div>
+    <div class="col-sm">
+        <div class="home-title">           
+            <h1>We people who code</h1>
+           {% trans "We build products that empower developers and connect them to solutions that enable productivity, growth, and discovery." %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

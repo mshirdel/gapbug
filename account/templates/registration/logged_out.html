@@ -1,0 +1,16 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans "Logged-out" %}{% endblock title %}
+{% block content %}
+    <div class="card">
+        <img src="{% static 'img/header.png' %}" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">{% trans "Logged-out" %}</h5>
+            <p class="card-text">
+                {% trans "You have been successfully logged out." %}
+                {% trans "You can " %}<a href="{% url 'auth:login' %}">{% trans "Login again." %}</a>
+            </p>          
+        </div>
+    </div>
+{% endblock content %}

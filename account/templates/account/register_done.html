@@ -1,0 +1,20 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans "Welcome" %}{% endblock title %}
+{% block content %}
+    <div class="card">
+        <img src="{% static 'img/header.png' %}" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">
+                {% blocktrans %}
+                    Welcome {{ new_user.username }}!
+                {% endblocktrans %}
+            </h5>
+            <p class="card-text">
+                {% trans "Your account has been succesfully created. Now you can " %}
+                <a href="{% url 'auth:login' %}">{% trans "log in" %}</a>
+            </p>          
+        </div>
+    </div>
+{% endblock content %}

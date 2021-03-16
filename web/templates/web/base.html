@@ -1,0 +1,33 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language_bidi as LANGUAGE_BIDI %} 
+{% get_current_language as LANGUAGE_CODE %} 
+<!DOCTYPE html>
+{% if LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE }}" dir="rtl">
+{% else %}
+<html lang="{{ LANGUAGE_CODE }}" dir="ltr">
+{% endif %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% include 'web/nav.html' %}
+        {% block content %}{% endblock content %}
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                footer
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
