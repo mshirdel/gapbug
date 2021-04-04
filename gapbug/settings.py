@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'web.apps.WebConfig',
     'account.apps.AccountConfig',
     'django.contrib.admin',
+    'qa.apps.QaConfig',
 ]
 
 MIDDLEWARE = [
@@ -110,7 +111,7 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-LOGIN_REDIRECT_URL = 'auth:profile'
+LOGIN_REDIRECT_URL = '/'
 
 try:
     from .settings_dev import *

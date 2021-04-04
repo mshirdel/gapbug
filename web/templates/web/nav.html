@@ -11,6 +11,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">{% trans "About" %}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'qa:index' %}">{% trans "Questions" %}</a>
+                </li>
             </ul>
             <form class="container-fluid">
                 <div class="input-group">
@@ -18,11 +21,11 @@
                 </div>
             </form>
             {% if user.is_authenticated %}
-                <a class="me-2" href="{% url 'auth:profile' %}">{{ user.username }}</a>
-                <a class="me-2" href="{% url 'auth:logout' %}">{% trans "logout" %}</a>
+                <a class="me-2" href="{% url 'profile' %}">{{ user.username }}</a>
+                <a class="me-2" href="{% url 'logout' %}">{% trans "logout" %}</a>
             {% else %}
-                <a href="{% url 'auth:login' %}" class="btn btn-sm btn-outline-secondary me-2">{% trans "LOGIN" %}</a>
-                <a href="{% url 'auth:register' %}" class="btn btn-sm btn-outline-secondary">{% trans "SIGNUP" %}</a>
+                <a href="{% url 'login' %}" class="btn btn-sm btn-outline-secondary me-2">{% trans "LOGIN" %}</a>
+                <a href="{% url 'register' %}" class="btn btn-sm btn-outline-secondary">{% trans "SIGNUP" %}</a>
             {% endif %}
         </div>
     </div>

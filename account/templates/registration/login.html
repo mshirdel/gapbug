@@ -15,11 +15,11 @@
                 {% else %}
                 <p>
                     {% trans "Please, use the following form to log-in. If you don't have an account" %} 
-                    <a href="{% url "auth:register" %}">{% trans "register here" %}</a>
+                    <a href="{% url "register" %}">{% trans "register here" %}</a>
                 </p>
                 {% endif %}
             </p>
-            <form action="{% url 'auth:login' %}" method="post">
+            <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="id_username" class="form-label">{% trans "Username:" %}</label> 
@@ -34,7 +34,7 @@
                     <input type="submit" value="Log-in" class="btn btn-primary">
                 </p>
             </form>
-            <p><a href="{% url 'auth:password_reset' %}">{% trans "Forgotten your password?" %}</a></p>
+            <p><a href="{% url 'password_reset' %}">{% trans "Forgotten your password?" %}</a></p>
         </div>
     </div>
    

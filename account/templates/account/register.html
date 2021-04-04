@@ -12,7 +12,7 @@
                 {% include "web/common/render_form.html" with form=form %}
                 <p><input type="submit" value="Create my account" class="btn btn-primary"></p>
             </form>
-            <p>{% trans "Already have account?" %} <a href="{% url 'auth:login' %}">{% trans "login here" %}</a></p>
+            <p>{% trans "Already have account?" %} <a href="{% url 'login' %}">{% trans "login here" %}</a></p>
         </div>
     </div>
 {% endblock content %}

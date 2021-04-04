@@ -21,11 +21,7 @@
         {% include 'web/nav.html' %}
         {% block content %}{% endblock content %}
         <hr>
-        <div class="row">
-            <div class="col-md-12">
-                footer
-            </div>
-        </div>
+        {% include 'web/footer.html' %}
     </div>
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
