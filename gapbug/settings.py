@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'django.contrib.admin',
     'qa.apps.QaConfig',
+    'user_profile.apps.UserProfileConfig',
 ]
 
 MIDDLEWARE = [

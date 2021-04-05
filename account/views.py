@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import UserRegistrationForm
+from user_profile.models import Profile
 
 
 def register(request):
@@ -8,8 +9,13 @@ def register(request):
         if form.is_valid():
             new_user = form.save(commit=False)
             new_user.set_password(form.cleaned_data['password'])
+            new_user.is_active = False
             new_user.save()
-            # TODO: send verification for email
+            # TODO: Email verification:
+            # 1- create profile
+            Profile.objects.create(user=new_user)
+            # 2- generate email verification token
+            # 3- send mail
             return render(request,
                           'account/register_done.html',
                           {'new_user': new_user})

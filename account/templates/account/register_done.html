@@ -12,9 +12,11 @@
                 {% endblocktrans %}
             </h5>
             <p class="card-text">
-                {% trans "Your account has been succesfully created. Now you can " %}
-                <a href="{% url 'login' %}">{% trans "log in" %}</a>
+                {% trans "Your account has been succesfully created." %}
             </p>          
+            <p class="card-text">
+                {% trans "To verify your email we sent a link to your inbox." %}
+            </p>
         </div>
     </div>
 {% endblock content %}
