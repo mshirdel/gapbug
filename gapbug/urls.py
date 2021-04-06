@@ -21,4 +21,5 @@ urlpatterns = [
     path('auth/', include('account.urls')),
     path('', include('web.urls', namespace='web')),
     path('qa/', include('qa.urls', namespace='qa')),
+    path('profile/', include('user_profile.urls', namespace='user_profile')),
 ]

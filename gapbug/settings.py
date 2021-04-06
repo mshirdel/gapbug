@@ -114,6 +114,8 @@ AUTHENTICATION_BACKENDS = [
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 
+EMAIL_INFO = 'info@mshirdel.ir'
+
 try:
     from .settings_dev import *
 except ImportError:
