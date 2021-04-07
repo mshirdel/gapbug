@@ -7,6 +7,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
+from django.utils.translation import gettext as _
 from user_profile.tokens import email_verification_token
 
 
@@ -17,7 +18,7 @@ class Profile(models.Model):
 
     def send_verification_email(self, request):
         current_site = get_current_site(request)
-        subject = "Please verify your email"
+        subject = _("Please verify your email")
         message = render_to_string('user_profile/verify_email.html', {
             'user': self.user,
             'domain': current_site.domain,
