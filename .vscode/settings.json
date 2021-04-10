@@ -1,4 +1,5 @@
 {
     "python.linting.pycodestyleEnabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "python.pythonPath": "/home/meysam/w/python/projects/gapcode_project/env/bin/python"
 }

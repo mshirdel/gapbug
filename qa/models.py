@@ -1,28 +1,57 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext as _
 from common.models import TimeStampModel
+from django.conf import settings
 
 
 class Question(TimeStampModel):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE,
+                             related_name='questions')
     title = models.CharField(max_length=400)
     body_md = models.TextField()
     body_html = models.TextField()
-    vote = models.IntegerField()
+    vote = models.IntegerField(default=0)
 
-    def update_number_of_votes(self):
-        self.vote = self.vote_set.count()
-        self.save()
+
+class Answer(TimeStampModel):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE,
+                             related_name='answers')
+    question = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 on_delete=models.CASCADE)
+    body_md = models.TextField()
+    body_html = models.TextField()
+    vote = models.IntegerField(default=0)
 
 
 class Vote(TimeStampModel):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    rate = models.SmallIntegerField()
+
+    class Meta:
+        abstract = True
+
+
+class QuestionVote(Vote):
+    question = models.ForeignKey(Question,
+                                 on_delete=models.CASCADE,
+                                 related_name='number_of_votes')
 
     def save(self, *args, **kwargs):
+        self.question.vote += self.rate
+        self.question.save()
         super().save(*args, **kwargs)
-        self.question.update_number_of_votes()
 
-    def delete(self, *args, **kwargs):
-        super().delete(*args, **kwargs)
-        self.question.update_number_of_votes()
+
+class AnswerVote(Vote):
+    answer = models.ForeignKey(Answer,
+                               on_delete=models.CASCADE,
+                               related_name='number_of_votes')
+
+    def save(self, *args, **kwargs):
+        self.answer.vote += self.rate
+        self.answer.save()
+        super().save(*args, **kwargs)
