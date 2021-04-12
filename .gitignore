@@ -131,3 +131,4 @@ dmypy.json
 
 gapbug/settings_dev.py
 .vscode/settings.json
+web/templates/web/common/debug.html

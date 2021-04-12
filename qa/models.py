@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext as _
+from django.urls import reverse
 from common.models import TimeStampModel
 from django.conf import settings
+from markdown import markdown
 
 
 class Question(TimeStampModel):
@@ -13,6 +15,13 @@ class Question(TimeStampModel):
     body_md = models.TextField()
     body_html = models.TextField()
     vote = models.IntegerField(default=0)
+
+    def get_absolute_url(self):
+        return reverse("qa:show", kwargs={"pk": self.pk})
+
+    def save(self, *args, **kwargs):
+        self.body_html = markdown(self.body_md)
+        super().save(*args, **kwargs)
 
 
 class Answer(TimeStampModel):

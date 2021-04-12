@@ -1,10 +1,31 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from django.views import View
+from django.urls import reverse
+from django.views.generic import ListView
+from django.http import HttpResponseRedirect
 from .models import Question
 
 
-def index(request):
-    questions = Question.objects.all()[:10]
-    return render(request, 'qa/index.html',
-                  {
-                      'questions': questions
-                  })
+class QuestionList(ListView):
+    queryset = Question.objects.all()
+    context_object_name = 'questions'
+    paginate_by = 4
+    template_name = 'qa/index.html'
+
+
+class Ask(View):
+    def get(self, request):
+        return render(request, 'qa/ask_question.html')
+
+    def post(self, request):
+        question = Question.objects.create(user=self.request.user,
+                                           title=request.POST['title'],
+                                           body_md=request.POST['body_md'])
+
+        return HttpResponseRedirect(reverse("qa:show",
+                                            kwargs={"id": question.pk}))
+
+
+def show(request, id):
+    question = get_object_or_404(Question, pk=id)
+    return render(request, 'qa/question.html', {'question': question})

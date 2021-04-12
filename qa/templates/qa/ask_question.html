@@ -1,0 +1,24 @@
+{% extends 'web/base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Ask a Question" %}{% endblock title %}
+{% block content %}
+<h1>{% trans "Ask a public question" %}</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="questionTitle" class="form-label">{% trans "Title" %}</label>
+        <input type="text" required class="form-control" name="title" id="questionTitle" aria-describedby="titleHelp">
+        <div id="titleHelp" class="form-text">
+            {% trans "Be specific and imagine you’re asking a question to another person" %}
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="bodyMd" class="form-label">{% trans "Body" %}</label>
+        <textarea class="form-control" required name="body_md" id="bodyMd" cols="30" rows="10" aria-describedby="bodyHelp"></textarea>
+        <div id="bodyHelp" class="form-text">
+            {% trans "Include all the information someone would need to answer your question" %}
+        </div>
+    </div>
+    <input class="btn btn-primary" type="submit" value="{% trans "Post your question" %}">
+</form>
+{% endblock content %}

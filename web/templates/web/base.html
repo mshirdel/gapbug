@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="{% static 'css/general.css' %}">
 </head>
 <body>
+    {% include 'web/nav.html' %}
     <div class="container">
-        {% include 'web/nav.html' %}
         {% include 'web/messages.html' %}
         {% block content %}{% endblock content %}
         <hr>

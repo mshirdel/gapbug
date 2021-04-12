@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+import debug_toolbar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('account.urls')),
     path('', include('web.urls', namespace='web')),
-    path('qa/', include('qa.urls', namespace='qa')),
+    path('questions/', include('qa.urls', namespace='qa')),
     path('profile/', include('user_profile.urls', namespace='user_profile')),
+    path('__debug__/', include(debug_toolbar.urls)),
 ]
