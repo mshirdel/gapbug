@@ -3,15 +3,11 @@
 {% block title %}{% trans "GapBug - Where Developers Learn, Share, &amp; Build Careers" %}{% endblock title %}
 {% block content %}
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <h1>{% trans "Top Questions" %}</h1>
         </div>
-        <div class="col-md-6">
-            {% if user.is_authenticated %}
-                <a href="{% url 'qa:question' %}" class="btn btn-primary">{% trans "Ask Question" %}</a>
-            {% endif %}
-        </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col-md-12">
             {% for q in questions %}

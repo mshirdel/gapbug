@@ -21,7 +21,17 @@
     {% include 'web/nav.html' %}
     <div class="container">
         {% include 'web/messages.html' %}
-        {% block content %}{% endblock content %}
+        <div class="row">
+            <div class="col-md-9">
+                {% block content %}{% endblock content %}
+            </div>
+            <div class="col-md-3">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'qa:question' %}" class="btn btn-primary">{% trans "Ask Question" %}</a>
+                {% endif %}
+                {% block subcontent %}{% endblock subcontent %}
+            </div>
+        </div>
         <hr>
         {% include 'web/footer.html' %}
     </div>

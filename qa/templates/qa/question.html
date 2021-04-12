@@ -2,5 +2,7 @@
 {% block title %}{{ question.title }}{% endblock title %}
 {% block content %}
     <h1>{{ question.title }}</h1>
-    {{ question.body_html|safe }}
+    <div class="question-body">
+        {{ question.body_html|safe }}
+    </div>
 {% endblock content %}

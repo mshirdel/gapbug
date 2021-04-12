@@ -1,5 +1,26 @@
+@font-face {
+  font-family: 'iran-sans';
+  src: url('../fonts/IRANSansWeb.woff');
+  font-style: normal;
+}
+
+.brand-color-link {
+  color: #795548;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 body {
   background-color: #f8fafb;
+  font-family: 'iran-sans';
 }
 
 div.container{
@@ -9,4 +30,8 @@ div.container{
 .home-title {
   margin-top: 150px;
   text-align: center;
+}
+
+.question-body {
+  font-size: 16px;
 }
