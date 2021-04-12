@@ -1,4 +1,5 @@
 {% extends 'web/base.html' %}
+{% load static %}
 {% load i18n %}
 {% block title %}{% trans "Ask a Question" %}{% endblock title %}
 {% block content %}
@@ -14,7 +15,17 @@
     </div>
     <div class="mb-3">
         <label for="bodyMd" class="form-label">{% trans "Body" %}</label>
-        <textarea class="form-control" required name="body_md" id="bodyMd" cols="30" rows="10" aria-describedby="bodyHelp"></textarea>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="wmd-panel">
+                    <div id="wmd-button-bar"></div>
+                    <textarea class="wmd-input" required name="body_md" id="wmd-input" cols="30" rows="10" aria-describedby="bodyHelp"></textarea>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="wmd-preview" class="wmd-panel wmd-preview"></div>  
+            </div>
+        </div>
         <div id="bodyHelp" class="form-text">
             {% trans "Include all the information someone would need to answer your question" %}
         </div>
@@ -22,3 +33,27 @@
     <input class="btn btn-primary" type="submit" value="{% trans "Post your question" %}">
 </form>
 {% endblock content %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/markdown.css' %}">
+{% endblock css %}
+{% block js %}
+    <script src="{% static 'js/Markdown.Converter.js' %}"></script>
+    <script src="{% static 'js/Markdown.Editor.js' %}"></script>
+    <script src="{% static 'js/Markdown.Sanitizer.js' %}"></script>
+    <script type="text/javascript">
+            (function () {
+                var converter1 = Markdown.getSanitizingConverter();
+                
+                converter1.hooks.chain("preBlockGamut", function (text, rbg) {
+                    return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
+                        return "<blockquote>" + rbg(inner) + "</blockquote>\n";
+                    });
+                });
+                
+                var editor1 = new Markdown.Editor(converter1);
+                
+                editor1.run();
+            
+            })();
+        </script>
+{% endblock %}

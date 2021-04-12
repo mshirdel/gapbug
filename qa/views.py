@@ -9,7 +9,7 @@ from .models import Question
 class QuestionList(ListView):
     queryset = Question.objects.all()
     context_object_name = 'questions'
-    paginate_by = 4
+    paginate_by = 50
     template_name = 'qa/index.html'
 
 

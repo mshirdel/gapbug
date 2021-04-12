@@ -94,7 +94,7 @@ LANGUAGES = (
     ('fa', 'Persian'),
 )
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'fa'
 
 LOCALE_PATH = (
     os.path.join(BASE_DIR, 'locale/'),
