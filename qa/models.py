@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils.text import slugify
 from django.utils.translation import gettext as _
 from django.urls import reverse
 from common.models import TimeStampModel
@@ -11,16 +12,18 @@ class Question(TimeStampModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE,
                              related_name='questions')
-    title = models.CharField(max_length=400)
+    title = models.CharField(max_length=400, db_index=True)
     body_md = models.TextField()
     body_html = models.TextField()
     vote = models.IntegerField(default=0)
+    slug = models.SlugField(max_length=400, db_index=True, allow_unicode=True)
 
     def get_absolute_url(self):
-        return reverse("qa:show", kwargs={"pk": self.pk})
+        return reverse("qa:show", kwargs={"id": self.id, 'slug': self.slug})
 
     def save(self, *args, **kwargs):
         self.body_html = markdown(self.body_md)
+        self.slug = slugify(self.title, allow_unicode=True)
         super().save(*args, **kwargs)
 
 

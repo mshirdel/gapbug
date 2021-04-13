@@ -3,20 +3,42 @@
 {% block title %}{% trans "GapBug - Where Developers Learn, Share, &amp; Build Careers" %}{% endblock title %}
 {% block content %}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <h1>{% trans "Top Questions" %}</h1>
+        </div>
+        <div class="col-md-2">
+            {% include 'web/common/render_ask.html' %}
         </div>
     </div>
     <hr>
-    <div class="row">
-        <div class="col-md-12">
-            {% for q in questions %}
+
+    {% for q in questions %}
+        <div class="row border">
+            <div class="col-md-1 text-center gy-3">
+                <div class="question-stats bg-light">12K</div>
+                <div class="question-stats bg-light">Views</div>
+            </div>
+            <div class="col-md-1 text-center gy-3">
+                <div class="question-stats bg-light">4</div>
+                <div class="question-stats bg-light">Answers</div>
+            </div>
+            <div class="col-md-1 text-center gy-3">
+                <div class="question-stats bg-light">{{ q.vote }}</div>
+                <div class="question-stats bg-light">Votes</div>
+            </div>
+            <div class="col-md-9 gy-2">
+                <a href="{% url 'qa:show' q.id q.slug %}">{{ q.title }}</a><br>
                 <div class="row">
-                    <div class="col-md-12">
-                        <a href="{% url 'qa:show' q.id %}">{{ q.title }}</a>
+                    <div class="col">
+                        <span class="badge bg-secondary">Primary</span>
+                        <span class="badge bg-secondary">Primary</span>
+                        <span class="badge bg-secondary">Primary</span>
+                    </div>
+                    <div class="col">
+                        <div class="float-start">{{ q.user.get_full_name }}</div>
                     </div>
                 </div>
-            {% endfor %}
+            </div>
         </div>
-    </div>
+    {% endfor %}                                      
 {% endblock content %}

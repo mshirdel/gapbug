@@ -23,9 +23,12 @@ class Ask(View):
                                            body_md=request.POST['body_md'])
 
         return HttpResponseRedirect(reverse("qa:show",
-                                            kwargs={"id": question.pk}))
+                                            kwargs={
+                                                "id": question.pk,
+                                                "slug": question.slug
+                                            }))
 
 
-def show(request, id):
-    question = get_object_or_404(Question, pk=id)
+def show(request, id, slug):
+    question = get_object_or_404(Question, pk=id, slug=slug)
     return render(request, 'qa/question.html', {'question': question})

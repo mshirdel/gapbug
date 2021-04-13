@@ -35,3 +35,7 @@ div.container{
 .question-body {
   font-size: 16px;
 }
+
+.question-stats {
+  color: #848d95;
+}
