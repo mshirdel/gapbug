@@ -1,8 +1,7 @@
 {% extends 'web/base.html' %}
 {% block title %}{{ question.title }}{% endblock title %}
 {% block content %}
-    <h1>{{ question.title }}</h1>
-    <hr>
+    {% include 'web/common/header_top.html' with heading=question.title %}
     <div class="question-body">
         {{ question.body_html|safe }}
     </div>

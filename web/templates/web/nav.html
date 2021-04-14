@@ -1,5 +1,5 @@
 {% load i18n %}
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f2efe4;">
+<nav class="navbar navbar-expand-lg navbar-light border-bottom fixed-top" style="background-color: #f2efe4;">
     <div class="container-fluid">
         <a href="{% url 'web:home' %}" class="navbar-brand">{% trans "GapBug" %}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -10,9 +10,6 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="#">{% trans "About" %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'qa:index' %}">{% trans "Questions" %}</a>
                 </li>
             </ul>
             <form class="container-fluid">

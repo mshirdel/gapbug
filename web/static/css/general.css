@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'iran-sans';
-  src: url('../fonts/IRANSansWeb.woff');
+  font-family: "iran-sans";
+  src: url("../fonts/IRANSansWeb.woff");
   font-style: normal;
 }
 
@@ -20,10 +20,12 @@ h1 {
 
 body {
   background-color: #f8fafb;
-  font-family: 'iran-sans';
+  font-family: "iran-sans";
+  min-height: 75rem;
+  padding-top: 3.5rem;
 }
 
-div.container{
+div.container {
   margin-top: 10px;
 }
 
@@ -38,4 +40,10 @@ div.container{
 
 .question-stats {
   color: #848d95;
+}
+
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 160px; /* Set the width of the sidebar */
+  position: fixed;
 }

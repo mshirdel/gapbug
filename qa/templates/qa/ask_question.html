@@ -3,7 +3,7 @@
 {% load i18n %}
 {% block title %}{% trans "Ask a Question" %}{% endblock title %}
 {% block content %}
-<h1>{% trans "Ask a public question" %}</h1>
+{% include 'web/common/header_top.html' with heading="Ask a public question" %}
 <form action="" method="post">
     {% csrf_token %}
     <div class="mb-3">

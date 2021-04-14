@@ -19,11 +19,13 @@
 </head>
 <body>
     {% include 'web/nav.html' %}
-    <div class="container">
+    <main class="container">
         {% include 'web/messages.html' %}
         <div class="row">
-            <div class="col-md-2">
-                {% block subcontent %}{% endblock subcontent %}
+            <div class="col-md-2 border-start">
+                <dib class="sidenav pt-4">
+                    {% include 'web/side_nav.html' %}
+                </dib>
             </div>
             <div class="col-md-10">
                 {% block content %}{% endblock content %}
@@ -31,7 +33,7 @@
         </div>
         <hr>
         {% include 'web/footer.html' %}
-    </div>
+    </main>
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     {% block js %}{% endblock %}
