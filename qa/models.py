@@ -26,6 +26,9 @@ class Question(TimeStampModel):
         self.slug = slugify(self.title, allow_unicode=True)
         super().save(*args, **kwargs)
 
+    class Meta:
+        ordering = ('vote', 'created')
+
 
 class Answer(TimeStampModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
