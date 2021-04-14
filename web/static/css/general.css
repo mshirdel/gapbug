@@ -18,8 +18,19 @@ h1 {
   font-weight: bold;
 }
 
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
 body {
-  background-color: #f8fafb;
+  /* background-color: #f8fafb; */
+  background-color: white;
   font-family: "iran-sans";
   min-height: 75rem;
   padding-top: 3.5rem;
@@ -46,4 +57,9 @@ div.container {
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 160px; /* Set the width of the sidebar */
   position: fixed;
+}
+
+.user-profile-compact {
+  font-size: 14px;
+  color: #848d95;
 }

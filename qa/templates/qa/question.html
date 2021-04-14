@@ -1,8 +1,99 @@
 {% extends 'web/base.html' %}
+{% load i18n %}
+{% load static %}
 {% block title %}{{ question.title }}{% endblock title %}
 {% block content %}
     {% include 'web/common/header_top.html' with heading=question.title %}
-    <div class="question-body">
-        {{ question.body_html|safe }}
+    <div class="row">
+        <div class="col-md-1">
+            {% include 'web/common/render_vote.html' %}
+        </div>
+        <div class="col-md-11">
+            <div class="question-body">
+                {{ question.body_html|safe }}
+            </div>
+        </div>
     </div>
+
+    <div class="row border-bottom pb-5">
+        <div class="col-md-12">
+            {% include 'web/common/render_user_compact.html' with type='Asked' user=question.user info_date=question.created %}
+        </div>
+    </div>
+
+    <div class="row pt-3 pb-3">
+        <div class="col">
+            {% trans "Number of answer: " %} {{ question.answer_set.count }}
+        </div>
+    </div>
+    
+    <div>
+        {% for ans in question.answer_set.all %}
+            <div class="row mt-3">
+                <div class="col-md-1">
+                    {% include 'web/common/render_vote.html' %}
+                </div>
+                <div class="col-md-11">
+                    {{ ans.body_html|safe }}
+                </div>
+            </div>
+
+            <div class="row border-bottom pb-5">
+                <div class="col-md-12">
+                    {% include 'web/common/render_user_compact.html' with type='Answered' user=ans.user info_date=ans.created %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if request.user.is_authenticated %}
+    <div class="row mt-3">
+        <div class="col">
+            <h3>{% trans "Your Answer" %}</h3>
+            <form action="{% url 'qa:submit_answer' question.id %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div>
+                                <div id="wmd-button-bar"></div>
+                                <textarea class="wmd-input" required name="body_md" id="wmd-input" cols="30" rows="10" aria-describedby="bodyHelp"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="wmd-preview" class="wmd-preview"></div>  
+                        </div>
+                    </div>
+                </div>
+                <input class="btn btn-primary" type="submit" value="{% trans "Post your answer" %}">
+            </form>
+        </div>
+    </div>
+    {% endif %}
 {% endblock content %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/markdown.css' %}">
+{% endblock css %}
+{% block js %}
+    <script src="{% static 'js/Markdown.Converter.js' %}"></script>
+    <script src="{% static 'js/Markdown.Editor.js' %}"></script>
+    <script src="{% static 'js/Markdown.Sanitizer.js' %}"></script>
+    <script type="text/javascript">
+            (function () {
+                var converter1 = Markdown.getSanitizingConverter();
+                
+                converter1.hooks.chain("preBlockGamut", function (text, rbg) {
+                    return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
+                        return "<blockquote>" + rbg(inner) + "</blockquote>\n";
+                    });
+                });
+                
+                var editor1 = new Markdown.Editor(converter1);
+                
+                editor1.run();
+            
+            })();
+        </script>
+{% endblock %}

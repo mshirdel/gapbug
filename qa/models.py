@@ -34,11 +34,18 @@ class Answer(TimeStampModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE,
                              related_name='answers')
-    question = models.ForeignKey(settings.AUTH_USER_MODEL,
+    question = models.ForeignKey(Question,
                                  on_delete=models.CASCADE)
     body_md = models.TextField()
     body_html = models.TextField()
     vote = models.IntegerField(default=0)
+
+    def save(self, *args, **kwargs):
+        self.body_html = markdown(self.body_md)
+        super().save(*args, **kwargs)
+
+    class Meta:
+        ordering = ('vote',)
 
 
 class Vote(TimeStampModel):
