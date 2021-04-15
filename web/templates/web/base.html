@@ -23,12 +23,7 @@
     <main class="container">
         {% include 'web/messages.html' %}
         <div class="row">
-            <div class="col-md-2 border-start">
-                <dib class="sidenav pt-4">
-                    {% include 'web/side_nav.html' %}
-                </dib>
-            </div>
-            <div class="col-md-10">
+            <div class="col-md-12">
                 {% block content %}{% endblock content %}
             </div>
         </div>

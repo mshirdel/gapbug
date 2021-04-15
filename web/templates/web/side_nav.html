@@ -1,15 +1,25 @@
 {% load i18n %}
-<ul class="nav flex-column">
-    <li class="nav-item">
-        <a class="nav-link brand-color-link" href="{% url 'web:home' %}">{% trans "Home Page" %}</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link brand-color-link" href="{% url 'qa:index' %}">{% trans "Questions" %}</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link brand-color-link" href="#">{% trans "Tags" %}</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link brand-color-link" href="#">{% trans "Users" %}</a>
-    </li>
-</ul>
+<nav class="navbar navbar-expand-lg navbar-light border-bottom">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sideNavBar" 
+            aria-controls="sideNavBar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="bi bi-menu-down"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="sideNavBar">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link brand-color-link" href="{% url 'web:home' %}">{% trans "Home Page" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link brand-color-link" href="{% url 'qa:index' %}">{% trans "Questions" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link brand-color-link" href="#">{% trans "Tags" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link brand-color-link" href="#">{% trans "Users" %}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
