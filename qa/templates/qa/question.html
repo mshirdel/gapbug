@@ -5,10 +5,7 @@
 {% block content %}
     {% include 'web/common/header_top.html' with heading=question.title %}
     <div class="row">
-        <div class="col-md-1">
-            {% include 'web/common/render_vote.html' %}
-        </div>
-        <div class="col-md-11">
+        <div class="col">
             <div class="question-body">
                 {{ question.body_html|safe }}
             </div>
@@ -16,31 +13,35 @@
     </div>
 
     <div class="row border-bottom pb-5">
-        <div class="col-md-12">
-            {% include 'web/common/render_user_compact.html' with type='Asked' user=question.user info_date=question.created %}
+        <div class="col-md-6">
+            {% include 'web/common/render_vote.html' %}
+        </div>
+        <div class="col-md-6">
+            {% include 'web/common/render_user_compact.html' with user=question.user info_date=question.created %}
         </div>
     </div>
 
     <div class="row pt-3 pb-3">
         <div class="col">
             {% trans "Number of answer: " %} {{ question.answer_set.count }}
+            
         </div>
     </div>
     
     <div>
         {% for ans in question.answer_set.all %}
             <div class="row mt-3">
-                <div class="col-md-1">
-                    {% include 'web/common/render_vote.html' %}
-                </div>
-                <div class="col-md-11">
+                <div class="col">
                     {{ ans.body_html|safe }}
                 </div>
             </div>
 
             <div class="row border-bottom pb-5">
-                <div class="col-md-12">
-                    {% include 'web/common/render_user_compact.html' with type='Answered' user=ans.user info_date=ans.created %}
+                <div class="col-md-6">
+                    {% include 'web/common/render_vote.html' %}
+                </div>
+                <div class="col-md-6">
+                    {% include 'web/common/render_user_compact.html' with  user=ans.user info_date=ans.created %}
                 </div>
             </div>
         {% endfor %}
