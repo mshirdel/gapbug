@@ -63,3 +63,15 @@ div.container {
   font-size: 14px;
   color: #848d95;
 }
+
+.hashtag {
+  border-radius: 0.2rem;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+@media (max-width: 576px) {
+  .card-small-font {
+    font-size: 10px;
+  }
+}

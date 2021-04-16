@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.models import User
 
 from .forms import UserRegistrationForm
 from user_profile.models import Profile
@@ -22,5 +23,9 @@ def register(request):
     return render(request, 'account/register.html', {'form': form})
 
 
-def profile(request):
-    return render(request, 'account/profile.html')
+def profile(request, id):
+    user = get_object_or_404(User, pk=id)
+    return render(request, 'account/profile.html',
+                  {
+                      'user_profile': user
+                  })

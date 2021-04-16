@@ -27,7 +27,7 @@ class Question(TimeStampModel):
         super().save(*args, **kwargs)
 
     class Meta:
-        ordering = ('vote', 'created')
+        ordering = ('-created',)
 
 
 class Answer(TimeStampModel):

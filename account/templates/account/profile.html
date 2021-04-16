@@ -1,4 +1,24 @@
 {% extends 'web/base.html' %}
 {% block content %}
-    <h1>profile</h1>
+    <div class="row pt-3">
+        <div class="col">
+            <h1>{{ user_profile.username }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">Email</div>
+        <div class="col-11">{{ user_profile.email }}</div>
+    </div>
+    <div class="row">
+        <div class="col-1">First Name</div>
+        <div class="col-11">{{ user_profile.first_name }}</div>
+    </div>
+    <div class="row">
+        <div class="col-1">Last Name</div>
+        <div class="col-11">{{ user_profile.last_name }}</div>
+    </div>
+    <div class="row">
+        <div class="col-1">Last Login</div>
+        <div class="col-11">{{ user_profile.last_login }}</div>
+    </div>
 {% endblock content %}
