@@ -18,21 +18,25 @@
     <link rel="stylesheet" href="{% static 'bootstrap-icons-1.4.1/bootstrap-icons.css' %}">
     {% block css %}{% endblock %}
 </head>
-<body>
+<body class="d-flex flex-column h-100">
     {% include 'web/nav.html' %}
-    <main class="container">
-        {% include 'web/messages.html' %}
-        <div class="row">
-            <div class="col-md-9">
-                {% block content %}{% endblock content %}
+    <main class="flex-shrink-0">
+        <div class="container">
+            {% include 'web/messages.html' %}
+            <div class="row">
+                <div class="{% if user.is_authenticated %} col-md-9 {% else %} col {% endif %} ">
+                    {% block content %}{% endblock content %}
+                </div>
+                {% if user.is_authenticated %}
+                    <div class="col-md-3">
+                        {% include 'web/side_col.html' %}
+                    </div>
+                {% endif %}
             </div>
-            <div class="col-md-3">
-                {% include 'web/side_col.html' %}
-            </div>
+            
         </div>
-        
-        {% include 'web/footer.html' %}
     </main>
+    {% include 'web/footer.html' %}
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     {% block js %}{% endblock %}

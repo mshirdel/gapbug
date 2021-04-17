@@ -12,6 +12,15 @@
         <div class="home-title">           
             <h1>We people who code</h1>
            {% trans "We build products that empower developers and connect them to solutions that enable productivity, growth, and discovery." %}
+           <div class="row mt-3">
+                <div class="col">
+                    <a href="{% url 'qa:index' %}" class="btn btn-primary">
+                        {% trans "See Questions" %}
+                        <i class="bi bi-patch-question-fill"></i>
+                    </a>
+                    
+                </div>
+           </div>
         </div>
     </div>
 </div>
