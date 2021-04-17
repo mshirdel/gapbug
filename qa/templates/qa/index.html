@@ -46,5 +46,6 @@
                 </div>
             </div>
         </div>
-    {% endfor %}                            
+    {% endfor %}      
+    {% include 'qa/pagination.html' with page=page_obj %}                      
 {% endblock content %}
