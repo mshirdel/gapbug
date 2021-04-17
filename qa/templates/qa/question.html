@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div class="row border-bottom pb-5">
+    <div class="row pb-5">
         <div class="col-md-6">
             {% include 'web/common/render_vote.html' %}
         </div>
@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="row pt-3 pb-3">
+    <div class="row pt-3 pb-3 border border-primary text-white bg-primary">
         <div class="col">
             {% trans "Number of answer: " %} {{ question.answer_set.count }}
         </div>
@@ -29,7 +29,7 @@
     
     <div>
         {% for ans in question.answer_set.all %}
-            <div class="row mt-3">
+            <div class="row mt-5">
                 <div class="col">
                     {{ ans.body_html|safe }}
                 </div>

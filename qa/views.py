@@ -23,7 +23,8 @@ class Ask(View):
         question = Question.objects.create(user=self.request.user,
                                            title=request.POST['title'],
                                            body_md=request.POST['body_md'])
-
+        messages.add_message(request, messages.INFO,
+                             _('Your question saved.'))
         return HttpResponseRedirect(reverse("qa:show",
                                             kwargs={
                                                 "id": question.pk,
