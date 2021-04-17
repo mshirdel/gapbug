@@ -19,6 +19,7 @@ ALLOWED_HOSTS = []
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+SECRET_KEY = '1234567890'
 
 # Application definition
 
@@ -64,6 +65,12 @@ TEMPLATES = [
         },
     },
 ]
+
+DATABASES = {
+    'default': {
+        
+    }
+}
 
 WSGI_APPLICATION = 'gapbug.wsgi.application'
 
@@ -119,7 +126,13 @@ AUTHENTICATION_BACKENDS = [
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_INFO = 'info@mshirdel.ir'
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
+EMAIL_INFO = 'info@porseshdev.ir'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 
 try:
     from .settings_dev import *
