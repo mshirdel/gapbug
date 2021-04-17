@@ -4,23 +4,34 @@
 {% block content %}
     {% include 'web/common/header_top.html' with heading="Top Questions" %}
     {% for q in questions %}
-        <div class="row border rounded align-items-center m-1">
-            <!--<div class="col-md-1 text-center p-3">
-                <div class="question-stats">12K</div>
-                <div class="question-stats">Views</div>
+        {% if forloop.last %}
+            <div class="row border-top border-bottom border-end border-start align-items-center mb-3">
+            {% else %}
+            <div class="row border-top border-end border-start align-items-center">
+        {% endif %}
+            <div class="col-3 col-sm-3 col-md-1">
+                <div class="row border-start border-bottom">
+                    <div class="col text-center p-1">
+                        <div class="question-stats">{{ q.answer_set.count }}</div>
+                        <div class="question-stats object-small-font">Answers</div>
+                    </div>
+                </div>
+                <div class="row border-start">
+                    <div class="col text-center p-1">
+                        <div class="question-stats">{{ q.vote }}</div>
+                        <div class="question-stats object-small-font">Votes</div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-1 text-center p-3">
-                <div class="question-stats">{{ q.answer_set.count }}</div>
-                <div class="question-stats">Answers</div>
-            </div>
-            <div class="col-md-1 text-center p-3">
-                <div class="question-stats">{{ q.vote }}</div>
-                <div class="question-stats">Votes</div>
-            </div>-->
-            <div class="col-md-12 p-3">
+            <div class="col-9 col-sm-9 col-md-11 p-3">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-9 col-sm-10">
                         <a href="{% url 'qa:show' q.id q.slug %}">{{ q.title }}</a>
+                    </div>
+                    <div class="col-3 col-sm-2">
+                        <span class="text-secondary pt-1 float-start objects-small-font align-baseline">
+                            <span class="">23</span> <i class="bi bi-eye question-views"></i>
+                        </span>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -28,36 +39,12 @@
                         <span class="hashtag border border-success text-success">python</span>  
                     </div>
                     <div class="col-md-6">
-                        <div class="float-start question-stats">{{ q.created|timesince }} <a href="{% url 'profile' q.user.id %}">{{ q.user.username }}</a> {% trans "Before" %}</div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-4 col-sm-4 col-md-4 col-xl-2 col-xxl-2">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <div class="card-title card-small-font">{% trans "Answer" %}</div>
-                                <p class="card-text">{{ q.answer_set.count }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-4 col-xl-2 col-xxl-2">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <div class="card-title card-small-font">{% trans "Votes" %}</div>
-                                <p class="card-text">5</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-4 col-xl-2 col-xxl-2">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <div class="card-title card-small-font">{% trans "Views" %}</div>
-                                <p class="card-text">5</p>
-                            </div>
+                        <div class="float-start question-stats">
+                            {{ q.created|timesince }} <a href="{% url 'profile' q.user.id %}">{{ q.user.username }}</a> {% trans "Before" %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    {% endfor %}                                      
+    {% endfor %}                            
 {% endblock content %}

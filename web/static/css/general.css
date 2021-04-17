@@ -70,8 +70,12 @@ div.container {
   padding-right: 3px;
 }
 
+.question-views {
+  font-size: 18px;
+}
+
 @media (max-width: 576px) {
-  .card-small-font {
+  .objects-small-font {
     font-size: 10px;
   }
 }

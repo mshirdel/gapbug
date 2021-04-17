@@ -23,11 +23,14 @@
     <main class="container">
         {% include 'web/messages.html' %}
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-9">
                 {% block content %}{% endblock content %}
             </div>
+            <div class="col-md-3">
+                {% include 'web/side_col.html' %}
+            </div>
         </div>
-        <hr>
+        
         {% include 'web/footer.html' %}
     </main>
 
