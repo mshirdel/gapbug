@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.utils.translation import gettext as _
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -21,5 +22,13 @@ class UserRegistrationForm(forms.ModelForm):
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
-            raise forms.ValidationError("Password don't match")
+            raise forms.ValidationError(_("Password don't match."))
         return cd['password2']
+
+    def clean_email(self):
+        cd = self.cleaned_data
+        try:
+            User.objects.get(email=cd['email'])
+        except User.DoesNotExist:
+            return cd['email']
+        raise forms.ValidationError(_("Email must be unique."))
