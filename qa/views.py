@@ -12,7 +12,7 @@ from .models import Question, Answer
 
 
 class QuestionList(ListView):
-    queryset = Question.objects.all()
+    queryset = Question.objects.all().prefetch_related('user', 'answer_set')
     context_object_name = 'questions'
     paginate_by = 10
     template_name = 'qa/index.html'
