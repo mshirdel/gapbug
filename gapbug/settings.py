@@ -125,6 +125,7 @@ AUTHENTICATION_BACKENDS = [
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'login'
 
 EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
 EMAIL_INFO = 'info@porseshdev.ir'

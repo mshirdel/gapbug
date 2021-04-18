@@ -15,7 +15,11 @@
                 {% else %}
                 <p>
                     {% trans "Please, use the following form to log-in. If you don't have an account" %} 
-                    <a href="{% url "register" %}">{% trans "register here" %}</a>
+                    {% if next %}
+                        <a href="{% url "register" %}?next={{ next }}">{% trans "register here" %}</a>
+                    {% else %}
+                        <a href="{% url "register" %}">{% trans "register here" %}</a>
+                    {% endif %}
                 </p>
                 {% endif %}
             </p>

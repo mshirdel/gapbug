@@ -4,7 +4,10 @@ from django.urls import reverse
 from django.views.generic import ListView
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext as _
+from django.utils.decorators import method_decorator
+
 from .models import Question, Answer
 
 
@@ -15,6 +18,7 @@ class QuestionList(ListView):
     template_name = 'qa/index.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class Ask(View):
     def get(self, request):
         return render(request, 'qa/ask_question.html')
