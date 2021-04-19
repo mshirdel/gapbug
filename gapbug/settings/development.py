@@ -19,7 +19,7 @@ DATABASES = {
     }
 }
 
-INSTALLED_APPS.append('rosetta')
+INSTALLED_APPS.append('rosetta') 
 INSTALLED_APPS.append('django_extensions')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
