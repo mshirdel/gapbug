@@ -4,10 +4,10 @@ from django.utils.translation import gettext as _
 
 
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Passwrod',
+    password = forms.CharField(label=_('Passwrod'),
                                widget=forms.PasswordInput(
                                    attrs={'class': 'form-control'}))
-    password2 = forms.CharField(label='Repeat password',
+    password2 = forms.CharField(label=_('Repeat password'),
                                 widget=forms.PasswordInput(
                                     attrs={'class': 'form-control'}))
 

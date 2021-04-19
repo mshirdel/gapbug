@@ -1,0 +1,331 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-19 13:33+0430\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: account/forms.py:7
+msgid "Passwrod"
+msgstr ""
+
+#: account/forms.py:10
+msgid "Repeat password"
+msgstr ""
+
+#: account/forms.py:25
+msgid "Password don't match."
+msgstr ""
+
+#: account/forms.py:34
+msgid "Email must be unique."
+msgstr ""
+
+#: account/templates/account/register.html:4
+#: account/templates/account/register.html:9
+msgid "Create an account"
+msgstr ""
+
+#: account/templates/account/register.html:10
+msgid "Please, sign up using following form:"
+msgstr ""
+
+#: account/templates/account/register.html:13
+msgid "Create my account"
+msgstr ""
+
+#: account/templates/account/register.html:15
+#: account/templates/registration/password_reset_form.html:19
+msgid "Already have account?"
+msgstr ""
+
+#: account/templates/account/register.html:15
+#: account/templates/registration/password_reset_form.html:19
+msgid "login here"
+msgstr ""
+
+#: account/templates/account/register_done.html:4
+msgid "Welcome"
+msgstr ""
+
+#: account/templates/account/register_done.html:10
+#, python-format
+msgid ""
+"\n"
+"                    Welcome %(new_user.username)s!\n"
+"                "
+msgstr ""
+
+#: account/templates/account/register_done.html:15
+msgid "Your account has been succesfully created."
+msgstr ""
+
+#: account/templates/account/register_done.html:18
+msgid "To verify your email we sent a link to your inbox."
+msgstr ""
+
+#: account/templates/registration/logged_out.html:4
+#: account/templates/registration/logged_out.html:9
+msgid "Logged-out"
+msgstr ""
+
+#: account/templates/registration/logged_out.html:11
+msgid "You have been successfully logged out."
+msgstr ""
+
+#: account/templates/registration/logged_out.html:12
+msgid "You can "
+msgstr ""
+
+#: account/templates/registration/logged_out.html:12
+msgid "Login again."
+msgstr ""
+
+#: account/templates/registration/login.html:4
+#: account/templates/registration/login.html:9
+#: account/templates/registration/login.html:38
+msgid "Log-in"
+msgstr ""
+
+#: account/templates/registration/login.html:13
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+
+#: account/templates/registration/login.html:17
+msgid "Please, use the following form to log-in. If you don't have an account"
+msgstr ""
+
+#: account/templates/registration/login.html:19
+#: account/templates/registration/login.html:21
+msgid "register here"
+msgstr ""
+
+#: account/templates/registration/login.html:29
+msgid "Username:"
+msgstr ""
+
+#: account/templates/registration/login.html:33
+msgid "Password:"
+msgstr ""
+
+#: account/templates/registration/login.html:41
+#: account/templates/registration/password_reset_form.html:9
+msgid "Forgotten your password?"
+msgstr ""
+
+#: account/templates/registration/password_change_done.html:4
+#: account/templates/registration/password_change_done.html:9
+msgid "Password changed"
+msgstr ""
+
+#: account/templates/registration/password_change_done.html:11
+msgid "Your password has been successfully changed."
+msgstr ""
+
+#: account/templates/registration/password_change_form.html:4
+#: account/templates/registration/password_change_form.html:9
+msgid "Change your password"
+msgstr ""
+
+#: account/templates/registration/password_change_form.html:11
+msgid "Use the form below to change your password"
+msgstr ""
+
+#: account/templates/registration/password_reset_complete.html:4
+msgid "Password reset"
+msgstr ""
+
+#: account/templates/registration/password_reset_complete.html:9
+msgid "Password set"
+msgstr ""
+
+#: account/templates/registration/password_reset_complete.html:11
+msgid "Your password has been set. You can"
+msgstr ""
+
+#: account/templates/registration/password_reset_confirm.html:4
+#: account/templates/registration/password_reset_confirm.html:9
+#: account/templates/registration/password_reset_done.html:4
+#: account/templates/registration/password_reset_done.html:9
+#: account/templates/registration/password_reset_form.html:4
+msgid "Reset your password"
+msgstr ""
+
+#: account/templates/registration/password_reset_confirm.html:12
+msgid "Please enter your new password twice:"
+msgstr ""
+
+#: account/templates/registration/password_reset_confirm.html:21
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr ""
+
+#: account/templates/registration/password_reset_done.html:11
+msgid "We've emailed you instructions for setting your password."
+msgstr ""
+
+#: account/templates/registration/password_reset_done.html:14
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with."
+msgstr ""
+
+#: account/templates/registration/password_reset_form.html:10
+msgid "Enter your e-mail address to obtain a new password."
+msgstr ""
+
+#: account/templates/registration/password_reset_form.html:13
+msgid "Email:"
+msgstr ""
+
+#: account/templates/registration/password_reset_form.html:16
+msgid "Send e-mail"
+msgstr ""
+
+#: qa/templates/qa/ask_question.html:4
+msgid "Ask a Question"
+msgstr ""
+
+#: qa/templates/qa/ask_question.html:6
+msgid "Ask a public question"
+msgstr ""
+
+#: qa/templates/qa/ask_question.html:11
+msgid "Title"
+msgstr ""
+
+#: qa/templates/qa/ask_question.html:14
+msgid "Be specific and imagine you’re asking a question to another person"
+msgstr ""
+
+#: qa/templates/qa/ask_question.html:18
+msgid "Body"
+msgstr ""
+
+#: qa/templates/qa/ask_question.html:20
+msgid "Include all the information someone would need to answer your question"
+msgstr ""
+
+#: qa/templates/qa/ask_question.html:36
+msgid "Post your question"
+msgstr ""
+
+#: qa/templates/qa/index.html:3
+msgid "PorseshDev.ir - Where Developers Learn, Share, &amp; Build Careers"
+msgstr ""
+
+#: qa/templates/qa/index.html:43
+msgid "Before"
+msgstr ""
+
+#: qa/templates/qa/pagination.html:7 qa/templates/qa/pagination.html:11
+msgid "Previous"
+msgstr ""
+
+#: qa/templates/qa/pagination.html:29 qa/templates/qa/pagination.html:33
+msgid "Next"
+msgstr ""
+
+#: qa/templates/qa/question.html:26
+msgid "Number of answer: "
+msgstr ""
+
+#: qa/templates/qa/question.html:52
+msgid "Your Answer"
+msgstr ""
+
+#: qa/templates/qa/question.html:70
+msgid "Post your answer"
+msgstr ""
+
+#: qa/views.py:31
+msgid "Your question saved."
+msgstr ""
+
+#: qa/views.py:52
+msgid "Your answer saved"
+msgstr ""
+
+#: qa/views.py:55
+msgid "Please enter your answer"
+msgstr ""
+
+#: user_profile/models.py:21
+msgid "Please verify your email"
+msgstr ""
+
+#: user_profile/views.py:27
+msgid "Yout email address verified successfuly."
+msgstr ""
+
+#: user_profile/views.py:30
+msgid "Error in email verification."
+msgstr ""
+
+#: web/templates/web/about.html:3
+msgid "About"
+msgstr ""
+
+#: web/templates/web/common/render_ask.html:3
+msgid "Ask Question"
+msgstr ""
+
+#: web/templates/web/index.html:5
+msgid "Home page of gapcode project"
+msgstr ""
+
+#: web/templates/web/index.html:14
+msgid ""
+"We build products that empower developers and connect them to solutions that "
+"enable productivity, growth, and discovery."
+msgstr ""
+
+#: web/templates/web/index.html:18
+msgid "See Questions"
+msgstr ""
+
+#: web/templates/web/nav.html:4
+msgid "PorseshDev"
+msgstr ""
+
+#: web/templates/web/nav.html:12
+msgid "Users"
+msgstr ""
+
+#: web/templates/web/nav.html:15
+msgid "Tags"
+msgstr ""
+
+#: web/templates/web/nav.html:18
+msgid "Questions"
+msgstr ""
+
+#: web/templates/web/nav.html:28
+msgid "logout"
+msgstr ""
+
+#: web/templates/web/nav.html:30
+msgid "LOGIN"
+msgstr ""
+
+#: web/templates/web/nav.html:31
+msgid "SIGNUP"
+msgstr ""
+
+#: web/templates/web/side_col.html:4
+msgid "Watched Tags"
+msgstr ""

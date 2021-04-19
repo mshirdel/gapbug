@@ -35,7 +35,7 @@
                 </div>
                 <input type="hidden" name="next" value='{{ next }}'>
                 <p>
-                    <input type="submit" value="Log-in" class="btn btn-primary">
+                    <input type="submit" value="{% trans "Log-in" %}" class="btn btn-primary">
                 </p>
             </form>
             <p><a href="{% url 'password_reset' %}">{% trans "Forgotten your password?" %}</a></p>

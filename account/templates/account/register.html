@@ -10,7 +10,7 @@
             <p class="card-text">{% trans "Please, sign up using following form:" %}</p>
             <form method="post">
                 {% include "web/common/render_form.html" with form=form %}
-                <p><input type="submit" value="Create my account" class="btn btn-primary"></p>
+                <p><input type="submit" value="{% trans "Create my account" %}" class="btn btn-primary"></p>
             </form>
             <p>{% trans "Already have account?" %} <a href="{% url 'login' %}">{% trans "login here" %}</a></p>
         </div>

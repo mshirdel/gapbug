@@ -3,7 +3,8 @@
 {% load i18n %}
 {% block title %}{% trans "Ask a Question" %}{% endblock title %}
 {% block content %}
-{% include 'web/common/header_top.html' with heading="Ask a public question" %}
+{% trans "Ask a public question" as header_title %}
+{% include 'web/common/header_top.html' with heading=header_title %}
 <form action="" method="post">
     {% csrf_token %}
     <div class="mb-3">
@@ -15,6 +16,9 @@
     </div>
     <div class="mb-3">
         <label for="bodyMd" class="form-label">{% trans "Body" %}</label>
+        <div id="bodyHelp" class="form-text">
+            {% trans "Include all the information someone would need to answer your question" %}
+        </div>
         <div class="row">
             <div class="col">
                 <div>
@@ -27,9 +31,6 @@
             <div class="col">
                 <div id="wmd-preview" class="wmd-preview"></div>  
             </div>
-        </div>
-        <div id="bodyHelp" class="form-text">
-            {% trans "Include all the information someone would need to answer your question" %}
         </div>
     </div>
     <input class="btn btn-primary" type="submit" value="{% trans "Post your question" %}">
