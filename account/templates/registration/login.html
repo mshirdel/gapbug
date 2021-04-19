@@ -4,41 +4,42 @@
 {% block title %}{% trans "Log-in" %}{% endblock title %}
 {% block content %}
     <div class="card">
-        <img src="{% static 'img/header.png' %}" class="card-img-top" alt="">
-        <div class="card-body">
-            <h5 class="card-title">{% trans "Log-in" %}</h5>
-            <p class="card-text">
-                {% if form.errors %}
-                    <p>
-                        {% trans "Your username and password didn't match. Please try again." %}
-                    </p>
-                {% else %}
-                <p>
-                    {% trans "Please, use the following form to log-in. If you don't have an account" %} 
-                    {% if next %}
-                        <a href="{% url "register" %}?next={{ next }}">{% trans "register here" %}</a>
+        <div class="card-body  p-0">
+            <h5 class="card-title bg-primary text-light p-3">{% trans "Log-in" %}</h5>
+            <div class="m-3">
+                <p class="card-text">
+                    {% if form.errors %}
+                        <p>
+                            {% trans "Your username and password didn't match. Please try again." %}
+                        </p>
                     {% else %}
-                        <a href="{% url "register" %}">{% trans "register here" %}</a>
+                    <p>
+                        {% trans "Please, use the following form to log-in. If you don't have an account" %} 
+                        {% if next %}
+                            <a href="{% url "register" %}?next={{ next }}">{% trans "register here" %}</a>
+                        {% else %}
+                            <a href="{% url "register" %}">{% trans "register here" %}</a>
+                        {% endif %}
+                    </p>
                     {% endif %}
                 </p>
-                {% endif %}
-            </p>
-            <form action="{% url 'login' %}" method="post">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <label for="id_username" class="form-label">{% trans "Username:" %}</label> 
-                    <input class="form-control" type="text" name="username" autofocus required id="id_username">
-                </div>
-                <div class="mb-3">
-                    <label for="id_password" class="form-label">{% trans "Password:" %}</label> 
-                    <input class="form-control" type="password" name="password" required id="id_password">
-                </div>
-                <input type="hidden" name="next" value='{{ next }}'>
-                <p>
-                    <input type="submit" value="{% trans "Log-in" %}" class="btn btn-primary">
-                </p>
-            </form>
-            <p><a href="{% url 'password_reset' %}">{% trans "Forgotten your password?" %}</a></p>
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_username" class="form-label">{% trans "Username:" %}</label> 
+                        <input class="form-control" type="text" name="username" autofocus required id="id_username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_password" class="form-label">{% trans "Password:" %}</label> 
+                        <input class="form-control" type="password" name="password" required id="id_password">
+                    </div>
+                    <input type="hidden" name="next" value='{{ next }}'>
+                    <p>
+                        <input type="submit" value="{% trans "Log-in" %}" class="btn btn-primary">
+                    </p>
+                </form>
+                <p><a href="{% url 'password_reset' %}">{% trans "Forgotten your password?" %}</a></p>
+            </div>
         </div>
     </div>
    

@@ -4,19 +4,20 @@
 {% block title %}{% trans "Welcome" %}{% endblock title %}
 {% block content %}
     <div class="card">
-        <img src="{% static 'img/header.png' %}" class="card-img-top" alt="">
-        <div class="card-body">
-            <h5 class="card-title">
+        <div class="card-body p-0">
+            <h5 class="card-title bg-primary text-light p-3">
                 {% blocktrans %}
                     Welcome {{ new_user.username }}!
                 {% endblocktrans %}
             </h5>
-            <p class="card-text">
-                {% trans "Your account has been succesfully created." %}
-            </p>          
-            <p class="card-text">
-                {% trans "To verify your email we sent a link to your inbox." %}
-            </p>
+            <div class="m-3">
+                <p class="card-text">
+                    {% trans "Your account has been succesfully created." %}
+                </p>          
+                <p class="card-text">
+                    {% trans "To verify your email we sent a link to your inbox." %}
+                </p>
+            </div>
         </div>
     </div>
 {% endblock content %}

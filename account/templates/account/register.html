@@ -4,15 +4,18 @@
 {% block title %}{% trans "Create an account" %}{% endblock title %}
 {% block content %}
     <div class="card">
-        <img src="{% static 'img/header.png' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">{% trans "Create an account" %}</h5>
-            <p class="card-text">{% trans "Please, sign up using following form:" %}</p>
-            <form method="post">
-                {% include "web/common/render_form.html" with form=form %}
-                <p><input type="submit" value="{% trans "Create my account" %}" class="btn btn-primary"></p>
-            </form>
-            <p>{% trans "Already have account?" %} <a href="{% url 'login' %}">{% trans "login here" %}</a></p>
+        <div class="card-body p-0">
+            <h5 class="card-title bg-primary text-light p-3">
+                {% trans "Create an account" %}
+            </h5>
+            <div class="m-3">
+                <p class="card-text">{% trans "Please, sign up using following form:" %}</p>
+                <form method="post">
+                    {% include "web/common/render_form.html" with form=form %}
+                    <p><input type="submit" value="{% trans "Create my account" %}" class="btn btn-primary"></p>
+                </form>
+                <p>{% trans "Already have account?" %} <a href="{% url 'login' %}">{% trans "login here" %}</a></p>
+            </div>
         </div>
     </div>
 {% endblock content %}
