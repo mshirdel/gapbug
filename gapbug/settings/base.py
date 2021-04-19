@@ -15,6 +15,7 @@ from os.path import dirname
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.normpath(os.path.join(os.path.dirname(BASE_DIR)))
 
 ALLOWED_HOSTS = []
 INTERNAL_IPS = [
@@ -125,5 +126,6 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
