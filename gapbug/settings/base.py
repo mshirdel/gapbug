@@ -126,6 +126,6 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
