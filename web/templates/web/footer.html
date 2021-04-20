@@ -1,3 +1,4 @@
+{% load i18n %}
 <footer class="footer mt-auto py-3 bg-dark text-light">
   <div class="container">
     <div class="row">
@@ -18,7 +19,7 @@
         </p>
       </div>
       <div class="col-4">
-        <a href="{% url 'web:about' %}" class="footer-color-link">About</a>
+        <a href="{% url 'web:about' %}" class="footer-color-link">{% trans "About" %}</a>
       </div>
     </div>
   </div>

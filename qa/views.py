@@ -2,13 +2,15 @@ from django.shortcuts import get_object_or_404, render
 from django.views import View
 from django.urls import reverse
 from django.views.generic import ListView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext as _
 from django.utils.decorators import method_decorator
 
 from .models import Question, Answer
+from .privilages import Privilages
+from .mixins import PrivilageRequiredMixin
 
 
 class QuestionList(ListView):
@@ -19,7 +21,9 @@ class QuestionList(ListView):
 
 
 @method_decorator(login_required, name='dispatch')
-class Ask(View):
+class Ask(PrivilageRequiredMixin, View):
+    privilage_required = 'create_post'
+
     def get(self, request):
         return render(request, 'qa/ask_question.html')
 

@@ -1,4 +1,4 @@
 {% load i18n %}
-{% if user.is_authenticated %}
+{% if user.is_authenticated and 'create_post' in user.profile.privilages %}
     <a href="{% url 'qa:question' %}" class="btn btn-primary float-start">{% trans "Ask Question" %}</a>
 {% endif %}

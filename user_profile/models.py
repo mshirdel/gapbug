@@ -9,12 +9,15 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.utils.translation import gettext as _
 from user_profile.tokens import email_verification_token
+from common.models import TimeStampModel
+from qa.privilages import Privilages
 
 
 class Profile(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
     is_email_verified = models.BooleanField(default=False)
     email_verify_date = models.DateTimeField(blank=True, null=True)
+    reputation = models.IntegerField(default=0)
 
     def send_verification_email(self, request):
         current_site = get_current_site(request)
@@ -30,3 +33,12 @@ class Profile(models.Model):
                   settings.EMAIL_INFO,
                   [self.user.email],
                   fail_silently=False)
+
+    def privilages(self):
+        return Privilages(self.user).get_user_privilages()
+
+
+# class ReputationHistory(TimeStampModel):
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL,
+#                              on_delete=models.CASCADE)
+#     cause = models.TextChoices('A', 'B')
