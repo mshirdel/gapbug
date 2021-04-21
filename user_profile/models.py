@@ -17,7 +17,7 @@ class Profile(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
     is_email_verified = models.BooleanField(default=False)
     email_verify_date = models.DateTimeField(blank=True, null=True)
-    reputation = models.IntegerField(default=0)
+    reputation = models.IntegerField(default=1)
 
     def send_verification_email(self, request):
         current_site = get_current_site(request)
@@ -36,6 +36,9 @@ class Profile(models.Model):
 
     def privilages(self):
         return Privilages(self.user).get_user_privilages()
+
+    def has_privilage(self, privilage):
+        return privilage in self.privilages()
 
 
 # class ReputationHistory(TimeStampModel):
