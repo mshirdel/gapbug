@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext as _
 from django.utils.decorators import method_decorator
 
-from .models import Question, Answer
+from .models import Question, Answer, QuestionVote
 from .privilages import Privilages
 from .mixins import PrivilageRequiredMixin
 
@@ -45,6 +45,7 @@ def show(request, id, slug):
     return render(request, 'qa/question.html', {'question': question})
 
 
+@method_decorator(login_required, name='dispatch')
 class AnswerQuestion(View):
     def post(self, request, id):
         q = get_object_or_404(Question, id=id)
@@ -62,3 +63,14 @@ class AnswerQuestion(View):
                                                 "id": q.pk,
                                                 "slug": q.slug
                                             }))
+
+
+@method_decorator(login_required, name='dispatch')
+class QuestionVoteUp(PrivilageRequiredMixin, View):
+    privilage_required = 'vote_up'
+
+    def post(self, request, question_id):
+        question = get_object_or_404(Question, pk=question_id)
+        QuestionVote.create(user=request.user,
+                            question=question,
+                            rate=1)

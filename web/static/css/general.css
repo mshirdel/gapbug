@@ -84,3 +84,7 @@ div.container {
     font-size: 10px;
   }
 }
+
+.btn-group {
+  direction: ltr;
+}

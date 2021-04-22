@@ -14,7 +14,7 @@
 
     <div class="row pb-5">
         <div class="col-md-6">
-            {% include 'web/common/render_vote.html' %}
+            {% include 'web/common/render_vote.html' with type='Question' pk=question.id %}
         </div>
         <div class="col-md-6">
             {% include 'web/common/render_user_compact.html' with user=question.user info_date=question.created %}
@@ -37,7 +37,7 @@
 
             <div class="row border-bottom pb-5">
                 <div class="col-md-6">
-                    {% include 'web/common/render_vote.html' %}
+                    {% include 'web/common/render_vote.html' with type='Answer' pk=ans.id %}
                 </div>
                 <div class="col-md-6">
                     {% include 'web/common/render_user_compact.html' with  user=ans.user info_date=ans.created %}
@@ -81,19 +81,26 @@
     <script src="{% static 'js/Markdown.Editor.js' %}"></script>
     <script src="{% static 'js/Markdown.Sanitizer.js' %}"></script>
     <script type="text/javascript">
-            (function () {
-                var converter1 = Markdown.getSanitizingConverter();
-                
-                converter1.hooks.chain("preBlockGamut", function (text, rbg) {
-                    return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
-                        return "<blockquote>" + rbg(inner) + "</blockquote>\n";
-                    });
-                });
-                
-                var editor1 = new Markdown.Editor(converter1);
-                
-                editor1.run();
+        (function () {
+            var converter1 = Markdown.getSanitizingConverter();
             
-            })();
-        </script>
+            converter1.hooks.chain("preBlockGamut", function (text, rbg) {
+                return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
+                    return "<blockquote>" + rbg(inner) + "</blockquote>\n";
+                });
+            });
+            
+            var editor1 = new Markdown.Editor(converter1);
+            
+            editor1.run();
+        
+        })();
+        function btnVoteDownClick(type, id){
+            console.log(type, ' ', id);
+        }
+
+        function btnVoteUp(type, id){
+            console.log(type, ' ', id);
+        }
+    </script>
 {% endblock %}

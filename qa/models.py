@@ -62,9 +62,13 @@ class QuestionVote(Vote):
                                  on_delete=models.CASCADE,
                                  related_name='number_of_votes')
 
+    class Meta:
+        unique_together = ['user', 'question']
+
     def save(self, *args, **kwargs):
         self.question.vote += self.rate
         self.question.save()
+        # TODO update reputatin of question owner with ReputationHistory
         super().save(*args, **kwargs)
 
 
