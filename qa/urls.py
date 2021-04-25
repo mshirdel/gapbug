@@ -10,4 +10,6 @@ urlpatterns = [
     path('show/<int:id>/<str:slug>', views.show, name='show'),
     path('<int:id>/answer/submit', views.AnswerQuestion.as_view(),
          name='submit_answer'),
+    path('question/<int:question_id>/up', views.QuestionVoteUp.as_view(),
+         name="question_vote_up")
 ]

@@ -23,7 +23,7 @@
                     </p>
                     {% endif %}
                 </p>
-                <form action="{% url 'login' %}" method="post">
+                <form action="{% url 'login' %}" method="post" id='fromLogin'>
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="id_username" class="form-label">{% trans "Username:" %}</label> 

@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views import View
 from django.urls import reverse
@@ -71,6 +72,15 @@ class QuestionVoteUp(PrivilageRequiredMixin, View):
 
     def post(self, request, question_id):
         question = get_object_or_404(Question, pk=question_id)
-        QuestionVote.create(user=request.user,
-                            question=question,
-                            rate=1)
+        try:
+            QuestionVote.objects.create(user=request.user,
+                                        question=question,
+                                        rate=1)
+            return JsonResponse({
+                'status': 'ok',
+                'vote': Question.objects.get(pk=question_id).vote
+            })
+        except Exception as ex:
+            return JsonResponse({
+                'status': 'error'
+            })
