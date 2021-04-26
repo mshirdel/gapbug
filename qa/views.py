@@ -84,3 +84,20 @@ class QuestionVoteUp(PrivilageRequiredMixin, View):
             return JsonResponse({
                 'status': 'error'
             })
+
+
+@method_decorator(login_required, name='dispatch')
+class QuestionVoteDown(PrivilageRequiredMixin, View):
+    privilage_required = 'vote_down'
+
+    def post(self, request, question_id):
+        question = get_object_or_404(Question, pk=question_id)
+        try:
+            QuestionVote.objects.create(user=request.user,
+                                        question=question, rate=-1)
+            return JsonResponse({
+                'status': 'ok',
+                'vote': Question.objects.get(pk=question_id).vote
+            })
+        except Exception as ex:
+            return JsonResponse({'status': 'error'})

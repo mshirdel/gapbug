@@ -77,10 +77,13 @@
     <link rel="stylesheet" href="{% static 'css/markdown.css' %}">
 {% endblock css %}
 {% block js %}
+    {% if user.is_authenticated %}
     <script src="{% static 'js/Markdown.Converter.js' %}"></script>
     <script src="{% static 'js/Markdown.Editor.js' %}"></script>
     <script src="{% static 'js/Markdown.Sanitizer.js' %}"></script>
+    {% endif %}
     <script type="text/javascript">
+        {% if user.is_authenticated %}
         (function () {
             var converter1 = Markdown.getSanitizingConverter();
             
@@ -95,11 +98,7 @@
             editor1.run();
         
         })();
-
-        function btnVoteDownClick(type, id){
-            console.log(type, ' ', id);
-        }
-
+        {% endif %}
         // Example POST method implementation:
         async function postData(url = '', data = {}) {
             // Default options are marked with *
@@ -122,6 +121,21 @@
         function btnVoteUp(type, id){
             if (type === 'Question'){
                 postData('{% url "qa:question_vote_up" question.id %}', {})
+                    .then(data => {
+                        if (data.status === 'ok') {
+                            var btnVoteValue = document.getElementById('btnVoteValue');
+                            btnVoteValue.innerHTML = data.vote;
+                        }
+                    });
+            }
+            if (type === 'Answer'){
+                console.log('Not Implemented method')
+            }
+        }
+
+        function btnVoteDownClick(type, id){
+            if (type === 'Question'){
+                postData('{% url "qa:question_vote_down" question.id %}', {})
                     .then(data => {
                         console.log(data); // JSON data parsed by `data.json()` call
                         if (data.status === 'ok') {
