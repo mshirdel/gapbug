@@ -40,8 +40,18 @@ class Profile(models.Model):
     def has_privilage(self, privilage):
         return privilage in self.privilages()
 
+    def update_reputation(self, reputation_value):
+        self.reputation += reputation_value
+        self.save()
 
-# class ReputationHistory(TimeStampModel):
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-#                              on_delete=models.CASCADE)
-#     cause = models.TextChoices('A', 'B')
+
+class ReputationHistory(TimeStampModel):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    cause = models.TextField()
+    reputation = models.IntegerField()
+
+    def save(self, *args, **kwargs):
+        self.user.profile.reputation += self.reputation
+        self.user.profile.save()
+        super().save(*args, **kwargs)

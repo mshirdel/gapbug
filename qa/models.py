@@ -68,7 +68,6 @@ class QuestionVote(Vote):
     def save(self, *args, **kwargs):
         self.question.vote += self.rate
         self.question.save()
-        # TODO update reputatin of question owner with ReputationHistory
         super().save(*args, **kwargs)
 
 

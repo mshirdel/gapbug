@@ -3,6 +3,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from user_profile.models import Profile
 from .models import Question
+from .reputations import Reputation
 
 
 class PrivilagesTest(TestCase):
@@ -79,6 +80,7 @@ class QuestionsTest(TestCase):
     def test_question_voteup_success(self):
         c = Client()
         q = Question.objects.get(title='question1 title')
+        question_owner_reputation = q.user.profile.reputation
         u15 = User.objects.get(username='user_15')
         self.assertTrue(c.login(username=u15.username, password='thepassword'))
         response = c.post(f'/questions/{q.id}/up')
@@ -86,6 +88,9 @@ class QuestionsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         q = Question.objects.get(title='question1 title')
         self.assertEqual(q.vote, 1)
+        self.assertEqual(question_owner_reputation +
+                         Reputation.QUESTION_VOTE_UP.value,
+                         q.user.profile.reputation)
 
     def test_question_votedown_fail(self):
         c = Client()
@@ -101,6 +106,7 @@ class QuestionsTest(TestCase):
     def test_question_votedown_success(self):
         c = Client()
         q = Question.objects.get(title='question1 title')
+        question_owner_reputation = q.user.profile.reputation
         before_vote = q.vote
         u150 = User.objects.get(username='user_150')
         response = c.post(f'/questions/{q.id}/down')
@@ -112,3 +118,6 @@ class QuestionsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         q = Question.objects.get(title='question1 title')
         self.assertEqual(q.vote, before_vote-1)
+        self.assertEqual(question_owner_reputation +
+                         Reputation.QUESTION_VOTE_DOWN.value,
+                         q.user.profile.reputation)

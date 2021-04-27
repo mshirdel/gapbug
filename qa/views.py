@@ -10,7 +10,9 @@ from django.utils.translation import gettext as _
 from django.utils.decorators import method_decorator
 
 from .models import Question, Answer, QuestionVote
+from user_profile.models import ReputationHistory
 from .privilages import Privilages
+from .reputations import Reputation
 from .mixins import PrivilageRequiredMixin
 
 
@@ -73,16 +75,24 @@ class QuestionVoteUp(PrivilageRequiredMixin, View):
     def post(self, request, question_id):
         question = get_object_or_404(Question, pk=question_id)
         try:
-            QuestionVote.objects.create(user=request.user,
-                                        question=question,
-                                        rate=1)
+            qv = QuestionVote.objects.create(
+                user=request.user,
+                question=question,
+                rate=1)
+            if qv:
+                ReputationHistory.objects.create(
+                    user=question.user,
+                    cause=Reputation.QUESTION_VOTE_UP.name,
+                    reputation=Reputation.QUESTION_VOTE_UP.value
+                )
             return JsonResponse({
                 'status': 'ok',
                 'vote': Question.objects.get(pk=question_id).vote
             })
         except Exception as ex:
             return JsonResponse({
-                'status': 'error'
+                'status': 'error',
+                'error': str(ex)
             })
 
 
@@ -93,11 +103,23 @@ class QuestionVoteDown(PrivilageRequiredMixin, View):
     def post(self, request, question_id):
         question = get_object_or_404(Question, pk=question_id)
         try:
-            QuestionVote.objects.create(user=request.user,
-                                        question=question, rate=-1)
+            qv = QuestionVote.objects.create(
+                user=request.user,
+                question=question,
+                rate=-1)
+            if qv:
+                ReputationHistory.objects.create(
+                    user=question.user,
+                    cause=Reputation.QUESTION_VOTE_DOWN.name,
+                    reputation=Reputation.QUESTION_VOTE_DOWN.value
+                )
             return JsonResponse({
                 'status': 'ok',
                 'vote': Question.objects.get(pk=question_id).vote
             })
         except Exception as ex:
-            return JsonResponse({'status': 'error'})
+            return JsonResponse(
+                {
+                    'status': 'error',
+                    'error': str(ex)
+                })
