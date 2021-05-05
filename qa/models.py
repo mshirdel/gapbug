@@ -66,9 +66,9 @@ class QuestionVote(Vote):
         unique_together = ['user', 'question']
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         self.question.vote += self.rate
         self.question.save()
-        super().save(*args, **kwargs)
 
 
 class AnswerVote(Vote):
@@ -77,6 +77,6 @@ class AnswerVote(Vote):
                                related_name='number_of_votes')
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         self.answer.vote += self.rate
         self.answer.save()
-        super().save(*args, **kwargs)
