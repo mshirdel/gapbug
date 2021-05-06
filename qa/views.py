@@ -43,6 +43,33 @@ class Ask(PrivilageRequiredMixin, View):
                                             }))
 
 
+class EditQuestion(View):
+
+    def get(self, request, question_id):
+        q = get_object_or_404(Question, pk=question_id)
+        return render(request, 'qa/edit_question.html',
+                      {'question': q})
+
+    def post(self, request, question_id):
+        q = get_object_or_404(Question, pk=question_id)
+        try:
+            if request.POST['title']:
+                q.title = request.POST['title']
+            if request.POST['body_md']:
+                q.body_md = request.POST['body_md']
+            q.save()
+            messages.add_message(request, messages.INFO,
+                                 _('Question updated'))
+        except Exception as ex:
+            messages.add_message(request, messages.WARNING,
+                                 str(ex))
+        return HttpResponseRedirect(reverse("qa:show",
+                                            kwargs={
+                                                'id': q.pk,
+                                                'slug': q.slug
+                                            }))
+
+
 def show(request, id, slug):
     question = get_object_or_404(Question, pk=id, slug=slug)
     return render(request, 'qa/question.html', {'question': question})
