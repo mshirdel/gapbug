@@ -6,7 +6,13 @@
         {% else %}
             <button id="btnVoteDown" type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans "You need 150 reputation to upvote posts." %}">-</button>
         {% endif %}
-        <button id="btnVoteValue" type="button" class="btn btn-outline-primary" value="{{question.vote}}">{{ question.vote }}</button>
+
+        {% if type == 'Question' %}
+            <button id="btnVoteValue" type="button" class="btn btn-outline-primary" value="{{question.vote}}">{{ question.vote }}</button>
+        {% else %}
+            <button id="btnVoteValue" type="button" class="btn btn-outline-primary" value="{{ans.vote}}">{{ ans.vote }}</button>
+        {% endif %}
+        
         {% if user.is_authenticated and 'vote_up' in user.profile.privilages %}
             <button id="btnVoteUp" onclick="btnVoteUp('{{type}}', '{{pk}}')" type="button" class="btn btn-outline-success">+</button>
         {% else %}
