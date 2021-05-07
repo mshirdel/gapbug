@@ -15,5 +15,7 @@ urlpatterns = [
     path('<int:question_id>/down', views.QuestionVoteDown.as_view(),
          name="question_vote_down"),
     path('<int:question_id>/edit', views.EditQuestion.as_view(),
-         name="question_edit")
+         name="question_edit"),
+    path('<int:question_id>/edit/answer/<int:answer_id>',
+         views.EditAnswer.as_view(), name='answer_edit'),
 ]

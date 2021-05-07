@@ -43,6 +43,7 @@ class Ask(PrivilageRequiredMixin, View):
                                             }))
 
 
+@method_decorator(login_required, name='dispatch')
 class EditQuestion(View):
 
     def get(self, request, question_id):
@@ -150,3 +151,31 @@ class QuestionVoteDown(PrivilageRequiredMixin, View):
                     'status': 'error',
                     'error': str(ex)
                 })
+
+
+@method_decorator(login_required, name='dispatch')
+class EditAnswer(View):
+
+    def get(self, request, question_id, answer_id):
+        q = get_object_or_404(Question, pk=question_id)
+        ans = get_object_or_404(Answer, pk=answer_id)
+        return render(request, 'qa/edit_answer.html',
+                      {'answer': ans, 'question': q})
+
+    def post(self, request, question_id, answer_id):
+        q = get_object_or_404(Question, pk=question_id)
+        ans = get_object_or_404(Answer, pk=answer_id)
+        try:
+            if request.POST['body_md']:
+                ans.body_md = request.POST['body_md']
+                ans.save()
+                messages.add_message(request, messages.INFO,
+                                     _('Answer updated'))
+        except Exception as ex:
+            messages.add_message(request, messages.WARNING,
+                                 str(ex))
+        return HttpResponseRedirect(reverse("qa:show",
+                                            kwargs={
+                                                'id': q.pk,
+                                                'slug': q.slug
+                                            }))
