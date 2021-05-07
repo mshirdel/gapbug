@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 from django.utils.translation import gettext as _
@@ -67,7 +68,8 @@ class QuestionVote(Vote):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.question.vote += self.rate
+        qs = QuestionVote.objects.filter(question=self.question)
+        self.question.vote = qs.aggregate(Sum('rate'))['rate__sum']
         self.question.save()
 
 
@@ -78,5 +80,6 @@ class AnswerVote(Vote):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.answer.vote += self.rate
+        qs = QuestionVote.objects.filter(answer=self.answer)
+        self.answer.vote = qs.aggregate(Sum('rate'))['rate__sum']
         self.answer.save()
