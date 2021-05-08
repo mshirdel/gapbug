@@ -80,10 +80,10 @@ def show(request, id, slug):
 class AnswerQuestion(View):
     def post(self, request, id):
         q = get_object_or_404(Question, id=id)
-        if request.POST['body_md']:
+        if request.POST['body_html']:
             Answer.objects.create(user=request.user,
                                   question=q,
-                                  body_md=request.POST['body_md'])
+                                  body_html=request.POST['body_html'])
             messages.add_message(request, messages.INFO,
                                  _('Your answer saved'))
         else:

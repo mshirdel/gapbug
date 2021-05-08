@@ -69,6 +69,11 @@ div.container {
   color: #848d95;
 }
 
+.question-edit-style {
+  font-size: 14px;
+  color: #848d95;
+}
+
 .hashtag {
   border-radius: 0.2rem;
   padding-left: 3px;
@@ -87,4 +92,12 @@ div.container {
 
 .btn-group {
   direction: ltr;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+.rtl {
+  direction: rtl;
 }
