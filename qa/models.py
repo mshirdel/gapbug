@@ -23,7 +23,6 @@ class Question(TimeStampModel):
         return reverse("qa:show", kwargs={"id": self.id, 'slug': self.slug})
 
     def save(self, *args, **kwargs):
-        self.body_html = markdown(self.body_md)
         self.slug = slugify(self.title, allow_unicode=True)
         super().save(*args, **kwargs)
 

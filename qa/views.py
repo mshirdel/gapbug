@@ -33,7 +33,7 @@ class Ask(PrivilageRequiredMixin, View):
     def post(self, request):
         question = Question.objects.create(user=self.request.user,
                                            title=request.POST['title'],
-                                           body_md=request.POST['body_md'])
+                                           body_html=request.POST['body_html'])
         messages.add_message(request, messages.INFO,
                              _('Your question saved.'))
         return HttpResponseRedirect(reverse("qa:show",
