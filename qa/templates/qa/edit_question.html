@@ -3,7 +3,7 @@
 {% load i18n %}
 {% block title %}{% trans "Ask a Question" %}{% endblock title %}
 {% block content %}
-{% trans "***" as header_title %}
+{% trans "Edit question" as header_title %}
 {% include 'web/common/header_top.html' with heading=header_title %}
 <form action="" method="post">
     {% csrf_token %}
