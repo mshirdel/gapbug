@@ -6,7 +6,6 @@ from django.utils.translation import gettext as _
 from django.urls import reverse
 from common.models import TimeStampModel
 from django.conf import settings
-from markdown import markdown
 
 
 class Question(TimeStampModel):
@@ -39,10 +38,6 @@ class Answer(TimeStampModel):
     body_md = models.TextField()
     body_html = models.TextField()
     vote = models.IntegerField(default=0)
-
-    def save(self, *args, **kwargs):
-        self.body_html = markdown(self.body_md)
-        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ('vote',)
