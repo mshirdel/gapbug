@@ -56,8 +56,8 @@ class EditQuestion(View):
         try:
             if request.POST['title']:
                 q.title = request.POST['title']
-            if request.POST['body_md']:
-                q.body_md = request.POST['body_md']
+            if request.POST['body_html']:
+                q.body_html = request.POST['body_html']
             q.save()
             messages.add_message(request, messages.INFO,
                                  _('Question updated'))

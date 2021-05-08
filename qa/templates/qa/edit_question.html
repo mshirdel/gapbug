@@ -22,43 +22,36 @@
         <div class="row">
             <div class="col">
                 <div>
-                    <div id="wmd-button-bar"></div>
-                    <textarea class="wmd-input" required name="body_md" id="wmd-input" cols="30" rows="10" aria-describedby="bodyHelp">
-                        {{ question.body_md }}
-                    </textarea>
+                    <input id="x" type="hidden" name="body_html" value="{{ question.body_html }}" />
+                    <trix-editor input="x"></trix-editor>
                 </div>
             </div>
         </div>
+        <h3 class="mt-3">{% trans "Preview:" %}</h3>
         <div class="row">
-            <div class="col">
-                <div id="wmd-preview" class="wmd-preview"></div>  
+            <div class="col mt-3">
+                <div id="preview"></div>  
             </div>
         </div>
     </div>
-    <input class="btn btn-primary" type="submit" value="{% trans "Post your question" %}">
+    <input class="btn btn-primary mb-3" type="submit" value="{% trans "Post your question" %}">
 </form>
 {% endblock content %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/markdown.css' %}">
+    <link rel="stylesheet" href="{% static 'css/trix.css' %}">
 {% endblock css %}
 {% block js %}
-    <script src="{% static 'js/Markdown.Converter.js' %}"></script>
-    <script src="{% static 'js/Markdown.Editor.js' %}"></script>
-    <script src="{% static 'js/Markdown.Sanitizer.js' %}"></script>
+    <script src="{% static 'js/trix.js' %}"></script>
     <script type="text/javascript">
-            (function () {
-                var converter1 = Markdown.getSanitizingConverter();
-                
-                converter1.hooks.chain("preBlockGamut", function (text, rbg) {
-                    return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
-                        return "<blockquote>" + rbg(inner) + "</blockquote>\n";
-                    });
-                });
-                
-                var editor1 = new Markdown.Editor(converter1);
-                
-                editor1.run();
+        (function () {
+            var editorValue = document.getElementById("x");
+            var divPreview = document.getElementById("preview");
+            divPreview.innerHTML = editorValue.value;
             
-            })();
+            addEventListener("trix-change", function (e) {
+                divPreview.innerHTML = editorValue.value;
+            });
+        
+        })();
     </script>
 {% endblock %}
