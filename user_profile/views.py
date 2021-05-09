@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404, render
 from django.views import View
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_bytes
@@ -29,3 +29,11 @@ class EmailVerify(View):
             messages.add_message(request, messages.WARNING,
                                  _('Error in email verification.'))
         return redirect('web:home')
+
+
+def profile(request, id):
+    user = get_object_or_404(User, pk=id)
+    return render(request, 'account/profile.html',
+                  {
+                      'user_profile': user
+                  })

@@ -24,7 +24,7 @@
                 </div>
             </form>
             {% if user.is_authenticated %}
-                <a class="me-2 brand-color-link" href="{% url 'profile' user.id %}">{{ user.username }}</a>
+                <a class="me-2 brand-color-link" href="{% url 'user_profile:profile' user.id %}">{{ user.username }}</a>
                 <a class="me-2 brand-color-link" href="{% url 'logout' %}">{% trans "logout" %}</a>
             {% else %}
                 <a href="{% url 'login' %}" class="btn btn-sm btn-outline-secondary ms-2 me-2">{% trans "LOGIN" %}</a>
