@@ -14,7 +14,7 @@
 
     <div class="row pb-5">
         <div class="col-md-3">
-            {% include 'web/common/render_vote.html' with type='Question' pk=question.id %}
+            {% include 'web/common/render_vote.html' with type='Question' %}
         </div>
         <div class="col-md-1 mt-3">
             {% if question.user == request.user or 'edit_question_and_answer' in user.profile.privilages %}
@@ -50,7 +50,7 @@
 
             <div class="row border-bottom pb-5">
                 <div class="col-md-3">
-                    {% include 'web/common/render_vote.html' with type='Answer' pk=ans.id obj=ans %}
+                    {% include 'web/common/render_vote.html' with type='Answer' answerid=ans.id %}
                 </div>
                 <div class="col-md-3 mt-3">
                     {% if ans.user == request.user or 'edit_question_and_answer' in user.profile.privilages %}
@@ -131,34 +131,41 @@
             return response.json(); // parses JSON response into native JavaScript objects
         }
 
-        function btnVoteUp(type, id){
+        function btnVoteUp(type, questionId, answerId){
             if (type === 'Question'){
                 postData('{% url "qa:question_vote_up" question.id %}', {})
                     .then(data => {
                         if (data.status === 'ok') {
-                            var btnVoteValue = document.getElementById('btnVoteValue');
+                            var btnVoteValue = document.getElementById(`btnVoteValueQ${questionId}`);
                             btnVoteValue.innerHTML = data.vote;
                         }
                     });
             }
             if (type === 'Answer'){
-                console.log('Not Implemented method')
+                var url = `/questions/${questionId}/${answerId}/up`;
+                postData(url, {})
+                    .then(data => {
+                        if(data.status === 'ok') {
+                            var btnVoteValue = document.getElementById(`btnVoteValueA${answerId}`);
+                            btnVoteValue.innerHTML = data.vote;
+                        }
+                    });
             }
         }
 
-        function btnVoteDownClick(type, id){
+        function btnVoteDownClick(type, questionId, answerId){
             if (type === 'Question'){
                 postData('{% url "qa:question_vote_down" question.id %}', {})
                     .then(data => {
                         console.log(data); // JSON data parsed by `data.json()` call
                         if (data.status === 'ok') {
-                            var btnVoteValue = document.getElementById('btnVoteValue');
+                            var btnVoteValue = document.getElementById(`btnVoteValueQ${questionId}`);
                             btnVoteValue.innerHTML = data.vote;
                         }
                     });
             }
             if (type === 'Answer'){
-                console.log('Not Implemented method')
+                console.log('Not Implemented');
             }
         }
     </script>

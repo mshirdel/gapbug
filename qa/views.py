@@ -3,15 +3,14 @@ from django.shortcuts import get_object_or_404, render
 from django.views import View
 from django.urls import reverse
 from django.views.generic import ListView
-from django.http import HttpResponseRedirect, request
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext as _
 from django.utils.decorators import method_decorator
 
-from .models import Question, Answer, QuestionVote
+from .models import Question, Answer, QuestionVote, AnswerVote
 from user_profile.models import ReputationHistory
-from .privilages import Privilages
 from .reputations import Reputation
 from .mixins import PrivilageRequiredMixin
 
@@ -179,3 +178,33 @@ class EditAnswer(View):
                                                 'id': q.pk,
                                                 'slug': q.slug
                                             }))
+
+
+@method_decorator(login_required, name='dispatch')
+class AnswerVoteUp(PrivilageRequiredMixin, View):
+    privilage_required = 'vote_up'
+
+    def post(self, request, question_id, answer_id):
+        question = get_object_or_404(Question, pk=question_id)
+
+        try:
+            answer = question.answer_set.get(id=answer_id)
+            av = AnswerVote.objects.create(
+                user=request.user,
+                answer=answer,
+                rate=1)
+            if av:
+                ReputationHistory.objects.create(
+                    user=answer.user,
+                    cause=Reputation.ANSWER_VOTE_UP.name,
+                    reputation=Reputation.ANSWER_VOTE_UP.value
+                )
+            return JsonResponse({
+                'status': 'ok',
+                'vote': Answer.objects.get(pk=answer_id).vote
+            })
+        except Exception as ex:
+            return JsonResponse({
+                'status': 'error',
+                'error': str(ex)
+            })

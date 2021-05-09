@@ -72,8 +72,11 @@ class AnswerVote(Vote):
                                on_delete=models.CASCADE,
                                related_name='number_of_votes')
 
+    class Meta:
+        unique_together = ['user', 'answer']
+    
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        qs = QuestionVote.objects.filter(answer=self.answer)
+        qs = AnswerVote.objects.filter(answer=self.answer)
         self.answer.vote = qs.aggregate(Sum('rate'))['rate__sum']
         self.answer.save()

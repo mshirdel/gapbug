@@ -1,5 +1,5 @@
-import uuid
 from django.db import models
+from django.db.models import Sum
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
@@ -52,6 +52,9 @@ class ReputationHistory(TimeStampModel):
     reputation = models.IntegerField()
 
     def save(self, *args, **kwargs):
-        self.user.profile.reputation += self.reputation
-        self.user.profile.save()
         super().save(*args, **kwargs)
+        qs = ReputationHistory.objects.filter(user=self.user)
+        self.user.profile.reputation = qs.aggregate(Sum('reputation'))[
+            'reputation__sum'] + 1
+        # basically every user have 1 default reputation so we add +1
+        self.user.profile.save()

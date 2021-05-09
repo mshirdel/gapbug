@@ -2,19 +2,27 @@
 <div class="float-end p-2">
     <div class="btn-group" role="group">
         {% if user.is_authenticated and 'vote_down' in user.profile.privilages %}
-            <button id="btnVoteDown" onclick="btnVoteDownClick('{{type}}', '{{pk}}')" type="button" class="btn btn-outline-danger">-</button>
+            {% if type == 'Question' %}
+                <button id="btnVoteDown" onclick="btnVoteDownClick('{{type}}', '{{question.id}}')" type="button" class="btn btn-outline-danger">-</button>
+            {% else %}
+                <button id="btnVoteDown" onclick="btnVoteDownClick('{{type}}', '{{question.id}}', '{{answerid}}')" type="button" class="btn btn-outline-danger">-</button>
+            {% endif %}
         {% else %}
             <button id="btnVoteDown" type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans "You need 150 reputation to upvote posts." %}">-</button>
         {% endif %}
 
         {% if type == 'Question' %}
-            <button id="btnVoteValue" type="button" class="btn btn-outline-primary" value="{{question.vote}}">{{ question.vote }}</button>
+            <button id="btnVoteValueQ{{question.id}}" type="button" class="btn btn-outline-primary" value="{{question.vote}}">{{ question.vote }}</button>
         {% else %}
-            <button id="btnVoteValue" type="button" class="btn btn-outline-primary" value="{{ans.vote}}">{{ ans.vote }}</button>
+            <button id="btnVoteValueA{{answerid}}" type="button" class="btn btn-outline-primary" value="{{ans.vote}}">{{ ans.vote }}</button>
         {% endif %}
         
         {% if user.is_authenticated and 'vote_up' in user.profile.privilages %}
-            <button id="btnVoteUp" onclick="btnVoteUp('{{type}}', '{{pk}}')" type="button" class="btn btn-outline-success">+</button>
+            {% if type == 'Question' %}
+                <button id="btnVoteUp" onclick="btnVoteUp('{{type}}', '{{question.id}}')" type="button" class="btn btn-outline-success">+</button>
+            {% else %}
+                <button id="btnVoteUp" onclick="btnVoteUp('{{type}}', '{{question.id}}', '{{answerid}}')" type="button" class="btn btn-outline-success">+</button>
+            {% endif %}
         {% else %}
             <button id="btnVoteUp" type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans "You need 15 reputation to upvote posts." %}">+</button>
         {% endif %}

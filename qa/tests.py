@@ -2,7 +2,7 @@ from qa.privilages import Privilages
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from user_profile.models import Profile
-from .models import Question
+from .models import Question, Answer
 from .reputations import Reputation
 
 
@@ -121,3 +121,66 @@ class QuestionsTest(TestCase):
         self.assertEqual(question_owner_reputation +
                          Reputation.QUESTION_VOTE_DOWN.value,
                          q.user.profile.reputation)
+
+
+class AnswersTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            'john', 'lennon@google.com', 'thepassword')
+        Profile.objects.create(user=self.user)
+
+        self.u15 = User.objects.create_user(
+            'user_15', 'user15@gmail.com', 'thepassword')
+        Profile.objects.create(user=self.u15, reputation=15)
+
+        self.u150 = User.objects.create_user(
+            'user_150', 'user150@gmail.com', 'thepassword')
+        Profile.objects.create(user=self.u150, reputation=150)
+
+        self.question = Question.objects.create(
+            user=self.user,
+            title='question1 title',
+            body_md='<p>question1 body</p>')
+
+        self.ans1 = Answer.objects.create(
+            user=self.user,
+            question=self.question,
+            body_html='answer1')
+
+        self.ans2 = Answer.objects.create(
+            user=self.user,
+            question=self.question,
+            body_html='answer2')
+
+    def test_answer_voteup_fail_user_not_authenticated(self):
+        c = Client()
+        ans = self.question.answer_set.first()
+        resp = c.post(f'/questions/{self.question.id}/{ans.id}/up')
+        self.assertEqual(resp.status_code, 302)
+
+    def test_answer_voteup_fail_user_not_authorized(self):
+        c = Client()
+        ans = self.question.answer_set.first()
+        self.assertTrue(c.login(
+            username=self.user.username, password='thepassword'))
+        resp = c.post(f'/questions/{self.question.id}/{ans.id}/up')
+        self.assertEqual(resp.status_code, 403)
+
+    def test_answer_voteup(self):
+        c = Client()
+        question_owner_rep_before = self.question.user.profile.reputation
+        self.assertEqual(question_owner_rep_before, 1)
+        self.assertTrue(c.login(username=self.u15, password='thepassword'))
+        resp = c.post(
+            f'/questions/{self.question.id}/{self.ans1.id}/up')
+        self.assertEqual(resp.status_code, 200)
+        answer_after_vote = self.question.answer_set.get(body_html='answer1')
+        q = Question.objects.get(title='question1 title')
+        question_owner_rep_after = q.user.profile.reputation
+        self.assertNotEqual(answer_after_vote.vote, self.ans1.vote)
+        self.assertEqual(answer_after_vote.vote, self.ans1.vote+1)
+        self.assertNotEqual(question_owner_rep_before,
+                            question_owner_rep_after)
+        self.assertEqual(question_owner_rep_after,
+                         question_owner_rep_before +
+                         Reputation.ANSWER_VOTE_UP.value)
