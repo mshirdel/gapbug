@@ -157,7 +157,6 @@
             if (type === 'Question'){
                 postData('{% url "qa:question_vote_down" question.id %}', {})
                     .then(data => {
-                        console.log(data); // JSON data parsed by `data.json()` call
                         if (data.status === 'ok') {
                             var btnVoteValue = document.getElementById(`btnVoteValueQ${questionId}`);
                             btnVoteValue.innerHTML = data.vote;
@@ -165,7 +164,16 @@
                     });
             }
             if (type === 'Answer'){
-                console.log('Not Implemented');
+                var url = `/questions/${questionId}/${answerId}/down`;
+                postData(url, {})
+                    .then(data => {
+                        if(data.status === 'ok') {
+                            var btnVoteValue = document.getElementById(`btnVoteValueA${answerId}`);
+                            btnVoteValue.innerHTML = data.vote;
+                        } else {
+                            console.log(data);
+                        }
+                    });
             }
         }
     </script>

@@ -208,3 +208,33 @@ class AnswerVoteUp(PrivilageRequiredMixin, View):
                 'status': 'error',
                 'error': str(ex)
             })
+
+
+@method_decorator(login_required, name='dispatch')
+class AnswerVoteDown(PrivilageRequiredMixin, View):
+    privilage_required = 'vote_down'
+
+    def post(self, request, question_id, answer_id):
+        question = get_object_or_404(Question, pk=question_id)
+
+        try:
+            answer = question.answer_set.get(id=answer_id)
+            av = AnswerVote.objects.create(
+                user=request.user,
+                answer=answer,
+                rate=-1)
+            if av:
+                ReputationHistory.objects.create(
+                    user=answer.user,
+                    cause=Reputation.ANSWER_VOTE_DOWN.name,
+                    reputation=Reputation.ANSWER_VOTE_DOWN.value
+                )
+            return JsonResponse({
+                'status': 'ok',
+                'vote': Answer.objects.get(pk=answer_id).vote
+            })
+        except Exception as ex:
+            return JsonResponse({
+                'status': 'error',
+                'error': str(ex)
+            })

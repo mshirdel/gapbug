@@ -20,4 +20,6 @@ urlpatterns = [
          views.EditAnswer.as_view(), name='answer_edit'),
     path('<int:question_id>/<int:answer_id>/up',
          views.AnswerVoteUp.as_view(), name='answer_voteup'),
+    path('<int:question_id>/<int:answer_id>/down',
+         views.AnswerVoteDown.as_view(), name='answer_voteup'),
 ]
