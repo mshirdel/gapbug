@@ -13,15 +13,7 @@
     </div>
 
     <div class="row pb-5">
-        <div class="col-md-3">
-            {% include 'web/common/render_vote.html' with type='Question' pk=question.id %}
-        </div>
-        <div class="col-md-3 mt-3">
-            {% if question.user == request.user or 'edit_question_and_answer' in user.profile.privilages %}
-                <a href="{% url 'qa:question_edit' question.id %}" class="brand-color-link">{% trans "Edit" %}</a>
-            {% endif %}
-        </div>
-        <div class="col-md-6">
+        <div class="col">
             {% include 'web/common/render_user_compact.html' with user=question.user info_date=question.created %}
         </div>
     </div>

@@ -40,7 +40,7 @@ class Answer(TimeStampModel):
     vote = models.IntegerField(default=0)
 
     class Meta:
-        ordering = ('vote',)
+        ordering = ('-vote',)
 
 
 class Vote(TimeStampModel):

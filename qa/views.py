@@ -165,8 +165,8 @@ class EditAnswer(View):
         q = get_object_or_404(Question, pk=question_id)
         ans = get_object_or_404(Answer, pk=answer_id)
         try:
-            if request.POST['body_md']:
-                ans.body_md = request.POST['body_md']
+            if request.POST['body_html']:
+                ans.body_html = request.POST['body_html']
                 ans.save()
                 messages.add_message(request, messages.INFO,
                                      _('Answer updated'))
