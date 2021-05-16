@@ -216,3 +216,24 @@ class AnswersTest(TestCase):
         self.assertEqual(answer_owner_rep_after,
                          answer_owner_rep_before +
                          Reputation.ANSWER_VOTE_DOWN.value)
+
+
+class QuestionPageTest(TestCase):
+    fixtures = ['fixture.json']
+
+    def setUp(self):
+        self.client = Client()
+
+    def test_user_can_not_answer_a_question_two_times(self):
+        self.assertTrue(self.client.login(username='user15',
+                                          password='thepassword'))
+        resp = self.client.get('/questions/show/1/question-1')
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(resp.context['show_answer_form'])
+
+    def test_user_can_answer_a_question(self):
+        self.assertTrue(self.client.login(username='user1',
+                                          password='thepassword'))
+        resp = self.client.get('/questions/show/1/question-1')
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(resp.context['show_answer_form'])

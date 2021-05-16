@@ -72,7 +72,15 @@ class EditQuestion(View):
 
 def show(request, id, slug):
     question = get_object_or_404(Question, pk=id, slug=slug)
-    return render(request, 'qa/question.html', {'question': question})
+    user_answered_befor = False
+    if request.user.is_authenticated:
+        if question.answer_set.filter(user=request.user):
+            user_answered_befor = True
+    return render(request, 'qa/question.html',
+                  {
+                      'question': question,
+                      'show_answer_form': not user_answered_befor
+                  })
 
 
 @method_decorator(login_required, name='dispatch')
