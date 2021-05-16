@@ -126,8 +126,7 @@ class QuestionVoteUp(PrivilageRequiredMixin, View):
             })
         except Exception as ex:
             return JsonResponse({
-                'status': 'error',
-                'error': str(ex)
+                'status': 'error'
             })
 
 
@@ -155,8 +154,7 @@ class QuestionVoteDown(PrivilageRequiredMixin, View):
         except Exception as ex:
             return JsonResponse(
                 {
-                    'status': 'error',
-                    'error': str(ex)
+                    'status': 'error'
                 })
 
 
@@ -213,8 +211,7 @@ class AnswerVoteUp(PrivilageRequiredMixin, View):
             })
         except Exception as ex:
             return JsonResponse({
-                'status': 'error',
-                'error': str(ex)
+                'status': 'error'
             })
 
 
@@ -243,6 +240,5 @@ class AnswerVoteDown(PrivilageRequiredMixin, View):
             })
         except Exception as ex:
             return JsonResponse({
-                'status': 'error',
-                'error': str(ex)
+                'status': 'error'
             })
