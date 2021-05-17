@@ -14,7 +14,9 @@
 
     <div class="row pb-5">
         <div class="col-md-3">
-            {% include 'web/common/render_vote.html' with type='Question' %}
+            {% if user != question.user %}
+                {% include 'web/common/render_vote.html' with type='Question' %}
+            {% endif %}
         </div>
         <div class="col-md-1 mt-3">
             {% if question.user == request.user or 'edit_question_and_answer' in user.profile.privilages %}
@@ -50,7 +52,9 @@
 
             <div class="row border-bottom pb-5">
                 <div class="col-md-3">
-                    {% include 'web/common/render_vote.html' with type='Answer' answerid=ans.id %}
+                    {% if user != ans.user %}
+                        {% include 'web/common/render_vote.html' with type='Answer' answerid=ans.id %}
+                    {% endif %}
                 </div>
                 <div class="col-md-3 mt-3">
                     {% if ans.user == request.user or 'edit_question_and_answer' in user.profile.privilages %}
