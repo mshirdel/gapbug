@@ -1,3 +1,4 @@
+import datetime
 from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views import View
@@ -241,4 +242,39 @@ class AnswerVoteDown(PrivilageRequiredMixin, View):
         except Exception as ex:
             return JsonResponse({
                 'status': 'error'
+            })
+
+
+@method_decorator(login_required, name='dispatch')
+class AcceptAnswer(View):
+    def post(self, request, question_id, answer_id):
+        answer = get_object_or_404(Answer, pk=answer_id)
+        question = get_object_or_404(Question, pk=question_id)
+        if answer.question.id != question_id:
+            return JsonResponse({
+                'status': 'error',
+                # TODO: log this error
+            })
+        if not question.accepted:
+            answer.accepted = True
+            answer.accepted_date = datetime.date.today()
+            answer.save()
+            question.accepted = True
+            question.save()
+            ReputationHistory.objects.create(
+                user=answer.user,
+                cause=Reputation.ANSWER_MARKED_ACCEPTED.name,
+                reputation=Reputation.ANSWER_MARKED_ACCEPTED.value
+            )
+            ReputationHistory.objects.create(
+                user=request.user,
+                cause=Reputation.ANSWER_MARKED_ACCEPTED_ACCEPTOR.name,
+                reputation=Reputation.ANSWER_MARKED_ACCEPTED_ACCEPTOR.value
+            )
+            return JsonResponse({
+                'status': 'ok'
+            })
+        else:
+            return JsonResponse({
+                'status': 'not required'
             })

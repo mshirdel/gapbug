@@ -17,6 +17,7 @@ class Question(TimeStampModel):
     body_html = models.TextField()
     vote = models.IntegerField(default=0)
     slug = models.SlugField(max_length=400, db_index=True, allow_unicode=True)
+    accepted = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return reverse("qa:show", kwargs={"id": self.id, 'slug': self.slug})
@@ -38,9 +39,11 @@ class Answer(TimeStampModel):
     body_md = models.TextField()
     body_html = models.TextField()
     vote = models.IntegerField(default=0)
+    accepted = models.BooleanField(default=False)
+    accepted_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        ordering = ('-vote',)
+        ordering = ('-accepted', '-vote',)
 
 
 class Vote(TimeStampModel):
@@ -74,7 +77,7 @@ class AnswerVote(Vote):
 
     class Meta:
         unique_together = ['user', 'answer']
-    
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         qs = AnswerVote.objects.filter(answer=self.answer)

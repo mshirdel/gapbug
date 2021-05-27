@@ -45,9 +45,23 @@
     <div>
         {% for ans in question.answer_set.all %}
             <div class="row mt-5">
-                <div class="col">
+                <div class="col-11">
                     {{ ans.body_html|safe }}
                 </div>
+                <div class="col-1 ps-4">
+                    {% if ans.accepted %}
+                        <div class="btn btn-success">
+                            <i class="bi bi-check"></i>                        
+                        </div>
+                    {% else %}
+                        {% if request.user == question.user %}
+                            <button id="btnAcceptAnswer-{{ ans.id }}" onclick="acceptAnswer('{{ans.id}}')" type="button" class="btn btn-outline-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans "Accept this answer" %}">
+                                <i class="bi bi-check"></i>
+                            </button>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                
             </div>
 
             <div class="row border-bottom pb-5">
@@ -97,7 +111,9 @@
     {% endif %}
 {% endblock content %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/trix.css' %}">
+    {% if user.is_authenticated %}
+        <link rel="stylesheet" href="{% static 'css/trix.css' %}">
+    {% endif %}
 {% endblock css %}
 {% block js %}
     {% if user.is_authenticated %}
@@ -107,12 +123,14 @@
         {% if user.is_authenticated %}
         (function () {
             var editorValue = document.getElementById("x");
-            var divPreview = document.getElementById("preview");
-            divPreview.innerHTML = editorValue.value;
-            
-            addEventListener("trix-change", function (e) {
+            if (editorValue){
+                var divPreview = document.getElementById("preview");
                 divPreview.innerHTML = editorValue.value;
-            });
+                
+                addEventListener("trix-change", function (e) {
+                    divPreview.innerHTML = editorValue.value;
+                });
+            }
         
         })();
         {% endif %}
@@ -177,6 +195,18 @@
                         }
                     });
             }
+        }
+
+        function acceptAnswer(answerId){
+            var questionId = {{ question.id }};
+            var url = `/questions/${questionId}/${answerId}/accept`;
+            postData(url, {})
+                .then(data => {
+                    if(data.status === 'ok') {
+                        var btnAcceptAnswer = document.getElementById(`btnAcceptAnswer-${answerId}`);
+                        btnAcceptAnswer.className = 'btn btn-success';
+                    }
+                });
         }
     </script>
 {% endblock %}

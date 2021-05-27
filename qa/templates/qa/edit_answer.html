@@ -46,11 +46,13 @@
 
 {% endblock content %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/trix.css' %}">
+    {% if user.is_authenticated %}
+        <link rel="stylesheet" href="{% static 'css/trix.css' %}">
+    {% endif %}
 {% endblock css %}
 {% block js %}
     {% if user.is_authenticated %}
-    <script src="{% static 'js/trix.js' %}"></script>
+        <script src="{% static 'js/trix.js' %}"></script>
     {% endif %}
     <script type="text/javascript">
         {% if user.is_authenticated %}

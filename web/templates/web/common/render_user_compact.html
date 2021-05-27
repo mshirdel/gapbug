@@ -6,7 +6,10 @@
             <img src="https://www.gravatar.com/avatar/31591f6978407f1129c26311cf8849a9?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32" class="bar-sm">
         </div>
         <div class="col-md-10 mt-1">
-            <span class="user-profile-compact">{{ user.username }}</span>
+            <span class="user-profile-compact">
+                {{ user.username }} 
+                <span class="badge rounded-pill bg-light text-dark">{{ user.profile.reputation }}</span>
+            </span>
         </div>
     </div>
     <div class="row">
