@@ -1,4 +1,4 @@
-import datetime
+from django.utils import timezone
 from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views import View
@@ -257,7 +257,7 @@ class AcceptAnswer(View):
             })
         if not question.accepted:
             answer.accepted = True
-            answer.accepted_date = datetime.date.today()
+            answer.accepted_date = timezone.now()
             answer.save()
             question.accepted = True
             question.save()

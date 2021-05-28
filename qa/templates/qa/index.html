@@ -46,7 +46,14 @@
                     </div>
                     <div class="col-md-6">
                         <div class="float-start question-stats">
-                            {{ q.created|timesince }} <a href="{% url 'user_profile:profile' q.user.id %}">{{ q.user.username }} <span class="badge rounded-pill bg-light text-dark">{{ q.user.profile.reputation }}</span></a> {% trans "Before" %}
+                            {{ q.created|timesince }} 
+                            {% trans "Before" %}
+                            <a href="{% url 'user_profile:profile' q.user.id %}">
+                                {{ q.user.username }} 
+                            </a> 
+                            <span class="badge rounded-pill bg-light text-dark">
+                                {{ q.user.profile.reputation }}
+                            </span>
                         </div>
                     </div>
                 </div>
