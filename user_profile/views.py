@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404, render
 from django.views import View
 from django.utils.http import urlsafe_base64_decode
@@ -6,7 +7,12 @@ from django.utils.encoding import force_bytes
 from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from .tokens import email_verification_token
+from .forms import ProfileForm
+from account.forms import UserForm
 
 
 class EmailVerify(View):
@@ -31,9 +37,62 @@ class EmailVerify(View):
         return redirect('web:home')
 
 
-def profile(request, id):
-    user = get_object_or_404(User, pk=id)
-    return render(request, 'account/profile.html',
+def profile(request, id, username):
+    user = get_object_or_404(User, pk=id, username=username)
+    return render(request, 'user_profile/profile.html',
                   {
-                      'user_profile': user
+                      'user': user
                   })
+
+
+@method_decorator(login_required, name='dispatch')
+class ProfileEdit(View):
+    def get(self, request, user_id, user_name):
+        user = get_object_or_404(User, pk=user_id, username=user_name)
+        profile_form = ProfileForm(instance=user.profile)
+        user_form = UserForm(instance=user)
+        return render(request, 'user_profile/profile_edit.html',
+                      {
+                          'profile_form': profile_form,
+                          'user_form': user_form,
+                          'user': user
+                      })
+
+    def post(self, request, user_id, user_name):
+        user = get_object_or_404(User, pk=user_id)
+        profile_form = ProfileForm(request.POST, instance=user.profile)
+        user_form = UserForm(request.POST, instance=user)
+        forms_has_error = False
+        if(user_form.is_valid()):
+            user_form.save()
+            messages.add_message(request, messages.INFO,
+                                 _('Your account info updatd successfully'))
+        else:
+            for error in user_form.errors:
+                messages.add_message(request, messages.WARNING,
+                                     error)
+            forms_has_error = True
+
+        if(profile_form.is_valid()):
+            profile_form.save()
+            messages.add_message(request, messages.INFO,
+                                 _('Your profile updatd successfully'))
+        else:
+            for error in profile_form.errors:
+                messages.add_message(request, messages.WARNING,
+                                     error)
+            forms_has_error = True
+
+        if forms_has_error:
+            return render(request, 'user_profile/profile_edit.html',
+                          {
+                              'profile_form': profile_form,
+                              'user_form': user_form,
+                              'user': user
+                          })
+        else:
+            return HttpResponseRedirect(reverse('user_profile:profile',
+                                                kwargs={
+                                                    'id': user_id,
+                                                    'username': user_name
+                                                }))

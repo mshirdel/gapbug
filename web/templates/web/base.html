@@ -24,14 +24,9 @@
         <div class="container">
             {% include 'web/messages.html' %}
             <div class="row">
-                <div class="{% if user.is_authenticated %} col-md-9 {% else %} col {% endif %} ">
+                <div class="col">
                     {% block content %}{% endblock content %}
                 </div>
-                {% if user.is_authenticated %}
-                    <div class="col-md-3">
-                        <!-- {% include 'web/side_col.html' %} -->
-                    </div>
-                {% endif %}
             </div>
             
         </div>

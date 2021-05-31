@@ -48,7 +48,7 @@
                         <div class="float-start question-stats">
                             {{ q.created|timesince }} 
                             {% trans "Before" %}
-                            <a href="{% url 'user_profile:profile' q.user.id %}">
+                            <a href="{% url 'user_profile:profile' q.user.id q.user.username %}">
                                 {{ q.user.username }} 
                             </a> 
                             <span class="badge rounded-pill bg-light text-dark">

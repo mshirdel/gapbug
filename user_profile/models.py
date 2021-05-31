@@ -18,6 +18,8 @@ class Profile(models.Model):
     is_email_verified = models.BooleanField(default=False)
     email_verify_date = models.DateTimeField(blank=True, null=True)
     reputation = models.IntegerField(default=1)
+    title = models.CharField(max_length=400, default='')
+    about_me = models.TextField(default='')
 
     def send_verification_email(self, request):
         current_site = get_current_site(request)

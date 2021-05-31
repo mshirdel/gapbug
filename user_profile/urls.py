@@ -7,5 +7,7 @@ app_name = "user_profile"
 urlpatterns = [
     path('activate/<uidb64>/<token>/',
          views.EmailVerify.as_view(), name="activate"),
-    path('profile/<int:id>/', views.profile, name="profile"),
+    path('<int:id>/<str:username>/', views.profile, name="profile"),
+    path('<int:user_id>/<str:user_name>/edit', views.ProfileEdit.as_view(),
+         name='edit'),
 ]

@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.db.models import fields
 from django.utils.translation import gettext as _
 
 
@@ -32,3 +33,13 @@ class UserRegistrationForm(forms.ModelForm):
         except User.DoesNotExist:
             return cd['email']
         raise forms.ValidationError(_("Email must be unique."))
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', )
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+        }

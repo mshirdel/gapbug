@@ -1,5 +1,5 @@
 {% load i18n %}
-<div class="card float-start" style="width: 18rem;">
+<div class="card float-start mt-2" style="width: 18rem;">
     <div class="card-body">
     <div class="row">
         <div class="col-md-2">
@@ -14,7 +14,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <span class="user-profile-compact">{{ info_date }}</span>
+            <span class="user-profile-compact">{{ info_date|timesince }} {% trans "before" %}</span>
         </div>
     </div>
   </div>
