@@ -63,6 +63,8 @@ class ProfileEdit(View):
 
     def post(self, request, user_id, user_name):
         user = get_object_or_404(User, pk=user_id)
+        if request.user != user:
+            raise PermissionDenied
         profile_form = ProfileForm(request.POST, instance=user.profile)
         user_form = UserForm(request.POST, instance=user)
         forms_has_error = False
