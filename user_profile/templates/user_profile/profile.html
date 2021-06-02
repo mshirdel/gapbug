@@ -1,4 +1,5 @@
 {% extends 'web/base.html' %}
+{% load static %}
 {% load i18n %}
 {% block title %}{{ user.username }}{% endblock title %}
 {% block content %}
@@ -8,23 +9,29 @@
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">{% trans "Profile" %}</a>
         </li>
+        {% if request.user == user %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'user_profile:edit' user.id user.username %}">{% trans "Edit" %}</a>
         </li>
+        {% endif %}
     </ul>
   </div>
 </div>
 <div class="row mt-3">
     <div class="col-md-3">
-        <div class="card" style="width: 18rem;">
-            <img src="https://www.gravatar.com/avatar/31591f6978407f1129c26311cf8849a9?s=286&amp;d=identicon&amp;r=PG" class="card-img-top" alt="...">
+        <div class="card">
+        {% if user.profile.avatar %}
+            <img src="{{ user.profile.avatar.url }}" class="card-img-top" alt="{{ user.username }}">
+        {% else %}
+            <img src="{% static 'img/avatar.png' %}" class="card-img-top" alt="{{ user.username }}">
+        {% endif %}
             <div class="card-body">
-                <h5 class="card-title text-center">{{ user.profile.reputation }} {% trans "Reputation" %}</h5>
+                <h5 class="card-title text-center">{{ user.username }}</h5>
+                <p class="text-center"><strong>{% trans "Reputation" %} {{ user.profile.reputation }}</strong></p>
             </div>
         </div>
     </div>
     <div class="col-md-9">
-        <h2>{{ user.username }}</h2>
         <h3 class="user-profile-title"><em>{{ user.profile.title }}</em></h3>
         <p>{{ user.first_name }} {{ user.last_name }}</p>
         <p>{{ user.email }}</p>

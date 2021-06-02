@@ -10,4 +10,6 @@ urlpatterns = [
     path('<int:id>/<str:username>/', views.profile, name="profile"),
     path('<int:user_id>/<str:user_name>/edit', views.ProfileEdit.as_view(),
          name='edit'),
+    path('avatar/upload/', views.ProfileImageUplade.as_view(),
+         name="avatar_upload"),
 ]

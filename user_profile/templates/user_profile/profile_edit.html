@@ -17,17 +17,25 @@
 </div>
 <div class="row mt-3">
     <div class="col-md-3">
-        <div class="card" style="width: 18rem;">
-            <img src="https://www.gravatar.com/avatar/31591f6978407f1129c26311cf8849a9?s=286&amp;d=identicon&amp;r=PG" class="card-img-top" alt="...">
+        <div class="card">
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" class="card-img-top" alt="{{ user.username }}">
+            {% else %}
+                <img src="{% static 'img/avatar.png' %}" class="card-img-top" alt="{{ user.username }}">
+            {% endif %}
             <div class="card-body">
                 <h5 class="card-title text-center">{{ user.profile.reputation }} {% trans "Reputation" %}</h5>
-                <p class="text-center"><input type="submit" value="{% trans "Change Picture" %}" class="btn btn-primary"></p>
+                <p class="text-center">
+                    <input type="submit" value="{% trans "Change Picture" %}" class="btn btn-primary" 
+                        data-bs-toggle="modal" data-bs-target="#uploadFileModal">
+                </p>
             </div>
         </div>
     </div>
     <div class="col-md-9">
         <form action="" method="post">
             <h2>{{ user.username }}</h2>
+            <hr>
             {% include "web/common/render_form.html" with form=user_form %}
             {% include "web/common/render_form.html" with form=profile_form %}
             <trix-editor input="aboutMeEditor"></trix-editor>
@@ -36,30 +44,51 @@
         </form>
     </div>
 </div>
+</div>
+
+<!-- Modal uploadFileModal -->
+<div class="modal fade" id="uploadFileModal" tabindex="-1" aria-labelledby="uploadFileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadFileModalLabel">{% trans "Please select your avatar image." %}</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row text-center">
+                    <div class="col">
+                        <div id="gallery"></div>
+                    </div>
+                </div>
+                <div class="row md-3">
+                    <div class="col">
+                        <div id="drop-area" class="p-3">
+                        <form class="my-form">
+                            <p>
+                                {% trans "Upload file with the file dialog or by dragging and dropping images onto the dashed region" %}
+                            </p>
+                            <input type="file" id="fileElem" accept="image/*" onchange="handleFiles(this.files)">
+                            <label class="button" for="fileElem">{% trans "Select some files" %}</label>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+                <div class="btn btn-primary" id="btnUploadFile" onclick="uploadSelectedFile()">{% trans "Upload" %}</div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
 {% block css %}
     {% if user.is_authenticated %}
         <link rel="stylesheet" href="{% static 'css/trix.css' %}">
     {% endif %}
+    <link rel="stylesheet" href="{% static 'css/profile_edit.css' %}">
 {% endblock css %}
 {% block js %}
     {% if user.is_authenticated %}
     <script src="{% static 'js/trix.js' %}"></script>
     {% endif %}
-    <script type="text/javascript">
-        {% if user.is_authenticated %}
-        (function () {
-            var editorValue = document.getElementById("aboutMeEditor");
-            if (editorValue){
-                var divPreview = document.getElementById("preview");
-                divPreview.innerHTML = editorValue.value;
-                
-                addEventListener("trix-change", function (e) {
-                    divPreview.innerHTML = editorValue.value;
-                });
-            }
-        
-        })();
-        {% endif %}
-    </script>
+    <script src="{% static 'js/profile_edit.js' %}"></script>
 {% endblock js %}

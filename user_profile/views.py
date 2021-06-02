@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, get_object_or_404, render
 from django.views import View
 from django.utils.http import urlsafe_base64_decode
@@ -10,8 +10,9 @@ from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.core.exceptions import PermissionDenied
 from .tokens import email_verification_token
-from .forms import ProfileForm
+from .forms import ProfileForm, ProfileAvatarForm
 from account.forms import UserForm
 
 
@@ -49,6 +50,8 @@ def profile(request, id, username):
 class ProfileEdit(View):
     def get(self, request, user_id, user_name):
         user = get_object_or_404(User, pk=user_id, username=user_name)
+        if request.user != user:
+            raise PermissionDenied
         profile_form = ProfileForm(instance=user.profile)
         user_form = UserForm(instance=user)
         return render(request, 'user_profile/profile_edit.html',
@@ -96,3 +99,20 @@ class ProfileEdit(View):
                                                     'id': user_id,
                                                     'username': user_name
                                                 }))
+
+
+@method_decorator(login_required, name='dispatch')
+class ProfileImageUplade(View):
+    def post(self, request):
+        user = get_object_or_404(User, pk=request.user.id)
+        form = ProfileAvatarForm(
+            request.POST, request.FILES, instance=user.profile)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('user_profile:edit',
+                                                kwargs={
+                                                    'user_id': user.id,
+                                                    'user_name': user.username
+                                                }))
+        else:
+            return JsonResponse({'status': form.errors})

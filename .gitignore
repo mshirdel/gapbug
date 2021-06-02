@@ -132,3 +132,4 @@ gapbug/settings_dev.py
 .vscode/settings.json
 web/templates/web/common/debug.html
 gapbug/settings/development.py
+gapbug/media/

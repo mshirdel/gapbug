@@ -20,6 +20,7 @@ class Profile(models.Model):
     reputation = models.IntegerField(default=1)
     title = models.CharField(max_length=400, default='')
     about_me = models.TextField(default='')
+    avatar = models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
 
     def send_verification_email(self, request):
         current_site = get_current_site(request)

@@ -1,9 +1,14 @@
 {% load i18n %}
+{% load static %}
 <div class="card float-start mt-2" style="width: 18rem;">
     <div class="card-body">
     <div class="row">
         <div class="col-md-2">
-            <img src="https://www.gravatar.com/avatar/31591f6978407f1129c26311cf8849a9?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32" class="bar-sm">
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}" width="32">
+            {% else %}
+                <img src="{% static 'img/avatar.png' %}" alt="{{ user.username }}" width="32">
+            {% endif %}
         </div>
         <div class="col-md-10 mt-1">
             <span class="user-profile-compact">
