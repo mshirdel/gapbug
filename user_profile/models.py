@@ -19,7 +19,7 @@ class Profile(models.Model):
     email_verify_date = models.DateTimeField(blank=True, null=True)
     reputation = models.IntegerField(default=1)
     title = models.CharField(max_length=400, default='')
-    about_me = models.TextField(default='')
+    about_me = models.TextField(blank=True, null=True)
     avatar = models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
 
     def send_verification_email(self, request):
