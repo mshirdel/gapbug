@@ -10,10 +10,16 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext as _
 from django.utils.decorators import method_decorator
 
-from .models import Question, Answer, QuestionVote, AnswerVote
+from .models import (
+    Question,
+    Answer,
+    QuestionVote,
+    AnswerVote,
+    QuestionHitCount)
 from user_profile.models import ReputationHistory
 from .reputations import Reputation
 from .mixins import PrivilageRequiredMixin
+from common.utils import get_finger_print
 
 
 class QuestionList(ListView):
@@ -73,6 +79,9 @@ class EditQuestion(View):
 
 def show(request, id, slug):
     question = get_object_or_404(Question, pk=id, slug=slug)
+    QuestionHitCount.objects.create(
+        question=question,
+        fingerprint=get_finger_print(request))
     user_answered_befor = False
     if request.user.is_authenticated:
         if question.answer_set.filter(user=request.user):

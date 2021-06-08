@@ -1,6 +1,6 @@
+from django.utils import timezone
 from django.db import models
-from django.db.models import Sum
-from django.contrib.auth import get_user_model
+from django.db.models import Sum, Count
 from django.utils.text import slugify
 from django.utils.translation import gettext as _
 from django.urls import reverse
@@ -18,6 +18,7 @@ class Question(TimeStampModel):
     vote = models.IntegerField(default=0)
     slug = models.SlugField(max_length=400, db_index=True, allow_unicode=True)
     accepted = models.BooleanField(default=False)
+    views = models.IntegerField(default=0)
 
     def get_absolute_url(self):
         return reverse("qa:show", kwargs={"id": self.id, 'slug': self.slug})
@@ -28,6 +29,31 @@ class Question(TimeStampModel):
 
     class Meta:
         ordering = ('-created',)
+
+
+class QuestionHitCount(models.Model):
+    question = models.ForeignKey(Question,
+                                 on_delete=models.CASCADE,
+                                 related_name='hitcount')
+    created = models.DateTimeField(auto_now_add=True)
+    fingerprint = models.TextField(max_length=256)
+
+    def save(self, *args, **kwargs):
+        hitcount = QuestionHitCount.objects.filter(
+            question=self.question, fingerprint=self.fingerprint
+        ).order_by('created')
+        update_db = False
+        if (hitcount):
+            last_view = hitcount.last().created
+            if ((timezone.now() - last_view).seconds % 60 > 15):
+                update_db = True
+        else:
+            update_db = True
+        if update_db:
+            super().save(*args, **kwargs)
+            qs = QuestionHitCount.objects.filter(question=self.question)
+            self.question.views = qs.count()
+            self.question.save()
 
 
 class Answer(TimeStampModel):
