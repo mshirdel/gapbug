@@ -21,13 +21,13 @@
         </div>
         <div class="col-md-1 mt-3">
             {% if question.user == request.user or 'edit_question_and_answer' in user.profile.privilages %}
-                <a href="{% url 'qa:question_edit' question.id %}" class="brand-color-link">{% trans "Edit" %}</a>
+                <a href="{% url 'qa:question_edit' question.id %}" class="brand-color-link btn btn-outline-warning">{% trans "Edit" %}</a>
             {% endif %}
         </div>
         <div class="col-md-2 mt-3 question-edit-style">
             {% if question.created != question.modified %}
                 {% trans "last edited:" %}
-                    <span title="{{ question.modified }}">{{ question.modified|timesince }}</span>
+                    <span title="{{ question.content_modified_date }}">{{ question.content_modified_date|timesince }}</span>
                 {% trans "before" %}
             {% endif %}
         </div>

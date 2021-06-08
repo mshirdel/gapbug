@@ -35,25 +35,27 @@
                         <a href="{% url 'qa:show' q.id q.slug %}">{{ q.title }}</a>
                     </div>
                     <div class="col-3 col-sm-2">
-                        <span class="text-secondary pt-1 float-start objects-small-font align-baseline">
-                            <span class="">{{ q.views }}</span> <i class="bi bi-eye question-views"></i>
+                        <span class="text-secondary pt-1 float-start objects-small-font align-baseline border ps-2 pe-2 rounded-pill border-info">
+                            <span class="text-info">{{ q.views }}</span> 
+                            <i class="bi bi-eye question-views text-info"></i>
                         </span>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-6">
-                        <span class="hashtag border border-info text-info">python</span>  
+                        <span class="badge bg-success">tag</span>  
                     </div>
                     <div class="col-md-6">
                         <div class="float-start question-stats">
                             <span title="{{ q.created }}">{{ q.created|timesince }}</span>
                             {% trans "before" %}
-                            <a href="{% url 'user_profile:profile' q.user.id q.user.username %}">
+                            <a class="btn btn-outline-success" href="{% url 'user_profile:profile' q.user.id q.user.username %}">
                                 {{ q.user.username }} 
+                                <span class="badge bg-light text-dark">
+                                    {{ q.user.profile.reputation }}
+                                </span>
                             </a> 
-                            <span class="badge rounded-pill bg-light text-dark">
-                                {{ q.user.profile.reputation }}
-                            </span>
+                            
                         </div>
                     </div>
                 </div>

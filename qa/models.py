@@ -19,6 +19,7 @@ class Question(TimeStampModel):
     slug = models.SlugField(max_length=400, db_index=True, allow_unicode=True)
     accepted = models.BooleanField(default=False)
     views = models.IntegerField(default=0)
+    content_modified_date = models.DateTimeField(null=True, blank=True)
 
     def get_absolute_url(self):
         return reverse("qa:show", kwargs={"id": self.id, 'slug': self.slug})

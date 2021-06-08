@@ -64,6 +64,7 @@ class EditQuestion(View):
                 q.title = request.POST['title']
             if request.POST['body_html']:
                 q.body_html = request.POST['body_html']
+            q.content_modified_date = timezone.now()
             q.save()
             messages.add_message(request, messages.INFO,
                                  _('Question updated'))
