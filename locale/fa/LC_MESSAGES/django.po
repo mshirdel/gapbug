@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-19 13:33+0430\n"
-"PO-Revision-Date: 2021-04-19 13:32+0326\n"
+"POT-Creation-Date: 2021-06-08 12:52+0430\n"
+"PO-Revision-Date: 2021-06-08 12:59+0326\n"
 "Last-Translator: b'  <info@mshirdel.ir>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,19 +19,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.9.6\n"
 
-#: account/forms.py:7
+#: account/forms.py:8
 msgid "Passwrod"
 msgstr "کلمه عبور"
 
-#: account/forms.py:10
+#: account/forms.py:11
 msgid "Repeat password"
 msgstr "کلمه عبور خود را بازنشانی کنید"
 
-#: account/forms.py:25
+#: account/forms.py:26
 msgid "Password don't match."
 msgstr "رمزهای عبور مطابقت ندارند"
 
-#: account/forms.py:34
+#: account/forms.py:35
 msgid "Email must be unique."
 msgstr "از ایمیل تکراری استفاده شده است"
 
@@ -40,20 +40,20 @@ msgstr "از ایمیل تکراری استفاده شده است"
 msgid "Create an account"
 msgstr "ایجاد حساب کاربری"
 
-#: account/templates/account/register.html:10
+#: account/templates/account/register.html:12
 msgid "Please, sign up using following form:"
 msgstr "لطفا برای ایجاد حساب کاربری جدید فرم زیر را تکمیل کنید"
 
-#: account/templates/account/register.html:13
+#: account/templates/account/register.html:15
 msgid "Create my account"
 msgstr "ایجاد حساب کاربری"
 
-#: account/templates/account/register.html:15
+#: account/templates/account/register.html:17
 #: account/templates/registration/password_reset_form.html:19
 msgid "Already have account?"
 msgstr "حساب کاربری از قبل دارید؟"
 
-#: account/templates/account/register.html:15
+#: account/templates/account/register.html:17
 #: account/templates/registration/password_reset_form.html:19
 msgid "login here"
 msgstr "از اینجا وارد سیستم شوید"
@@ -62,7 +62,7 @@ msgstr "از اینجا وارد سیستم شوید"
 msgid "Welcome"
 msgstr "خوش‌آمدید"
 
-#: account/templates/account/register_done.html:10
+#: account/templates/account/register_done.html:9
 #, python-format
 msgid ""
 "\n"
@@ -81,7 +81,7 @@ msgid "To verify your email we sent a link to your inbox."
 msgstr "برای تایید حساب کاربری لطفا ایمیل خود را چک کنید."
 
 #: account/templates/registration/logged_out.html:4
-#: account/templates/registration/logged_out.html:9
+#: account/templates/registration/logged_out.html:8
 msgid "Logged-out"
 msgstr "از سیستم خارج شدید"
 
@@ -98,7 +98,7 @@ msgid "Login again."
 msgstr "دوباره وارد شوید."
 
 #: account/templates/registration/login.html:4
-#: account/templates/registration/login.html:9
+#: account/templates/registration/login.html:8
 #: account/templates/registration/login.html:38
 msgid "Log-in"
 msgstr "ورود"
@@ -126,12 +126,12 @@ msgid "Password:"
 msgstr "کلمه عبور"
 
 #: account/templates/registration/login.html:41
-#: account/templates/registration/password_reset_form.html:9
+#: account/templates/registration/password_reset_form.html:8
 msgid "Forgotten your password?"
 msgstr "کلمه عبور خود را فراموش کرده‌اید؟"
 
 #: account/templates/registration/password_change_done.html:4
-#: account/templates/registration/password_change_done.html:9
+#: account/templates/registration/password_change_done.html:8
 msgid "Password changed"
 msgstr "کلمه عبور تغییر کرد"
 
@@ -140,7 +140,7 @@ msgid "Your password has been successfully changed."
 msgstr "کلمه عبور با موفقیت تغییر کرد"
 
 #: account/templates/registration/password_change_form.html:4
-#: account/templates/registration/password_change_form.html:9
+#: account/templates/registration/password_change_form.html:8
 msgid "Change your password"
 msgstr "کلمه عبور خود را تغییر دهید"
 
@@ -152,7 +152,7 @@ msgstr "برای تغییر کلمه عبور خود از فرم زیر استف
 msgid "Password reset"
 msgstr "بازنشانی کلمه عبور"
 
-#: account/templates/registration/password_reset_complete.html:9
+#: account/templates/registration/password_reset_complete.html:8
 msgid "Password set"
 msgstr "کلمه عبور تعیین شد"
 
@@ -161,9 +161,9 @@ msgid "Your password has been set. You can"
 msgstr "کلمه عبور شما تعیین شد. شما می‌توانید"
 
 #: account/templates/registration/password_reset_confirm.html:4
-#: account/templates/registration/password_reset_confirm.html:9
+#: account/templates/registration/password_reset_confirm.html:8
 #: account/templates/registration/password_reset_done.html:4
-#: account/templates/registration/password_reset_done.html:9
+#: account/templates/registration/password_reset_done.html:8
 #: account/templates/registration/password_reset_form.html:4
 msgid "Reset your password"
 msgstr "کلمه عبور خود را بازنشانی کنید"
@@ -177,9 +177,9 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
-"لینک بازنشانی کلمه عبور معتبر نمی‌باشد، این ممکن است به این خاطر باشد که قبلا "
-"از این لینک استفاده شده است. لطفا درخواست جدیدی برای بازنشانی کلمه عبور "
-"بدهید."
+"لینک بازنشانی کلمه عبور معتبر نمی‌باشد، این ممکن است به این خاطر باشد که "
+"قبلا از این لینک استفاده شده است. لطفا درخواست جدیدی برای بازنشانی کلمه عبور"
+" بدهید."
 
 #: account/templates/registration/password_reset_done.html:11
 msgid "We've emailed you instructions for setting your password."
@@ -190,8 +190,8 @@ msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with."
 msgstr ""
-"اگر ایمیلی دریافت نکرده‌اید اطمینان حاصل کنید که آدرس ایمیلی که با آن ثبت‌نام "
-"کرده‌اید را وارد کرده‌اید."
+"اگر ایمیلی دریافت نکرده‌اید اطمینان حاصل کنید که آدرس ایمیلی که با آن "
+"ثبت‌نام کرده‌اید را وارد کرده‌اید."
 
 #: account/templates/registration/password_reset_form.html:10
 msgid "Enter your e-mail address to obtain a new password."
@@ -205,7 +205,7 @@ msgstr "ایمیل"
 msgid "Send e-mail"
 msgstr "ارسال ایمیل"
 
-#: qa/templates/qa/ask_question.html:4
+#: qa/templates/qa/ask_question.html:4 qa/templates/qa/edit_question.html:4
 msgid "Ask a Question"
 msgstr "پرسش جدید"
 
@@ -213,32 +213,54 @@ msgstr "پرسش جدید"
 msgid "Ask a public question"
 msgstr "پرسش جدید مطرح کنید"
 
-#: qa/templates/qa/ask_question.html:11
+#: qa/templates/qa/ask_question.html:12 qa/templates/qa/edit_question.html:11
 msgid "Title"
 msgstr "عنوان"
 
-#: qa/templates/qa/ask_question.html:14
+#: qa/templates/qa/ask_question.html:15 qa/templates/qa/edit_question.html:14
 msgid "Be specific and imagine you’re asking a question to another person"
 msgstr "پرسش اصلی خود را در یک جمله صریح و ساده بیان کنید"
 
-#: qa/templates/qa/ask_question.html:18
+#: qa/templates/qa/ask_question.html:19 qa/templates/qa/edit_question.html:18
 msgid "Body"
 msgstr "متن سوال"
 
-#: qa/templates/qa/ask_question.html:20
+#: qa/templates/qa/ask_question.html:21 qa/templates/qa/edit_question.html:20
 msgid "Include all the information someone would need to answer your question"
 msgstr "تمام اطلاعاتی را که برای پاسخ به پرسش شما نیاز است دقیق بنویسید."
 
-#: qa/templates/qa/ask_question.html:36
+#: qa/templates/qa/ask_question.html:31 qa/templates/qa/edit_answer.html:35
+#: qa/templates/qa/edit_question.html:30 qa/templates/qa/question.html:100
+#, fuzzy
+#| msgid "Previous"
+msgid "Preview:"
+msgstr "قبلی"
+
+#: qa/templates/qa/ask_question.html:38 qa/templates/qa/edit_question.html:37
 msgid "Post your question"
+msgstr "ارسال پرسش"
+
+#: qa/templates/qa/edit_answer.html:23 qa/templates/qa/question.html:88
+msgid "Your Answer"
+msgstr "پاسخ شما"
+
+#: qa/templates/qa/edit_answer.html:42 qa/templates/qa/question.html:107
+msgid "Post your answer"
+msgstr "ارسال پاسخ"
+
+#: qa/templates/qa/edit_question.html:6
+#, fuzzy
+#| msgid "Post your question"
+msgid "Edit question"
 msgstr "ارسال پرسش"
 
 #: qa/templates/qa/index.html:3
 msgid "PorseshDev.ir - Where Developers Learn, Share, &amp; Build Careers"
 msgstr "پرسش Dev |‌ جایی برای یادگیری، اشتراک گذاری دانش برنامه‌نویسی"
 
-#: qa/templates/qa/index.html:43
-msgid "Before"
+#: qa/templates/qa/index.html:50 qa/templates/qa/question.html:31
+#: web/templates/web/common/render_user_compact.html:22
+msgid "before"
 msgstr "قبل"
 
 #: qa/templates/qa/pagination.html:7 qa/templates/qa/pagination.html:11
@@ -249,61 +271,159 @@ msgstr "قبلی"
 msgid "Next"
 msgstr "بعدی"
 
-#: qa/templates/qa/question.html:26
+#: qa/templates/qa/question.html:24 qa/templates/qa/question.html:75
+#: user_profile/templates/user_profile/profile.html:14
+#: user_profile/templates/user_profile/profile_edit.html:13
+msgid "Edit"
+msgstr "ویرایش"
+
+#: qa/templates/qa/question.html:29
+msgid "last edited:"
+msgstr "آخرین ویرایش"
+
+#: qa/templates/qa/question.html:41
 msgid "Number of answer: "
 msgstr "تعداد پاسخ‌ها"
 
-#: qa/templates/qa/question.html:52
-msgid "Your Answer"
-msgstr "پاسخ شما"
+#: qa/templates/qa/question.html:58
+msgid "Accept this answer"
+msgstr "تایید این پاسخ"
 
-#: qa/templates/qa/question.html:70
-msgid "Post your answer"
-msgstr "ارسال پاسخ"
-
-#: qa/views.py:31
+#: qa/views.py:44
 msgid "Your question saved."
 msgstr "پرسش شما ذخیره شد"
 
-#: qa/views.py:52
+#: qa/views.py:69
+#, fuzzy
+#| msgid "Questions"
+msgid "Question updated"
+msgstr "سوالات"
+
+#: qa/views.py:105
 msgid "Your answer saved"
 msgstr "پاسخ شما ذخیره شد"
 
-#: qa/views.py:55
+#: qa/views.py:108
 msgid "Please enter your answer"
 msgstr "لطفا پاسخ خود را بنویسید"
 
-#: user_profile/models.py:21
+#: qa/views.py:188
+msgid "Answer updated"
+msgstr "پاسخ بروزرسانی شد"
+
+#: user_profile/models.py:27
 msgid "Please verify your email"
 msgstr "لطفا ایمیل خود را تایید کنید"
 
-#: user_profile/views.py:27
+#: user_profile/templates/user_profile/profile.html:10
+#: user_profile/templates/user_profile/profile_edit.html:10
+msgid "Profile"
+msgstr "پروفایل"
+
+#: user_profile/templates/user_profile/profile.html:30
+#: user_profile/templates/user_profile/profile_edit.html:27
+msgid "Reputation"
+msgstr "اعتبار"
+
+#: user_profile/templates/user_profile/profile_edit.html:4
+msgid "Edit User Profile"
+msgstr "ویرایش پروفایل"
+
+#: user_profile/templates/user_profile/profile_edit.html:29
+msgid "Change Picture"
+msgstr "تغییر تصویر"
+
+#: user_profile/templates/user_profile/profile_edit.html:42
+msgid "Update"
+msgstr "بروزرسانی"
+
+#: user_profile/templates/user_profile/profile_edit.html:54
+#| msgid "Please enter your answer"
+msgid "Please select your avatar image."
+msgstr "انتخاب تصویر پروفایل"
+
+#: user_profile/templates/user_profile/profile_edit.html:67
+msgid ""
+"Upload file with the file dialog or by dragging and dropping images onto the"
+" dashed region"
+msgstr ""
+"تصویر مورد نظر خود را یا با استفاده از دکمه «انتخاب تصویر» یا با درگ و دراپ "
+"کردن به ناحیه نقطه چین دار انتخاب کنید"
+
+#: user_profile/templates/user_profile/profile_edit.html:70
+msgid "Select some files"
+msgstr "انتخاب تصویر"
+
+#: user_profile/templates/user_profile/profile_edit.html:76
+msgid "Close"
+msgstr "بستن"
+
+#: user_profile/templates/user_profile/profile_edit.html:77
+msgid "Upload"
+msgstr "بارگذاری"
+
+#: user_profile/views.py:34
 msgid "Yout email address verified successfuly."
 msgstr "آدرس ایمیل شما با موفقیت تایید شد"
 
-#: user_profile/views.py:30
+#: user_profile/views.py:37
 msgid "Error in email verification."
 msgstr "خطا در تایید ایمیل"
 
-#: web/templates/web/about.html:3
+#: user_profile/views.py:74
+#, fuzzy
+#| msgid "Your account has been succesfully created."
+msgid "Your account info updatd successfully"
+msgstr "حساب کاربری جدید شما با موفقیت ساخته شد."
+
+#: user_profile/views.py:84
+#, fuzzy
+#| msgid "Yout email address verified successfuly."
+msgid "Your profile updatd successfully"
+msgstr "آدرس ایمیل شما با موفقیت تایید شد"
+
+#: web/templates/web/about.html:3 web/templates/web/footer.html:22
 msgid "About"
+msgstr "درباره"
+
+#: web/templates/web/about.html:6
+#, fuzzy
+#| msgid "About"
+msgid "About page"
 msgstr "درباره"
 
 #: web/templates/web/common/render_ask.html:3
 msgid "Ask Question"
 msgstr "پرسش جدید"
 
+#: web/templates/web/common/render_vote.html:12
+msgid "You need 150 reputation to upvote posts."
+msgstr "اعتبار مورد نیاز ۱۵۰"
+
+#: web/templates/web/common/render_vote.html:14
+#: web/templates/web/common/render_vote.html:34
+msgid "You need to have an account to vote"
+msgstr "برای این کار نیاز به ایجاد حساب کاربری جدید دارید"
+
+#: web/templates/web/common/render_vote.html:32
+msgid "You need 15 reputation to upvote posts."
+msgstr "اعتبار مورد نیاز ۱۵"
+
 #: web/templates/web/index.html:5
 msgid "Home page of gapcode project"
 msgstr "صفحه خانه پرسش Dev"
 
+#: web/templates/web/index.html:13
+msgid "We people who code"
+msgstr ""
+
 #: web/templates/web/index.html:14
 msgid ""
-"We build products that empower developers and connect them to solutions that "
-"enable productivity, growth, and discovery."
+"We build products that empower developers and connect them to solutions that"
+" enable productivity, growth, and discovery."
 msgstr ""
-"ما اینجا با پاسخ دادن به پرسش‌های دوستان برنامه‌نویس خود به هم کمک می‌کنیم تا "
-"برنامه‌نویس بهتری شویم."
+"ما اینجا با پاسخ دادن به پرسش‌های دوستان برنامه‌نویس خود به هم کمک می‌کنیم "
+"تا برنامه‌نویس بهتری شویم."
 
 #: web/templates/web/index.html:18
 msgid "See Questions"
@@ -340,3 +460,6 @@ msgstr "ثبت‌نام"
 #: web/templates/web/side_col.html:4
 msgid "Watched Tags"
 msgstr "تگ‌های زیر نظر"
+
+#~ msgid "Before"
+#~ msgstr "قبل"

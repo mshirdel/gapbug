@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-3 col-sm-2">
                         <span class="text-secondary pt-1 float-start objects-small-font align-baseline">
-                            <span class="">23</span> <i class="bi bi-eye question-views"></i>
+                            <span class="">{{ q.views }}</span> <i class="bi bi-eye question-views"></i>
                         </span>
                     </div>
                 </div>
@@ -46,8 +46,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="float-start question-stats">
-                            {{ q.created|timesince }} 
-                            {% trans "Before" %}
+                            <span title="{{ q.created }}">{{ q.created|timesince }}</span>
+                            {% trans "before" %}
                             <a href="{% url 'user_profile:profile' q.user.id q.user.username %}">
                                 {{ q.user.username }} 
                             </a> 

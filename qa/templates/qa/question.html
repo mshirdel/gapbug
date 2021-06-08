@@ -4,6 +4,7 @@
 {% block title %}{{ question.title }}{% endblock title %}
 {% block content %}
     {% include 'web/common/header_top.html' with heading=question.title %}
+    <hr class="mt-0" />
     <div class="row">
         <div class="col">
             <div class="question-body">
@@ -26,9 +27,8 @@
         <div class="col-md-2 mt-3 question-edit-style">
             {% if question.created != question.modified %}
                 {% trans "last edited:" %}
-                <span class="ltr">
-                    {{ question.modified|timesince }}
-                </span>
+                    <span title="{{ question.modified }}">{{ question.modified|timesince }}</span>
+                {% trans "before" %}
             {% endif %}
         </div>
         <div class="col-md-6">

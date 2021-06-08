@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-19 13:33+0430\n"
+"POT-Creation-Date: 2021-06-08 12:52+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: account/forms.py:7
+#: account/forms.py:8
 msgid "Passwrod"
 msgstr ""
 
-#: account/forms.py:10
+#: account/forms.py:11
 msgid "Repeat password"
 msgstr ""
 
-#: account/forms.py:25
+#: account/forms.py:26
 msgid "Password don't match."
 msgstr ""
 
-#: account/forms.py:34
+#: account/forms.py:35
 msgid "Email must be unique."
 msgstr ""
 
@@ -39,20 +39,20 @@ msgstr ""
 msgid "Create an account"
 msgstr ""
 
-#: account/templates/account/register.html:10
+#: account/templates/account/register.html:12
 msgid "Please, sign up using following form:"
 msgstr ""
 
-#: account/templates/account/register.html:13
+#: account/templates/account/register.html:15
 msgid "Create my account"
 msgstr ""
 
-#: account/templates/account/register.html:15
+#: account/templates/account/register.html:17
 #: account/templates/registration/password_reset_form.html:19
 msgid "Already have account?"
 msgstr ""
 
-#: account/templates/account/register.html:15
+#: account/templates/account/register.html:17
 #: account/templates/registration/password_reset_form.html:19
 msgid "login here"
 msgstr ""
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Welcome"
 msgstr ""
 
-#: account/templates/account/register_done.html:10
+#: account/templates/account/register_done.html:9
 #, python-format
 msgid ""
 "\n"
@@ -78,7 +78,7 @@ msgid "To verify your email we sent a link to your inbox."
 msgstr ""
 
 #: account/templates/registration/logged_out.html:4
-#: account/templates/registration/logged_out.html:9
+#: account/templates/registration/logged_out.html:8
 msgid "Logged-out"
 msgstr ""
 
@@ -95,7 +95,7 @@ msgid "Login again."
 msgstr ""
 
 #: account/templates/registration/login.html:4
-#: account/templates/registration/login.html:9
+#: account/templates/registration/login.html:8
 #: account/templates/registration/login.html:38
 msgid "Log-in"
 msgstr ""
@@ -122,12 +122,12 @@ msgid "Password:"
 msgstr ""
 
 #: account/templates/registration/login.html:41
-#: account/templates/registration/password_reset_form.html:9
+#: account/templates/registration/password_reset_form.html:8
 msgid "Forgotten your password?"
 msgstr ""
 
 #: account/templates/registration/password_change_done.html:4
-#: account/templates/registration/password_change_done.html:9
+#: account/templates/registration/password_change_done.html:8
 msgid "Password changed"
 msgstr ""
 
@@ -136,7 +136,7 @@ msgid "Your password has been successfully changed."
 msgstr ""
 
 #: account/templates/registration/password_change_form.html:4
-#: account/templates/registration/password_change_form.html:9
+#: account/templates/registration/password_change_form.html:8
 msgid "Change your password"
 msgstr ""
 
@@ -148,7 +148,7 @@ msgstr ""
 msgid "Password reset"
 msgstr ""
 
-#: account/templates/registration/password_reset_complete.html:9
+#: account/templates/registration/password_reset_complete.html:8
 msgid "Password set"
 msgstr ""
 
@@ -157,9 +157,9 @@ msgid "Your password has been set. You can"
 msgstr ""
 
 #: account/templates/registration/password_reset_confirm.html:4
-#: account/templates/registration/password_reset_confirm.html:9
+#: account/templates/registration/password_reset_confirm.html:8
 #: account/templates/registration/password_reset_done.html:4
-#: account/templates/registration/password_reset_done.html:9
+#: account/templates/registration/password_reset_done.html:8
 #: account/templates/registration/password_reset_form.html:4
 msgid "Reset your password"
 msgstr ""
@@ -196,7 +196,7 @@ msgstr ""
 msgid "Send e-mail"
 msgstr ""
 
-#: qa/templates/qa/ask_question.html:4
+#: qa/templates/qa/ask_question.html:4 qa/templates/qa/edit_question.html:4
 msgid "Ask a Question"
 msgstr ""
 
@@ -204,32 +204,50 @@ msgstr ""
 msgid "Ask a public question"
 msgstr ""
 
-#: qa/templates/qa/ask_question.html:11
+#: qa/templates/qa/ask_question.html:12 qa/templates/qa/edit_question.html:11
 msgid "Title"
 msgstr ""
 
-#: qa/templates/qa/ask_question.html:14
+#: qa/templates/qa/ask_question.html:15 qa/templates/qa/edit_question.html:14
 msgid "Be specific and imagine you’re asking a question to another person"
 msgstr ""
 
-#: qa/templates/qa/ask_question.html:18
+#: qa/templates/qa/ask_question.html:19 qa/templates/qa/edit_question.html:18
 msgid "Body"
 msgstr ""
 
-#: qa/templates/qa/ask_question.html:20
+#: qa/templates/qa/ask_question.html:21 qa/templates/qa/edit_question.html:20
 msgid "Include all the information someone would need to answer your question"
 msgstr ""
 
-#: qa/templates/qa/ask_question.html:36
+#: qa/templates/qa/ask_question.html:31 qa/templates/qa/edit_answer.html:35
+#: qa/templates/qa/edit_question.html:30 qa/templates/qa/question.html:100
+msgid "Preview:"
+msgstr ""
+
+#: qa/templates/qa/ask_question.html:38 qa/templates/qa/edit_question.html:37
 msgid "Post your question"
+msgstr ""
+
+#: qa/templates/qa/edit_answer.html:23 qa/templates/qa/question.html:88
+msgid "Your Answer"
+msgstr ""
+
+#: qa/templates/qa/edit_answer.html:42 qa/templates/qa/question.html:107
+msgid "Post your answer"
+msgstr ""
+
+#: qa/templates/qa/edit_question.html:6
+msgid "Edit question"
 msgstr ""
 
 #: qa/templates/qa/index.html:3
 msgid "PorseshDev.ir - Where Developers Learn, Share, &amp; Build Careers"
 msgstr ""
 
-#: qa/templates/qa/index.html:43
-msgid "Before"
+#: qa/templates/qa/index.html:50 qa/templates/qa/question.html:31
+#: web/templates/web/common/render_user_compact.html:22
+msgid "before"
 msgstr ""
 
 #: qa/templates/qa/pagination.html:7 qa/templates/qa/pagination.html:11
@@ -240,52 +258,139 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: qa/templates/qa/question.html:26
+#: qa/templates/qa/question.html:24 qa/templates/qa/question.html:75
+#: user_profile/templates/user_profile/profile.html:14
+#: user_profile/templates/user_profile/profile_edit.html:13
+msgid "Edit"
+msgstr ""
+
+#: qa/templates/qa/question.html:29
+msgid "last edited:"
+msgstr ""
+
+#: qa/templates/qa/question.html:41
 msgid "Number of answer: "
 msgstr ""
 
-#: qa/templates/qa/question.html:52
-msgid "Your Answer"
+#: qa/templates/qa/question.html:58
+msgid "Accept this answer"
 msgstr ""
 
-#: qa/templates/qa/question.html:70
-msgid "Post your answer"
-msgstr ""
-
-#: qa/views.py:31
+#: qa/views.py:44
 msgid "Your question saved."
 msgstr ""
 
-#: qa/views.py:52
+#: qa/views.py:69
+msgid "Question updated"
+msgstr ""
+
+#: qa/views.py:105
 msgid "Your answer saved"
 msgstr ""
 
-#: qa/views.py:55
+#: qa/views.py:108
 msgid "Please enter your answer"
 msgstr ""
 
-#: user_profile/models.py:21
+#: qa/views.py:188
+msgid "Answer updated"
+msgstr ""
+
+#: user_profile/models.py:27
 msgid "Please verify your email"
 msgstr ""
 
-#: user_profile/views.py:27
+#: user_profile/templates/user_profile/profile.html:10
+#: user_profile/templates/user_profile/profile_edit.html:10
+msgid "Profile"
+msgstr ""
+
+#: user_profile/templates/user_profile/profile.html:30
+#: user_profile/templates/user_profile/profile_edit.html:27
+msgid "Reputation"
+msgstr ""
+
+#: user_profile/templates/user_profile/profile_edit.html:4
+msgid "Edit User Profile"
+msgstr ""
+
+#: user_profile/templates/user_profile/profile_edit.html:29
+msgid "Change Picture"
+msgstr ""
+
+#: user_profile/templates/user_profile/profile_edit.html:42
+msgid "Update"
+msgstr ""
+
+#: user_profile/templates/user_profile/profile_edit.html:54
+msgid "Please select your avatar image."
+msgstr ""
+
+#: user_profile/templates/user_profile/profile_edit.html:67
+msgid ""
+"Upload file with the file dialog or by dragging and dropping images onto the "
+"dashed region"
+msgstr ""
+
+#: user_profile/templates/user_profile/profile_edit.html:70
+msgid "Select some files"
+msgstr ""
+
+#: user_profile/templates/user_profile/profile_edit.html:76
+msgid "Close"
+msgstr ""
+
+#: user_profile/templates/user_profile/profile_edit.html:77
+msgid "Upload"
+msgstr ""
+
+#: user_profile/views.py:34
 msgid "Yout email address verified successfuly."
 msgstr ""
 
-#: user_profile/views.py:30
+#: user_profile/views.py:37
 msgid "Error in email verification."
 msgstr ""
 
-#: web/templates/web/about.html:3
+#: user_profile/views.py:74
+msgid "Your account info updatd successfully"
+msgstr ""
+
+#: user_profile/views.py:84
+msgid "Your profile updatd successfully"
+msgstr ""
+
+#: web/templates/web/about.html:3 web/templates/web/footer.html:22
 msgid "About"
+msgstr ""
+
+#: web/templates/web/about.html:6
+msgid "About page"
 msgstr ""
 
 #: web/templates/web/common/render_ask.html:3
 msgid "Ask Question"
 msgstr ""
 
+#: web/templates/web/common/render_vote.html:12
+msgid "You need 150 reputation to upvote posts."
+msgstr ""
+
+#: web/templates/web/common/render_vote.html:14
+#: web/templates/web/common/render_vote.html:34
+msgid "You need to have an account to vote"
+msgstr ""
+
+#: web/templates/web/common/render_vote.html:32
+msgid "You need 15 reputation to upvote posts."
+msgstr ""
+
 #: web/templates/web/index.html:5
 msgid "Home page of gapcode project"
+msgstr ""
+
+#: web/templates/web/index.html:13
+msgid "We people who code"
 msgstr ""
 
 #: web/templates/web/index.html:14
