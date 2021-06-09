@@ -8,10 +8,12 @@
             <h5 class="card-title bg-primary text-light p-3">{% trans "Log-in" %}</h5>
             <div class="m-3">
                 <p class="card-text">
-                    {% if form.errors %}
-                        <p>
-                            {% trans "Your username and password didn't match. Please try again." %}
-                        </p>
+                    {% if errors %}
+                        {% for err in errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ err }}
+                            </div>
+                        {% endfor %}
                     {% else %}
                     <p>
                         {% trans "Please, use the following form to log-in. If you don't have an account" %} 
@@ -23,15 +25,15 @@
                     </p>
                     {% endif %}
                 </p>
-                <form action="{% url 'login' %}" method="post" id='fromLogin'>
+                <form action="{% url 'signin' %}" method="post" id='fromLogin'>
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="id_username" class="form-label">{% trans "Username:" %}</label> 
-                        <input class="form-control" type="text" name="username" autofocus required id="id_username">
+                        <input class="form-control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
                     </div>
                     <div class="mb-3">
                         <label for="id_password" class="form-label">{% trans "Password:" %}</label> 
-                        <input class="form-control" type="password" name="password" required id="id_password">
+                        <input class="form-control" type="password" name="password" autocomplete="current-password" required="" id="id_password">
                     </div>
                     <input type="hidden" name="next" value='{{ next }}'>
                     <p>
@@ -42,5 +44,4 @@
             </div>
         </div>
     </div>
-   
 {% endblock content %}

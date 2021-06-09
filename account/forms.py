@@ -43,3 +43,8 @@ class UserForm(forms.ModelForm):
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField()

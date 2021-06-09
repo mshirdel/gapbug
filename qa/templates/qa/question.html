@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-md-3 mt-3">
                     {% if ans.user == request.user or 'edit_question_and_answer' in user.profile.privilages %}
-                        <a href="{% url 'qa:answer_edit' question.id ans.id %}" class="brand-color-link">{% trans "Edit" %}</a>
+                        <a href="{% url 'qa:answer_edit' question.id ans.id %}" class="brand-color-link btn btn-outline-warning">{% trans "Edit" %}</a>
                     {% endif %}
                 </div>
                 <div class="col-md-6">
