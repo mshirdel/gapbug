@@ -1,10 +1,8 @@
 from django.utils import timezone
 from django.http.response import JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
-from django.urls import reverse
 from django.views.generic import ListView
-from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -47,11 +45,7 @@ class Ask(PrivilageRequiredMixin, View):
                 body_html=form.cleaned_data['body_html'])
             messages.add_message(request, messages.INFO,
                                  _('Your question saved.'))
-            return HttpResponseRedirect(reverse("qa:show",
-                                                kwargs={
-                                                    "id": question.pk,
-                                                    "slug": question.slug
-                                                }))
+            return redirect(question)
         else:
             return render(request, 'qa/ask_question.html',
                           {
@@ -68,25 +62,21 @@ class EditQuestion(View):
                       {'question': q})
 
     def post(self, request, question_id):
-        q = get_object_or_404(Question, pk=question_id)
+        question = get_object_or_404(Question, pk=question_id)
         try:
             if request.POST['title']:
-                q.title = request.POST['title']
+                question.title = request.POST['title']
             if request.POST['body_html']:
-                q.body_html = request.POST['body_html']
-            q.content_modified_date = timezone.now()
-            q.save()
+                question.body_html = request.POST['body_html']
+            question.content_modified_date = timezone.now()
+            question.save()
             messages.add_message(request, messages.INFO,
                                  _('Question updated'))
         except Exception as ex:
             # TODO log exception
             messages.add_message(request, messages.WARNING,
                                  _('Some error in updating question'))
-        return HttpResponseRedirect(reverse("qa:show",
-                                            kwargs={
-                                                'id': q.pk,
-                                                'slug': q.slug
-                                            }))
+        return redirect(question)
 
 
 def show(request, id, slug):
@@ -108,21 +98,17 @@ def show(request, id, slug):
 @method_decorator(login_required, name='dispatch')
 class AnswerQuestion(View):
     def post(self, request, id):
-        q = get_object_or_404(Question, id=id)
+        question = get_object_or_404(Question, id=id)
         if request.POST['body_html']:
             Answer.objects.create(user=request.user,
-                                  question=q,
+                                  question=question,
                                   body_html=request.POST['body_html'])
             messages.add_message(request, messages.INFO,
                                  _('Your answer saved'))
         else:
             messages.add_message(request, messages.WARNING,
                                  _('Please enter your answer'))
-        return HttpResponseRedirect(reverse("qa:show",
-                                            kwargs={
-                                                "id": q.pk,
-                                                "slug": q.slug
-                                            }))
+        return redirect(question)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -190,7 +176,7 @@ class EditAnswer(View):
                       {'answer': ans, 'question': q})
 
     def post(self, request, question_id, answer_id):
-        q = get_object_or_404(Question, pk=question_id)
+        question = get_object_or_404(Question, pk=question_id)
         ans = get_object_or_404(Answer, pk=answer_id)
         try:
             if request.POST['body_html']:
@@ -199,13 +185,10 @@ class EditAnswer(View):
                 messages.add_message(request, messages.INFO,
                                      _('Answer updated'))
         except Exception as ex:
+            # TODO log ex
             messages.add_message(request, messages.WARNING,
-                                 str(ex))
-        return HttpResponseRedirect(reverse("qa:show",
-                                            kwargs={
-                                                'id': q.pk,
-                                                'slug': q.slug
-                                            }))
+                                 _('Some error in edditing answer.'))
+        return redirect(question)
 
 
 @method_decorator(login_required, name='dispatch')
