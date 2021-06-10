@@ -32,12 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="mt-3">{% trans "Preview:" %}</h3>
-                    <div class="row">
-                        <div class="col mt-3">
-                            <div id="preview"></div>  
-                        </div>
-                    </div>
+                    {% include "qa/render_preview.html" %}
                 </div>
                 <input class="btn btn-primary mb-3" type="submit" value="{% trans "Post your answer" %}">
             </form>
