@@ -6,6 +6,7 @@
 {% trans "Ask a public question" as header_title %}
 {% include 'web/common/header_top.html' with heading=header_title %}
 <hr class="mt-0" />
+{% include 'web/common/render_form_errors.html' %}
 <form action="" method="post">
     {% csrf_token %}
     <div class="mb-3">

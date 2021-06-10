@@ -20,6 +20,7 @@ from user_profile.models import ReputationHistory
 from .reputations import Reputation
 from .mixins import PrivilageRequiredMixin
 from common.utils import get_finger_print
+from .forms import QuestionForm
 
 
 class QuestionList(ListView):
@@ -37,16 +38,24 @@ class Ask(PrivilageRequiredMixin, View):
         return render(request, 'qa/ask_question.html')
 
     def post(self, request):
-        question = Question.objects.create(user=self.request.user,
-                                           title=request.POST['title'],
-                                           body_html=request.POST['body_html'])
-        messages.add_message(request, messages.INFO,
-                             _('Your question saved.'))
-        return HttpResponseRedirect(reverse("qa:show",
-                                            kwargs={
-                                                "id": question.pk,
-                                                "slug": question.slug
-                                            }))
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            question = Question.objects.create(
+                user=self.request.user,
+                title=form.cleaned_data['title'],
+                body_html=form.cleaned_data['body_html'])
+            messages.add_message(request, messages.INFO,
+                                 _('Your question saved.'))
+            return HttpResponseRedirect(reverse("qa:show",
+                                                kwargs={
+                                                    "id": question.pk,
+                                                    "slug": question.slug
+                                                }))
+        else:
+            return render(request, 'qa/ask_question.html',
+                          {
+                              'form': form
+                          })
 
 
 @method_decorator(login_required, name='dispatch')
@@ -69,8 +78,9 @@ class EditQuestion(View):
             messages.add_message(request, messages.INFO,
                                  _('Question updated'))
         except Exception as ex:
+            # TODO log exception
             messages.add_message(request, messages.WARNING,
-                                 str(ex))
+                                 _('Some error in updating question'))
         return HttpResponseRedirect(reverse("qa:show",
                                             kwargs={
                                                 'id': q.pk,
