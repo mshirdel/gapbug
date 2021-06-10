@@ -12,7 +12,9 @@
         </div>
         <div class="col-md-10 mt-1">
             <span class="user-profile-compact">
-                {{ user.username }} 
+                <a href="{% url 'user_profile:profile' user.id user.username %}">
+                    {{ user.username }} 
+                </a>
                 <span class="badge rounded-pill bg-light text-dark">{{ user.profile.reputation }}</span>
             </span>
         </div>

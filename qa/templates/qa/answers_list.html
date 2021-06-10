@@ -1,0 +1,30 @@
+{% extends 'web/base.html' %}
+{% load i18n %}
+{% block title %}{% trans "PorseshDev.ir - Where Developers Learn, Share, &amp; Build Careers" %}{% endblock title %}
+{% block content %}
+    {% include 'web/common/header_top.html' with heading=header_name %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    {% trans "Answers" %} ({{ user_answer_count }})
+                </th>
+            </tr>
+        </thead>
+        {% for ans in answers %}
+            {% if ans.accepted %}
+                <tr class="table-success">
+            {% else %}
+                <tr>
+            {% endif %}
+                <td>
+                    <a href="{{ ans.question.get_absolute_url }}#answer-{{ans.id}}">
+                        {{ ans.question.title }}
+                        <span class="badge bg-info text-dark" title='{{ ans.vote }} {% trans "Votes" %}'>{{ ans.vote }}</span>    
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>     
+    {% include 'qa/pagination.html' with page=page_obj %}                      
+{% endblock content %}

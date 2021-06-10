@@ -7,6 +7,7 @@ from django.views.generic import ListView
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from django.utils.decorators import method_decorator
 
@@ -298,3 +299,42 @@ class AcceptAnswer(View):
             return JsonResponse({
                 'status': 'not required'
             })
+
+
+class UserQuestionList(ListView):
+    context_object_name = 'questions'
+    paginate_by = 10
+    template_name = 'qa/questions_list.html'
+
+    def get_queryset(self):
+        user = get_object_or_404(User,
+                                 pk=self.kwargs['user_id'],
+                                 username=self.kwargs['user_name'])
+        return Question.objects.filter(user=user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["header_name"] = _('User questions list')
+        user = get_object_or_404(User, pk=self.kwargs['user_id'],
+                                 username=self.kwargs['user_name'])
+        context["user_question_count"] = user.questions.count()
+        return context
+
+
+class UserAnswerList(ListView):
+    context_object_name = 'answers'
+    paginate_by = 10
+    template_name = 'qa/answers_list.html'
+
+    def get_queryset(self):
+        user = get_object_or_404(User, pk=self.kwargs['user_id'],
+                                 username=self.kwargs['user_name'])
+        return Answer.objects.filter(user=user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["header_name"] = _('User answers list')
+        user = get_object_or_404(User, pk=self.kwargs['user_id'],
+                                 username=self.kwargs['user_name'])
+        context["user_answer_count"] = user.answers.count()
+        return context

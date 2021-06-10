@@ -40,9 +40,13 @@ class EmailVerify(View):
 
 def profile(request, id, username):
     user = get_object_or_404(User, pk=id, username=username)
+    questions = user.questions.all()[:10]
+    answers = user.answers.all()[:10]
     return render(request, 'user_profile/profile.html',
                   {
-                      'user': user
+                      'user': user,
+                      'questions': questions,
+                      'answers': answers
                   })
 
 
