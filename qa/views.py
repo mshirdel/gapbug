@@ -2,6 +2,7 @@ from common.utils import get_finger_print
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.conf import settings
 from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
@@ -22,7 +23,7 @@ from .search import QuestionSearch
 class QuestionList(ListView):
     queryset = Question.objects.all().prefetch_related('user', 'answer_set')
     context_object_name = 'questions'
-    paginate_by = 10
+    paginate_by = settings.PAGE_SIZE
     template_name = 'qa/index.html'
 
 
@@ -92,17 +93,26 @@ def show(request, id, slug):
                   })
 
 
-def search(request):
-    form = SearchForm()
+class Search(ListView):
+    context_object_name = 'questions'
+    paginate_by = settings.PAGE_SIZE
+    template_name = 'qa/index.html'
     query = None
-    results = []
-    form = SearchForm(request.GET)
-    if form.is_valid():
-        query = form.cleaned_data['q']
-        results = QuestionSearch(query).get_result()
-    context = {'q': query, 'questions': results,
-               'heading_title': _('Search result')}
-    return render(request, 'qa/index.html', context)
+
+    def get_queryset(self):
+        results = []
+        form = SearchForm(self.request.GET)
+        if form.is_valid():
+            self.query = form.cleaned_data['q']
+            results = QuestionSearch(self.query).get_result() \
+                .prefetch_related('user', 'answer_set')
+        return results
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['q'] = self.query
+        context['heading_title'] = _('Search result')
+        return context
 
 
 @method_decorator(login_required, name='dispatch')
@@ -296,7 +306,7 @@ class AcceptAnswer(View):
 
 class UserQuestionList(ListView):
     context_object_name = 'questions'
-    paginate_by = 10
+    paginate_by = settings.PAGE_SIZE
     template_name = 'qa/questions_list.html'
 
     def get_queryset(self):
@@ -316,7 +326,7 @@ class UserQuestionList(ListView):
 
 class UserAnswerList(ListView):
     context_object_name = 'answers'
-    paginate_by = 10
+    paginate_by = settings.PAGE_SIZE
     template_name = 'qa/answers_list.html'
 
     def get_queryset(self):
