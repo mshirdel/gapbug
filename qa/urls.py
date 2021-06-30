@@ -24,4 +24,5 @@ urlpatterns = [
          views.AnswerVoteDown.as_view(), name='answer_voteup'),
     path('<int:question_id>/<int:answer_id>/accept',
          views.AcceptAnswer.as_view(), name='accept_answer'),
+    path('search/', views.search, name='search'),
 ]

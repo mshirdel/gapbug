@@ -1,107 +1,120 @@
 @font-face {
-  font-family: "iran-sans";
-  src: url("../fonts/IRANSansWeb.woff");
-  font-style: normal;
+    font-family: "iran-sans";
+    src: url("../fonts/IRANSansWeb.woff");
+    font-style: normal;
 }
 
 .brand-color-link {
-  color: #795548;
-  text-decoration: none;
+    color: #795548;
+    text-decoration: none;
 }
 
 .footer-color-link {
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 h1 {
-  font-size: 20px;
-  font-weight: bold;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 h2 {
-  font-size: 18px;
-  font-weight: bold;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 h3 {
-  font-size: 16px;
-  font-weight: bold;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 body {
-  /* background-color: #f8fafb; */
-  background-color: white;
-  font-family: "iran-sans";
-  min-height: 75rem;
-  padding-top: 3.5rem;
+    /* background-color: #f8fafb; */
+    background-color: white;
+    font-family: "iran-sans";
+    min-height: 75rem;
+    padding-top: 3.5rem;
 }
 
 div.container {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .home-title {
-  margin-top: 150px;
-  text-align: center;
+    margin-top: 150px;
+    text-align: center;
 }
 
 .question-body {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 .question-stats {
-  color: #848d95;
+    color: #848d95;
 }
 
 .sidenav {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 160px; /* Set the width of the sidebar */
-  position: fixed;
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed;
 }
 
 .user-profile-compact {
-  font-size: 14px;
-  color: #848d95;
+    font-size: 14px;
+    color: #848d95;
 }
 
 .user-profile-title {
-  color: #848d95;
+    color: #848d95;
 }
 
 .question-edit-style {
-  font-size: 14px;
-  color: #848d95;
+    font-size: 14px;
+    color: #848d95;
 }
 
 .hashtag {
-  border-radius: 0.2rem;
-  padding-left: 3px;
-  padding-right: 3px;
+    border-radius: 0.2rem;
+    padding-left: 3px;
+    padding-right: 3px;
 }
 
 .question-views {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 @media (max-width: 576px) {
-  .objects-small-font {
-    font-size: 10px;
-  }
+    .objects-small-font {
+        font-size: 10px;
+    }
 }
 
 .btn-group {
-  direction: ltr;
+    direction: ltr;
 }
 
 .ltr {
-  direction: ltr;
+    direction: ltr;
 }
 
 .rtl {
-  direction: rtl;
+    direction: rtl;
+}
+
+.popover {
+    max-width: 80%;
+    width: 80%;
+    white-space: nowrap;
+    background: white;
+    border: 1px solid lightgray;
+    -webkit-box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.3);
+    color: gray;
+    padding: 10px;
 }

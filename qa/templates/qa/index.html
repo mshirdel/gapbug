@@ -2,7 +2,11 @@
 {% load i18n %}
 {% block title %}{% trans "PorseshDev.ir - Where Developers Learn, Share, &amp; Build Careers" %}{% endblock title %}
 {% block content %}
+{% if heading_title %}
+    {% include 'web/common/header_top.html' with heading=heading_title %}
+{% else %}
     {% include 'web/common/header_top.html' with heading="Top Questions" %}
+{% endif %}
     {% for q in questions %}
         {% if forloop.last %}
             <div class="row border-top border-bottom border-end border-start align-items-center mb-3">
@@ -13,8 +17,8 @@
                 <div class="row border-start border-bottom">
                     <div class="col text-center p-1">
                         {% if q.accepted %}
-                            <div class="question-stats text-success">{{ q.answer_set.count }}</div>
-                            <div class="question-stats object-small-font text-success">Answers</div>                            
+                            <div class="question-stats text-light bg-success">{{ q.answer_set.count }}</div>
+                            <div class="question-stats object-small-font text-light bg-success">Answers</div>                            
                         {% else %}
                             <div class="question-stats">{{ q.answer_set.count }}</div>
                             <div class="question-stats object-small-font">Answers</div>

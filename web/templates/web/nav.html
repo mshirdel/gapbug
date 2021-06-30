@@ -18,9 +18,10 @@
                     <a class="nav-link brand-color-link" href="{% url 'qa:index' %}">{% trans "Questions" %}</a>
                 </li>
             </ul>
-            <form class="container-fluid">
+            <form id='searchForm' action="{% url 'qa:search' %}" method="GET" class="container-fluid">
                 <div class="input-group">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <input id="txtSearch" class="form-control" type="search" name="q" required value="{{ q }}" 
+                        placeholder="Search" aria-label="Search" autocomplete="off">
                 </div>
             </form>
             {% if request.user.is_authenticated %}

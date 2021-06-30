@@ -1,25 +1,22 @@
-from django.utils import timezone
-from django.http.response import JsonResponse
-from django.shortcuts import get_object_or_404, render, redirect
-from django.views import View
-from django.views.generic import ListView
+from common.utils import get_finger_print
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.utils.translation import gettext as _
+from django.http.response import JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
 from django.utils.decorators import method_decorator
-
-from .models import (
-    Question,
-    Answer,
-    QuestionVote,
-    AnswerVote,
-    QuestionHitCount)
+from django.utils.translation import gettext as _
+from django.views import View
+from django.views.generic import ListView
 from user_profile.models import ReputationHistory
-from .reputations import Reputation
+
+from .forms import QuestionForm, SearchForm
 from .mixins import PrivilageRequiredMixin
-from common.utils import get_finger_print
-from .forms import QuestionForm
+from .models import (Answer, AnswerVote, Question, QuestionHitCount,
+                     QuestionVote)
+from .reputations import Reputation
+from .search import QuestionSearch
 
 
 class QuestionList(ListView):
@@ -93,6 +90,19 @@ def show(request, id, slug):
                       'question': question,
                       'show_answer_form': not user_answered_befor
                   })
+
+
+def search(request):
+    form = SearchForm()
+    query = None
+    results = []
+    form = SearchForm(request.GET)
+    if form.is_valid():
+        query = form.cleaned_data['q']
+        results = QuestionSearch(query).get_result()
+    context = {'q': query, 'questions': results,
+               'heading_title': _('Search result')}
+    return render(request, 'qa/index.html', context)
 
 
 @method_decorator(login_required, name='dispatch')
