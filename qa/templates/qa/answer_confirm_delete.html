@@ -1,8 +1,8 @@
 {% extends 'web/base.html' %}
 {% load i18n %}
-{% block title %}{% trans "Are you sure to delete question: " %} {{ object.title }}{% endblock title %}
+{% block title %}{% trans "Are you sure to delete answer: " %}{% endblock title %}
 {% block content %}
-    <h1>{{ object.title }}</h1>
+    <p>{{ object.body_html|safe }}</p>
     <hr class="mt-0" />
     <div class="row">
         <div class="col">

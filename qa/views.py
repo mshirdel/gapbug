@@ -84,6 +84,12 @@ class DeleteQuestion(DeleteView):
     success_url = '/'
 
 
+@method_decorator(login_required, name='dispatch')
+class DeleteAnswer(DeleteView):
+    model = Answer
+    success_url = '/'
+
+
 def show(request, id, slug):
     question = get_object_or_404(Question, pk=id, slug=slug)
     QuestionHitCount.objects.create(

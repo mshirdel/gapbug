@@ -22,8 +22,6 @@
         <div class="col-md-1 mt-3">
             {% if question.user == request.user or 'edit_question_and_answer' in user.profile.privilages %}
                 <a href="{% url 'qa:question_edit' question.id %}" class="brand-color-link btn btn-outline-warning">{% trans "Edit" %}</a>
-            {% endif %}
-            {% if question.user == request.user %}
                 <a href="{% url 'qa:question_delete' question.id %}" class="brand-color-link btn btn-outline-danger mt-3">
                     {% trans "Delete" %}
                 </a>
@@ -78,6 +76,7 @@
                 <div class="col-md-3 mt-3">
                     {% if ans.user == request.user or 'edit_question_and_answer' in user.profile.privilages %}
                         <a href="{% url 'qa:answer_edit' question.id ans.id %}" class="brand-color-link btn btn-outline-warning">{% trans "Edit" %}</a>
+                        <a href="{% url 'qa:answer_delete' question.id ans.id %}" class="brand-color-link btn btn-outline-danger">{% trans "Delete" %}</a>
                     {% endif %}
                 </div>
                 <div class="col-md-6">
