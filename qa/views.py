@@ -10,6 +10,7 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import gettext as _
 from django.views import View
 from django.views.generic import ListView
+from django.views.generic.edit import DeleteView
 from user_profile.models import ReputationHistory
 
 from .forms import QuestionForm, SearchForm
@@ -75,6 +76,12 @@ class EditQuestion(View):
             messages.add_message(request, messages.WARNING,
                                  _('Some error in updating question'))
         return redirect(question)
+
+
+@method_decorator(login_required, name='dispatch')
+class DeleteQuestion(DeleteView):
+    model = Question
+    success_url = '/'
 
 
 def show(request, id, slug):

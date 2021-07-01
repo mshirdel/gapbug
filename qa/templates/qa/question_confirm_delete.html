@@ -1,0 +1,16 @@
+{% extends 'web/base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Are you sure to delete question: " %} {{ object.title }}{% endblock title %}
+{% block content %}
+    {% include 'web/common/header_top.html' with heading=object.title %}
+    <hr class="mt-0" />
+    <div class="row">
+        <div class="col">
+            <form method="post">
+                {% csrf_token %}
+                <p>{% trans "Are you sure you want to delete?" %}</p>
+                <input class="btn btn-danger" type="submit" value="Confirm">
+            </form>
+        </div>
+    </div>
+{% endblock %}

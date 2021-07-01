@@ -23,6 +23,11 @@
             {% if question.user == request.user or 'edit_question_and_answer' in user.profile.privilages %}
                 <a href="{% url 'qa:question_edit' question.id %}" class="brand-color-link btn btn-outline-warning">{% trans "Edit" %}</a>
             {% endif %}
+            {% if question.user == request.user %}
+                <a href="{% url 'qa:question_delete' question.id %}" class="brand-color-link btn btn-outline-danger mt-3">
+                    {% trans "Delete" %}
+                </a>
+            {% endif %}
         </div>
         <div class="col-md-2 mt-3 question-edit-style">
             {% if question.created != question.modified %}
@@ -134,6 +139,24 @@
             // Default options are marked with *
             const response = await fetch(url, {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': Cookies.get('csrftoken')
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        }
+
+        async function deleteData(url = '', data = {}) {
+            // Default options are marked with *
+            const response = await fetch(url, {
+                method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
                 mode: 'cors', // no-cors, *cors, same-origin
                 cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', // include, *same-origin, omit
