@@ -1,9 +1,11 @@
 from django import forms
+from qa.models import Question
 
 
-class QuestionForm(forms.Form):
-    title = forms.CharField(max_length=400)
-    body_html = forms.CharField()
+class QuestionForm(forms.ModelForm):
+    class Meta:
+        model = Question
+        fields = ['title', 'body_html', 'tags']
 
 
 class SearchForm(forms.Form):

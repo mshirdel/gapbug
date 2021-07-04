@@ -17,6 +17,13 @@
         </div>
     </div>
     <div class="mb-3">
+        <label for="questionTag" class="form-label">{% trans "Tag" %}</label>
+        <input type="text" required class="form-control" name="tags" id="questionTag" aria-describedby="tagHelp">
+        <div id="tagHelp" class="form-text">
+            {% trans "Choose 5 tags for this question" %}
+        </div>
+    </div>
+    <div class="mb-3">
         <label for="bodyMd" class="form-label">{% trans "Body" %}</label>
         <div id="bodyHelp" class="form-text">
             {% trans "Include all the information someone would need to answer your question" %}

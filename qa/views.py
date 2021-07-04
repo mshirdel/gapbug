@@ -38,10 +38,14 @@ class Ask(PrivilageRequiredMixin, View):
     def post(self, request):
         form = QuestionForm(request.POST)
         if form.is_valid():
-            question = Question.objects.create(
-                user=self.request.user,
-                title=form.cleaned_data['title'],
-                body_html=form.cleaned_data['body_html'])
+            # question = Question.objects.create(
+            #     user=self.request.user,
+            #     title=form.cleaned_data['title'],
+            #     body_html=form.cleaned_data['body_html'])
+            question = QuestionForm.save(commit=False)
+            question.user = self.request.user
+            question.save()
+            form.save_m2m()
             messages.add_message(request, messages.INFO,
                                  _('Your question saved.'))
             return redirect(question)
