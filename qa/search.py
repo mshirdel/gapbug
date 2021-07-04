@@ -30,6 +30,8 @@ class SearchDispatcher():
             return ByAcceptance(self.query)
         elif re.search(r'^score:\d+', self.query):
             return ByScore(self.query)
+        elif re.search(r'^\[(.*)\]', self.query):
+            return ByTag(self.query)
         return PlainSearch(self.query)
 
 
@@ -115,3 +117,18 @@ class ByAcceptance(BaseSearch):
     def get_result(self):
         result = super().get_result()
         return result.filter(answer__accepted=self.is_accepted)
+
+
+class ByTag(BaseSearch):
+    def __init__(self, query):
+        super().__init__(query)
+        self.tag_name = []
+        self.pattern = r"^\[(?P<tag_name>.*)\] (?P<q>.*)"
+        match = re.search(self.pattern, query)
+        if match:
+            self.query = match.group('q')
+            self.tag_name.append(match.group('tag_name'))
+
+    def get_result(self):
+        result = super().get_result()
+        return result.filter(tags__name__in=self.tag_name)
