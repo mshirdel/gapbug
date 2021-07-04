@@ -6,6 +6,7 @@ from django.utils.translation import gettext as _
 from django.urls import reverse
 from common.models import TimeStampModel
 from django.conf import settings
+from taggit.managers import TaggableManager
 
 
 class Question(TimeStampModel):
@@ -20,6 +21,7 @@ class Question(TimeStampModel):
     accepted = models.BooleanField(default=False)
     views = models.IntegerField(default=0)
     content_modified_date = models.DateTimeField(null=True, blank=True)
+    tags = TaggableManager()
 
     def get_absolute_url(self):
         return reverse("qa:show", kwargs={"id": self.id, 'slug': self.slug})

@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'qa.apps.QaConfig',
     'user_profile.apps.UserProfileConfig',
+    'taggit',
 ]
 
 MIDDLEWARE = [

@@ -36,9 +36,11 @@
 {% endblock content %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/trix.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tagger.css' %}">
 {% endblock css %}
 {% block js %}
     <script src="{% static 'js/trix.js' %}"></script>
+    <script src="{% static 'js/tagger.js' %}"></script>
     <script type="text/javascript">
             (function () {
                 addEventListener("trix-change", function (e) {
