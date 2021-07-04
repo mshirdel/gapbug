@@ -21,7 +21,7 @@ class Question(TimeStampModel):
     accepted = models.BooleanField(default=False)
     views = models.IntegerField(default=0)
     content_modified_date = models.DateTimeField(null=True, blank=True)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
 
     def get_absolute_url(self):
         return reverse("qa:show", kwargs={"id": self.id, 'slug': self.slug})
