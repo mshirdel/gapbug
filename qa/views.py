@@ -381,3 +381,13 @@ class TagList(View):
             'status': 200,
             'tags_list': [t.name for t in Tag.objects.all()]
         })
+
+
+class QuestionByTag(ListView):
+    context_object_name = 'questions'
+    paginate_by = settings.PAGE_SIZE
+    template_name = 'qa/index.html'
+
+    def get_queryset(self):
+        return Question.objects.filter(tags__name=self.kwargs['tag']) \
+            .prefetch_related('user', 'answer_set')

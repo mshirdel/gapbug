@@ -30,5 +30,6 @@ urlpatterns = [
     path('<int:question_id>/<int:answer_id>/accept',
          views.AcceptAnswer.as_view(), name='accept_answer'),
     path('search/', views.Search.as_view(), name='search'),
-    path('tags/', views.TagList.as_view(), name='tags_list')
+    path('tags/', views.TagList.as_view(), name='tags_list'),
+    path('tags/<str:tag>/', views.QuestionByTag.as_view(), name='by_tag')
 ]
