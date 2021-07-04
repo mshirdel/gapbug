@@ -5,6 +5,7 @@
 {% block content %}
 {% trans "Edit question" as header_title %}
 {% include 'web/common/header_top.html' with heading=header_title %}
+{% include 'web/common/render_form_errors.html' with form=form %}
 <form action="" method="post">
     {% csrf_token %}
     <div class="mb-3">
@@ -12,6 +13,13 @@
         <input type="text" required class="form-control" name="title" id="questionTitle" value="{{ question.title }}" aria-describedby="titleHelp">
         <div id="titleHelp" class="form-text">
             {% trans "Be specific and imagine you’re asking a question to another person" %}
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="questionTag" class="form-label">{% trans "Tag" %}</label>
+        <input type="text" required class="form-control" name="tags" id="questionTag" value="{{ question_tags }}" aria-describedby="tagHelp">
+        <div id="tagHelp" class="form-text">
+            {% trans "Choose 5 tags for this question" %}
         </div>
     </div>
     <div class="mb-3">
@@ -34,9 +42,11 @@
 {% endblock content %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/trix.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tagger.css' %}">
 {% endblock css %}
 {% block js %}
     <script src="{% static 'js/trix.js' %}"></script>
+    <script src="{% static 'js/tagger.js' %}"></script>
     <script type="text/javascript">
         (function () {
             var editorValue = document.getElementById("x");
@@ -46,6 +56,38 @@
             addEventListener("trix-change", function (e) {
                 divPreview.innerHTML = editorValue.value;
             });
+
+            async function getData(url = '') {
+                    // Default options are marked with *
+                    const response = await fetch(url, {
+                        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+                        mode: 'cors', // no-cors, *cors, same-origin
+                        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                        credentials: 'same-origin', // include, *same-origin, omit
+                        headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': Cookies.get('csrftoken')
+                        },
+                        redirect: 'follow', // manual, *follow, error
+                        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                    });
+                    return response.json(); // parses JSON response into native JavaScript objects
+                }
+
+                let txtTag = document.getElementById('questionTag');
+                let url = '{% url 'qa:tags_list' %}';
+                getData(url).then(data => {
+                    if(data.status == 200){
+                        var tags = tagger(txtTag, {
+                            allow_duplicates: false,
+                            allow_spaces: false,
+                            wrap: true,
+                            completion: {
+                                list: data.tags_list
+                            }
+                        });
+                    }
+                });
         
         })();
     </script>

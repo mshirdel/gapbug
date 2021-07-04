@@ -55,7 +55,37 @@
                     var divPreview = document.getElementById("preview");
                     divPreview.innerHTML = editorValue.value;
                 });
-            
+                async function getData(url = '') {
+                    // Default options are marked with *
+                    const response = await fetch(url, {
+                        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+                        mode: 'cors', // no-cors, *cors, same-origin
+                        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                        credentials: 'same-origin', // include, *same-origin, omit
+                        headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': Cookies.get('csrftoken')
+                        },
+                        redirect: 'follow', // manual, *follow, error
+                        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                    });
+                    return response.json(); // parses JSON response into native JavaScript objects
+                }
+
+                let txtTag = document.getElementById('questionTag');
+                let url = '{% url 'qa:tags_list' %}';
+                getData(url).then(data => {
+                    if(data.status == 200){
+                        var tags = tagger(txtTag, {
+                            allow_duplicates: false,
+                            allow_spaces: false,
+                            wrap: true,
+                            completion: {
+                                list: data.tags_list
+                            }
+                        });
+                    }
+                });
             })();
         </script>
 {% endblock %}

@@ -11,6 +11,7 @@ from django.utils.translation import gettext as _
 from django.views import View
 from django.views.generic import ListView
 from django.views.generic.edit import DeleteView
+from taggit.models import Tag
 from user_profile.models import ReputationHistory
 
 from .forms import QuestionForm, SearchForm
@@ -38,11 +39,7 @@ class Ask(PrivilageRequiredMixin, View):
     def post(self, request):
         form = QuestionForm(request.POST)
         if form.is_valid():
-            # question = Question.objects.create(
-            #     user=self.request.user,
-            #     title=form.cleaned_data['title'],
-            #     body_html=form.cleaned_data['body_html'])
-            question = QuestionForm.save(commit=False)
+            question = form.save(commit=False)
             question.user = self.request.user
             question.save()
             form.save_m2m()
@@ -61,24 +58,41 @@ class EditQuestion(View):
 
     def get(self, request, question_id):
         q = get_object_or_404(Question, pk=question_id)
-        return render(request, 'qa/edit_question.html',
-                      {'question': q})
+        return render(request,
+                      'qa/edit_question.html',
+                      {
+                          'question': q,
+                          'question_tags': ','.join(
+                              [t.name for t in q.tags.all()]
+                          )
+                      })
 
     def post(self, request, question_id):
         question = get_object_or_404(Question, pk=question_id)
         try:
-            if request.POST['title']:
-                question.title = request.POST['title']
-            if request.POST['body_html']:
-                question.body_html = request.POST['body_html']
-            question.content_modified_date = timezone.now()
-            question.save()
-            messages.add_message(request, messages.INFO,
-                                 _('Question updated'))
+            form = QuestionForm(request.POST, instance=question)
+            if form.is_valid():
+                form.save(commit=False)
+                form.save_m2m()
+                question.content_modified_date = timezone.now()
+                question.save()
+                messages.add_message(request, messages.INFO,
+                                     _('Question updated'))
+            else:
+                return render(request,
+                              'qa/edit_question.html',
+                              {
+                                  'question': question,
+                                  'question_tags': ','.join(
+                                      [t.name for t in question.tags.all()]
+                                  ),
+                                  'form': form
+                              })
         except Exception as ex:
             # TODO log exception
             messages.add_message(request, messages.WARNING,
                                  _('Some error in updating question'))
+            messages.add_message(request, messages.WARNING, str(ex))
         return redirect(question)
 
 
@@ -358,3 +372,12 @@ class UserAnswerList(ListView):
                                  username=self.kwargs['user_name'])
         context["user_answer_count"] = user.answers.count()
         return context
+
+
+@method_decorator(login_required, name='dispatch')
+class TagList(View):
+    def get(self, request):
+        return JsonResponse({
+            'status': 200,
+            'tags_list': [t.name for t in Tag.objects.all()]
+        })
