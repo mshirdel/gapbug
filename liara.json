@@ -1,4 +1,10 @@
 {
     "platform": "django",
-    "app": "porseshdev"
+    "app": "porseshdev",
+    "disks": [
+        {
+            "name": "disk-1",
+            "mountTo": "gapbug/media"
+        }
+    ]
 }
