@@ -1,0 +1,21 @@
+{% extends 'web/base.html' %}
+{% load i18n %}
+{% block title %}TAGS{% endblock title %}
+{% block content %}
+    <h1>{% trans "All Tags" %}</h1>
+    <hr>
+    <div class="row">
+        <div class="col">    
+            {% for t in tags %}
+                <div class="card text-center" style="width: 18rem;float: right;margin:5px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ t.name }}</h5>
+                        <p class="card-text">{{ t.taggit_taggeditem_items.count }} {% trans "Number of questions: " %}</p>
+                        <a href="{% url 'qa:by_tag' t.name %}" class="btn btn-primary">{% trans "Questions" %}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% include 'qa/pagination.html' with page=page_obj %}
+{% endblock content %}

@@ -12,7 +12,7 @@
                     <a class="nav-link brand-color-link" href="#">{% trans "Users" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link brand-color-link" href="#">{% trans "Tags" %}</a>
+                    <a class="nav-link brand-color-link" href="{% url 'qa:all_tags' %}">{% trans "Tags" %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link brand-color-link" href="{% url 'qa:index' %}">{% trans "Questions" %}</a>

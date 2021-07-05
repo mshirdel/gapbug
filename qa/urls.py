@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic.base import TemplateView
 from . import views
 
 
@@ -31,5 +32,6 @@ urlpatterns = [
          views.AcceptAnswer.as_view(), name='accept_answer'),
     path('search/', views.Search.as_view(), name='search'),
     path('tags/', views.TagList.as_view(), name='tags_list'),
-    path('tags/<str:tag>/', views.QuestionByTag.as_view(), name='by_tag')
+    path('tags/<str:tag>/', views.QuestionByTag.as_view(), name='by_tag'),
+    path('tagslist/', views.QuestionTagList.as_view(), name='all_tags'),
 ]

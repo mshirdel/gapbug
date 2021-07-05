@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-08 12:52+0430\n"
+"POT-Creation-Date: 2021-07-05 01:08+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,32 +96,28 @@ msgstr ""
 
 #: account/templates/registration/login.html:4
 #: account/templates/registration/login.html:8
-#: account/templates/registration/login.html:38
+#: account/templates/registration/login.html:40
 msgid "Log-in"
 msgstr ""
 
-#: account/templates/registration/login.html:13
-msgid "Your username and password didn't match. Please try again."
-msgstr ""
-
-#: account/templates/registration/login.html:17
+#: account/templates/registration/login.html:19
 msgid "Please, use the following form to log-in. If you don't have an account"
 msgstr ""
 
-#: account/templates/registration/login.html:19
 #: account/templates/registration/login.html:21
+#: account/templates/registration/login.html:23
 msgid "register here"
 msgstr ""
 
-#: account/templates/registration/login.html:29
+#: account/templates/registration/login.html:31
 msgid "Username:"
 msgstr ""
 
-#: account/templates/registration/login.html:33
+#: account/templates/registration/login.html:35
 msgid "Password:"
 msgstr ""
 
-#: account/templates/registration/login.html:41
+#: account/templates/registration/login.html:43
 #: account/templates/registration/password_reset_form.html:8
 msgid "Forgotten your password?"
 msgstr ""
@@ -196,6 +192,47 @@ msgstr ""
 msgid "Send e-mail"
 msgstr ""
 
+#: account/views.py:59
+msgid ""
+"Your email is not verified.                         we sent a verification "
+"email to you."
+msgstr ""
+
+#: account/views.py:70
+msgid ""
+"Your username and password didn't match.                                    "
+"Please try again."
+msgstr ""
+
+#: qa/forms.py:14
+msgid "You can only select 5 tags"
+msgstr ""
+
+#: qa/templates/qa/answer_confirm_delete.html:3
+msgid "Are you sure to delete answer: "
+msgstr ""
+
+#: qa/templates/qa/answer_confirm_delete.html:11
+#: qa/templates/qa/question_confirm_delete.html:11
+msgid "Are you sure you want to delete?"
+msgstr ""
+
+#: qa/templates/qa/answers_list.html:3 qa/templates/qa/index.html:3
+#: qa/templates/qa/questions_list.html:3
+msgid "PorseshDev.ir - Where Developers Learn, Share, &amp; Build Careers"
+msgstr ""
+
+#: qa/templates/qa/answers_list.html:10
+#: user_profile/templates/user_profile/profile.html:85
+msgid "Answers"
+msgstr ""
+
+#: qa/templates/qa/answers_list.html:23 qa/templates/qa/questions_list.html:23
+#: user_profile/templates/user_profile/profile.html:60
+#: user_profile/templates/user_profile/profile.html:98
+msgid "Votes"
+msgstr ""
+
 #: qa/templates/qa/ask_question.html:4 qa/templates/qa/edit_question.html:4
 msgid "Ask a Question"
 msgstr ""
@@ -204,36 +241,39 @@ msgstr ""
 msgid "Ask a public question"
 msgstr ""
 
-#: qa/templates/qa/ask_question.html:12 qa/templates/qa/edit_question.html:11
+#: qa/templates/qa/ask_question.html:13 qa/templates/qa/edit_question.html:12
 msgid "Title"
 msgstr ""
 
-#: qa/templates/qa/ask_question.html:15 qa/templates/qa/edit_question.html:14
+#: qa/templates/qa/ask_question.html:16 qa/templates/qa/edit_question.html:15
 msgid "Be specific and imagine you’re asking a question to another person"
 msgstr ""
 
-#: qa/templates/qa/ask_question.html:19 qa/templates/qa/edit_question.html:18
+#: qa/templates/qa/ask_question.html:20 qa/templates/qa/edit_question.html:19
+msgid "Tag"
+msgstr ""
+
+#: qa/templates/qa/ask_question.html:23 qa/templates/qa/edit_question.html:22
+msgid "Choose 5 tags for this question"
+msgstr ""
+
+#: qa/templates/qa/ask_question.html:27 qa/templates/qa/edit_question.html:26
 msgid "Body"
 msgstr ""
 
-#: qa/templates/qa/ask_question.html:21 qa/templates/qa/edit_question.html:20
+#: qa/templates/qa/ask_question.html:29 qa/templates/qa/edit_question.html:28
 msgid "Include all the information someone would need to answer your question"
 msgstr ""
 
-#: qa/templates/qa/ask_question.html:31 qa/templates/qa/edit_answer.html:35
-#: qa/templates/qa/edit_question.html:30 qa/templates/qa/question.html:100
-msgid "Preview:"
-msgstr ""
-
-#: qa/templates/qa/ask_question.html:38 qa/templates/qa/edit_question.html:37
+#: qa/templates/qa/ask_question.html:41 qa/templates/qa/edit_question.html:40
 msgid "Post your question"
 msgstr ""
 
-#: qa/templates/qa/edit_answer.html:23 qa/templates/qa/question.html:88
+#: qa/templates/qa/edit_answer.html:23 qa/templates/qa/question.html:97
 msgid "Your Answer"
 msgstr ""
 
-#: qa/templates/qa/edit_answer.html:42 qa/templates/qa/question.html:107
+#: qa/templates/qa/edit_answer.html:37 qa/templates/qa/question.html:111
 msgid "Post your answer"
 msgstr ""
 
@@ -241,59 +281,117 @@ msgstr ""
 msgid "Edit question"
 msgstr ""
 
-#: qa/templates/qa/index.html:3
-msgid "PorseshDev.ir - Where Developers Learn, Share, &amp; Build Careers"
-msgstr ""
-
-#: qa/templates/qa/index.html:50 qa/templates/qa/question.html:31
-#: web/templates/web/common/render_user_compact.html:22
+#: qa/templates/qa/index.html:55 qa/templates/qa/question.html:39
+#: web/templates/web/common/render_user_compact.html:24
 msgid "before"
 msgstr ""
 
-#: qa/templates/qa/pagination.html:7 qa/templates/qa/pagination.html:11
+#: qa/templates/qa/pagination.html:8 qa/templates/qa/pagination.html:10
+#: qa/templates/qa/pagination.html:15
 msgid "Previous"
 msgstr ""
 
-#: qa/templates/qa/pagination.html:29 qa/templates/qa/pagination.html:33
+#: qa/templates/qa/pagination.html:38 qa/templates/qa/pagination.html:40
+#: qa/templates/qa/pagination.html:45
 msgid "Next"
 msgstr ""
 
-#: qa/templates/qa/question.html:24 qa/templates/qa/question.html:75
+#: qa/templates/qa/question.html:29 qa/templates/qa/question.html:83
 #: user_profile/templates/user_profile/profile.html:14
 #: user_profile/templates/user_profile/profile_edit.html:13
 msgid "Edit"
 msgstr ""
 
-#: qa/templates/qa/question.html:29
+#: qa/templates/qa/question.html:31 qa/templates/qa/question.html:84
+msgid "Delete"
+msgstr ""
+
+#: qa/templates/qa/question.html:37
 msgid "last edited:"
 msgstr ""
 
-#: qa/templates/qa/question.html:41
+#: qa/templates/qa/question.html:49
 msgid "Number of answer: "
 msgstr ""
 
-#: qa/templates/qa/question.html:58
+#: qa/templates/qa/question.html:66
 msgid "Accept this answer"
 msgstr ""
 
-#: qa/views.py:44
+#: qa/templates/qa/question_confirm_delete.html:3
+msgid "Are you sure to delete question: "
+msgstr ""
+
+#: qa/templates/qa/questions_list.html:10 qa/templates/qa/tags_list.html:14
+#: user_profile/templates/user_profile/profile.html:47
+#: web/templates/web/nav.html:18
+msgid "Questions"
+msgstr ""
+
+#: qa/templates/qa/questions_list.html:24
+#: user_profile/templates/user_profile/profile.html:61
+msgid "Number of views"
+msgstr ""
+
+#: qa/templates/qa/render_preview.html:3
+msgid "Preview"
+msgstr ""
+
+#: qa/templates/qa/render_preview.html:10
+msgid "Preview:"
+msgstr ""
+
+#: qa/templates/qa/render_preview.html:16
+#: user_profile/templates/user_profile/profile_edit.html:76
+msgid "Close"
+msgstr ""
+
+#: qa/templates/qa/tags_list.html:5
+msgid "All Tags"
+msgstr ""
+
+#: qa/templates/qa/tags_list.html:13
+msgid "Number of questions: "
+msgstr ""
+
+#: qa/views.py:47
 msgid "Your question saved."
 msgstr ""
 
-#: qa/views.py:69
+#: qa/views.py:80
 msgid "Question updated"
 msgstr ""
 
-#: qa/views.py:105
+#: qa/views.py:94
+msgid "Some error in updating question"
+msgstr ""
+
+#: qa/views.py:145
+msgid "Search result"
+msgstr ""
+
+#: qa/views.py:158
 msgid "Your answer saved"
 msgstr ""
 
-#: qa/views.py:108
+#: qa/views.py:161
 msgid "Please enter your answer"
 msgstr ""
 
-#: qa/views.py:188
+#: qa/views.py:237
 msgid "Answer updated"
+msgstr ""
+
+#: qa/views.py:241
+msgid "Some error in edditing answer."
+msgstr ""
+
+#: qa/views.py:351
+msgid "User questions list"
+msgstr ""
+
+#: qa/views.py:370
+msgid "User answers list"
 msgstr ""
 
 #: user_profile/models.py:27
@@ -308,6 +406,11 @@ msgstr ""
 #: user_profile/templates/user_profile/profile.html:30
 #: user_profile/templates/user_profile/profile_edit.html:27
 msgid "Reputation"
+msgstr ""
+
+#: user_profile/templates/user_profile/profile.html:72
+#: user_profile/templates/user_profile/profile.html:108
+msgid "See all"
 msgstr ""
 
 #: user_profile/templates/user_profile/profile_edit.html:4
@@ -336,10 +439,6 @@ msgstr ""
 msgid "Select some files"
 msgstr ""
 
-#: user_profile/templates/user_profile/profile_edit.html:76
-msgid "Close"
-msgstr ""
-
 #: user_profile/templates/user_profile/profile_edit.html:77
 msgid "Upload"
 msgstr ""
@@ -352,11 +451,11 @@ msgstr ""
 msgid "Error in email verification."
 msgstr ""
 
-#: user_profile/views.py:74
+#: user_profile/views.py:78
 msgid "Your account info updatd successfully"
 msgstr ""
 
-#: user_profile/views.py:84
+#: user_profile/views.py:88
 msgid "Your profile updatd successfully"
 msgstr ""
 
@@ -415,19 +514,15 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: web/templates/web/nav.html:18
-msgid "Questions"
-msgstr ""
-
-#: web/templates/web/nav.html:28
+#: web/templates/web/nav.html:29
 msgid "logout"
 msgstr ""
 
-#: web/templates/web/nav.html:30
+#: web/templates/web/nav.html:31
 msgid "LOGIN"
 msgstr ""
 
-#: web/templates/web/nav.html:31
+#: web/templates/web/nav.html:32
 msgid "SIGNUP"
 msgstr ""
 
