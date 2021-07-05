@@ -1,4 +1,3 @@
-import logging
 from datetime import datetime
 from django.http.response import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, get_object_or_404, render
@@ -15,9 +14,6 @@ from django.core.exceptions import PermissionDenied
 from .tokens import email_verification_token
 from .forms import ProfileForm, ProfileAvatarForm
 from account.forms import UserForm
-
-
-logger = logging.getLogger(__name__)
 
 
 class EmailVerify(View):
@@ -114,16 +110,11 @@ class ProfileEdit(View):
 @method_decorator(login_required, name='dispatch')
 class ProfileImageUplade(View):
     def post(self, request):
-        logger.info('start request')
         user = get_object_or_404(User, pk=request.user.id)
-        logger.info('get user')
         form = ProfileAvatarForm(
             request.POST, request.FILES, instance=user.profile)
-        logger.info('populate form')
         if form.is_valid():
-            logger.info('form is valid')
             form.save()
-            logger.info('form saved and redirect')
             return HttpResponseRedirect(reverse('user_profile:edit',
                                                 kwargs={
                                                     'user_id': user.id,
