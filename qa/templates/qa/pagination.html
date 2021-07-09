@@ -1,49 +1,53 @@
 {% load gapbug_filters %}
 {% load i18n %}
 
-<ul class="pagination">
-    {% if page.has_previous %}
-        <li class="page-item">
-            {% if q %}
-                <a class="page-link" href="?page={{ page.previous_page_number }}&q={{q}}">{% trans "Previous" %}</a>
+<div class="row mt-5">
+    <div class="col">
+        <ul class="pagination">
+            {% if page.has_previous %}
+                <li class="page-item">
+                    {% if q %}
+                        <a class="page-link" href="?page={{ page.previous_page_number }}&q={{q}}">{% trans "Previous" %}</a>
+                    {% else %}
+                        <a class="page-link" href="?page={{ page.previous_page_number }}">{% trans "Previous" %}</a>
+                    {% endif %}
+                </li>
             {% else %}
-                <a class="page-link" href="?page={{ page.previous_page_number }}">{% trans "Previous" %}</a>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">{% trans "Previous" %}</a>
+                </li>
             {% endif %}
-        </li>
-    {% else %}
-        <li class="page-item disabled">
-            <a class="page-link" href="#">{% trans "Previous" %}</a>
-        </li>
-    {% endif %}
- 
-    {% for i in page.paginator.num_pages|times %}
-        {% if page.number == forloop.counter %}
-            <li class="page-item active">
-                <span class="page-link"> {{ forloop.counter }} </span>
-            </li>
-        {% else %}
+        
+            {% for i in page.paginator.num_pages|times %}
+                {% if page.number == forloop.counter %}
+                    <li class="page-item active">
+                        <span class="page-link"> {{ forloop.counter }} </span>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        {% if q %}
+                            <a href="?page={{ forloop.counter }}&q={{q}}" class="page-link"> {{ forloop.counter }} </a>
+                        {% else %}
+                            <a href="?page={{ forloop.counter }}" class="page-link"> {{ forloop.counter }} </a>
+                        {% endif %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page.has_next %}
             <li class="page-item">
                 {% if q %}
-                    <a href="?page={{ forloop.counter }}&q={{q}}" class="page-link"> {{ forloop.counter }} </a>
+                    <a class="page-link" href="?page={{ page.next_page_number }}&q={{q}}">{% trans "Next" %}</a>
                 {% else %}
-                    <a href="?page={{ forloop.counter }}" class="page-link"> {{ forloop.counter }} </a>
+                    <a class="page-link" href="?page={{ page.next_page_number }}">{% trans "Next" %}</a>
                 {% endif %}
             </li>
-        {% endif %}
-    {% endfor %}
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#">{% trans "Next" %}</a>
+            </li>
+            {% endif %}
 
-    {% if page.has_next %}
-    <li class="page-item">
-        {% if q %}
-            <a class="page-link" href="?page={{ page.next_page_number }}&q={{q}}">{% trans "Next" %}</a>
-        {% else %}
-            <a class="page-link" href="?page={{ page.next_page_number }}">{% trans "Next" %}</a>
-        {% endif %}
-    </li>
-    {% else %}
-    <li class="page-item disabled">
-        <a class="page-link" href="#">{% trans "Next" %}</a>
-    </li>
-    {% endif %}
-
-</ul>
+        </ul>    
+    </div>
+</div>

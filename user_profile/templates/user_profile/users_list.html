@@ -1,0 +1,30 @@
+{% extends 'web/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans "Users List" %}{% endblock title %}
+{% block content %}
+    <h1>{% trans "All Users" %} ({{ users.count }})</h1>
+    <hr>
+    <div class="row">
+        <div class="col">    
+            {% for user in users %}
+                <div class="card" style="width: 12rem;float: right;margin:5px;">
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}" style="width: 12rem; height: 12rem; object-fit: cover;">
+                    {% else %}
+                        <img src="{% static 'img/avatar.png' %}" alt="{{ user.username }}" style="width: 12rem; height: 12rem; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'user_profile:profile' user.id user.username %}">{{ user.username }}</a></h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{% trans "Reputation" %} {{ user.profile.reputation }}</li>
+                    </ul>
+                    
+                    
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% include 'qa/pagination.html' with page=page_obj %}
+{% endblock content %}

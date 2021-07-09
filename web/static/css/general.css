@@ -42,6 +42,11 @@ h4 {
     font-weight: bold;
 }
 
+h4 {
+    font-size: 12px;
+    font-weight: bold;
+}
+
 body {
     /* background-color: #f8fafb; */
     background-color: white;

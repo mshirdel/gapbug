@@ -17,4 +17,5 @@ urlpatterns = [
          UserQuestionList.as_view(), name='user_questions_list'),
     path('<int:user_id>/<str:user_name>/answers',
          UserAnswerList.as_view(), name='user_answers_list'),
+    path('list/', views.UsersList.as_view(), name='user_list'),
 ]

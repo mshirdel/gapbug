@@ -11,6 +11,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied
+from django.views.generic.list import ListView
+from django.conf import settings
 from .tokens import email_verification_token
 from .forms import ProfileForm, ProfileAvatarForm
 from account.forms import UserForm
@@ -122,3 +124,10 @@ class ProfileImageUplade(View):
                                                 }))
         else:
             return JsonResponse({'status': form.errors})
+
+
+class UsersList(ListView):
+    queryset = User.objects.order_by('-profile__reputation')
+    context_object_name = 'users'
+    paginate_by = settings.PAGE_SIZE
+    template_name = 'user_profile/users_list.html'
