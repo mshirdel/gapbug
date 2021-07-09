@@ -9,9 +9,9 @@
             {% for t in tags %}
                 <div class="card text-center" style="width: 18rem;float: right;margin:5px;">
                     <div class="card-body">
-                        <h5 class="card-title">{{ t.name }}</h5>
-                        <p class="card-text">{{ t.taggit_taggeditem_items.count }} {% trans "Number of questions: " %}</p>
-                        <a href="{% url 'qa:by_tag' t.name %}" class="btn btn-primary">{% trans "Questions" %}</a>
+                        <h5 class="card-title badge bg-dark">{{ t.name }}</h5>
+                        <p class="card-text">{% trans "Number of questions " %} {{ t.taggit_taggeditem_items.count }}</p>
+                        <a href="{% url 'qa:by_tag' t.name %}" class="btn btn-outline-primary">{% trans "Questions" %}</a>
                     </div>
                 </div>
             {% endfor %}

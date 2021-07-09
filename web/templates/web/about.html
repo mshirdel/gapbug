@@ -1,14 +1,34 @@
 {% extends 'web/base.html' %} 
 {% load i18n %} 
-{% block title %}{% trans "About" %}{% endblock title %} {% block content %}
+{% block title %}{% trans "About"%}{% endblock title %} 
+{% block content %}
 <div class="row border">
-  <div class="col-12 p-0">
-    <h1 class="bg-primary text-light p-3" ><i class="bi bi-info-circle-fill"></i> {% trans "About page" %}</h1>
-    <p class="p-3">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae eveniet
-      molestias iusto voluptatum, quibusdam eaque commodi, eos quae cum rem
-      placeat eum itaque repudiandae, iste quas dolore sequi reiciendis tenetur!
-    </p>
-  </div>
+    <div class="col-12 p-0">
+        <h1 class="bg-primary text-light p-3">
+            <i class="bi bi-info-circle-fill"></i> درباره پرسش و پاسخ
+        </h1>
+        <p class="p-3">
+            اینجا مکانیست برای پرسش و پاسخ درباره برنامه‌نویسی مشابه سایت
+            استک‌اورفلو. مکانیزم‌های بکار رفته در اینجا تقریبا شبیه به
+            استک‌اورفلو است که باعث می‌شود تمرکز بیشتر بر پرسش و رسیدن به جواب
+            آن باشد نه مانند فروم‌ها مکانی برای گفتگو در مورد مسایل. امکاناتی
+            برای بهتر شدن در آینده نزدیک اضافه می‌شود که هم در استک‌اورفلو وجود
+            دارد یا با توجه به نیاز امکاناتی جدید نسبت به استک‌اورفلو. کد این
+            سایت به صورت منبع‌باز بوده و در <a href="https://github.com/mshirdel/gapbug">گیت‌هاب</a> قرار دارد. به تمام مشارکت
+            کنندگان خوش‌آمد گفته می‌شود. هدف اولیه از ایجاد چنین سیستمی آشنایی
+            من با توسعه وب در دنیای منبع‌باز با استفاده از زبان برنامه‌نویسی
+            پایتون و فریم‌ورک وب جنگو بود.
+        </p>
+        <p class="p-3">
+          تکنولوژی‌های بکار رفته:
+          <ul>
+            <li>زبان برنامه‌نویسی:‌ <a href="https://www.python.org/">پایتون</a></li>
+            <li>فریم‌ورک وب: <a href="https://www.djangoproject.com/">جنگو</a></li>
+            <li>فریم‌ورک رابط‌کاربری: <a href="https://getbootstrap.com/">بوت‌استرپ</a></li>
+            <li>پایگاه‌داده: <a href="https://www.postgresql.org/">پست‌گرس</a></li>
+            <li>پلتفرم دیپلوی: <a href="https://liara.ir/">لیارا</a></li>
+          </ul>
+        </p>
+    </div>
 </div>
 {% endblock content %}

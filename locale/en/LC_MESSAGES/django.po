@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-05 01:08+0430\n"
+"POT-Creation-Date: 2021-07-09 18:46+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -351,7 +351,7 @@ msgid "All Tags"
 msgstr ""
 
 #: qa/templates/qa/tags_list.html:13
-msgid "Number of questions: "
+msgid "Number of questions "
 msgstr ""
 
 #: qa/views.py:47
@@ -459,12 +459,9 @@ msgstr ""
 msgid "Your profile updatd successfully"
 msgstr ""
 
-#: web/templates/web/about.html:3 web/templates/web/footer.html:22
+#: web/templates/web/about.html:3 web/templates/web/footer.html:10
+#: web/templates/web/help.html:3
 msgid "About"
-msgstr ""
-
-#: web/templates/web/about.html:6
-msgid "About page"
 msgstr ""
 
 #: web/templates/web/common/render_ask.html:3
@@ -482,6 +479,18 @@ msgstr ""
 
 #: web/templates/web/common/render_vote.html:32
 msgid "You need 15 reputation to upvote posts."
+msgstr ""
+
+#: web/templates/web/footer.html:6
+msgid "Questions and Answers about programming"
+msgstr ""
+
+#: web/templates/web/footer.html:13
+msgid "Help Center"
+msgstr ""
+
+#: web/templates/web/footer.html:18
+msgid "Source code"
 msgstr ""
 
 #: web/templates/web/index.html:5

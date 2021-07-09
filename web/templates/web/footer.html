@@ -3,23 +3,24 @@
   <div class="container">
     <div class="row">
       <div class="col-4">
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam esse
-          voluptatum, laborum saepe eius alias perferendis dolorum iste rerum
-          molestiae, tempora minus ea reiciendis odit, itaque ut est.
-          Repellendus, ea.
-        </p>
+        <h4>{% trans "Questions and Answers about programming" %}</h4>
+        <hr>
+        <ul id='footer'>
+          <li>
+            <a href="{% url 'web:about' %}" class="footer-color-link">{% trans "About" %}</a>
+          </li>
+          <li>
+            <a href="#" class="footer-color-link">{% trans "Help Center" %}</a>
+          </li>
+        </ul>
       </div>
       <div class="col-4">
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex
-          accusantium omnis dignissimos ea aut repellat nostrum veritatis
-          laudantium rem. Omnis laudantium non quasi ipsa, nostrum assumenda
-          optio? Nemo, saepe veritatis!
-        </p>
+        <a href="https://github.com/mshirdel/gapbug" class="footer-color-link"><i class="bi bi-github"></i> {% trans "Source code" %}</a>
       </div>
       <div class="col-4">
-        <a href="{% url 'web:about' %}" class="footer-color-link">{% trans "About" %}</a>
+        MIT License
+        <br>
+        Copyright (c) 2021 Meysam Shirdel
       </div>
     </div>
   </div>

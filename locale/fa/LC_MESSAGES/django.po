@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-05 01:08+0430\n"
-"PO-Revision-Date: 2021-07-05 01:12+0326\n"
+"POT-Creation-Date: 2021-07-09 18:46+0430\n"
+"PO-Revision-Date: 2021-07-09 18:47+0326\n"
 "Last-Translator: b'  <info@mshirdel.ir>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -378,10 +378,9 @@ msgid "All Tags"
 msgstr "تگ‌ها"
 
 #: qa/templates/qa/tags_list.html:13
-#, fuzzy
 #| msgid "Number of answer: "
-msgid "Number of questions: "
-msgstr "تعداد پاسخ‌ها"
+msgid "Number of questions "
+msgstr "تعداد پرسش‌ها"
 
 #: qa/views.py:47
 msgid "Your question saved."
@@ -498,14 +497,9 @@ msgstr "حساب کاربری جدید شما با موفقیت ساخته شد.
 msgid "Your profile updatd successfully"
 msgstr "آدرس ایمیل شما با موفقیت تایید شد"
 
-#: web/templates/web/about.html:3 web/templates/web/footer.html:22
+#: web/templates/web/about.html:3 web/templates/web/footer.html:10
+#: web/templates/web/help.html:3
 msgid "About"
-msgstr "درباره"
-
-#: web/templates/web/about.html:6
-#, fuzzy
-#| msgid "About"
-msgid "About page"
 msgstr "درباره"
 
 #: web/templates/web/common/render_ask.html:3
@@ -524,6 +518,18 @@ msgstr "برای این کار نیاز به ایجاد حساب کاربری ج
 #: web/templates/web/common/render_vote.html:32
 msgid "You need 15 reputation to upvote posts."
 msgstr "اعتبار مورد نیاز ۱۵"
+
+#: web/templates/web/footer.html:6
+msgid "Questions and Answers about programming"
+msgstr "پرسش و پاسخ درباره برنامه‌نویسی"
+
+#: web/templates/web/footer.html:13
+msgid "Help Center"
+msgstr "بخش راهنما"
+
+#: web/templates/web/footer.html:18
+msgid "Source code"
+msgstr "سورس کد"
 
 #: web/templates/web/index.html:5
 msgid "Home page of gapcode project"
@@ -572,6 +578,10 @@ msgstr "ثبت‌نام"
 #: web/templates/web/side_col.html:4
 msgid "Watched Tags"
 msgstr "تگ‌های زیر نظر"
+
+#, fuzzy
+#~ msgid "About page"
+#~ msgstr "درباره"
 
 #~ msgid "Before"
 #~ msgstr "قبل"
