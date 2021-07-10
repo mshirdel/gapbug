@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-md-2">
             {% if user.profile.avatar %}
-                <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}" width="32">
+                <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}" style="width: 2rem; height: 2rem; object-fit: cover;">
             {% else %}
-                <img src="{% static 'img/avatar.png' %}" alt="{{ user.username }}" width="32">
+                <img src="{% static 'img/avatar.png' %}" alt="{{ user.username }}" style="width: 2rem; height: 2rem; object-fit: cover;">
             {% endif %}
         </div>
         <div class="col-md-10 mt-1">
