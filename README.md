@@ -1,7 +1,7 @@
 # gapbug
 QA site with Python/Django
 
-<p>
+<p dir="rtl">
     اینجا مکانیست برای پرسش و پاسخ درباره برنامه‌نویسی مشابه سایت
     استک‌اورفلو. مکانیزم‌های بکار رفته در اینجا تقریبا شبیه به
     استک‌اورفلو است که باعث می‌شود تمرکز بیشتر بر پرسش و رسیدن به جواب
@@ -13,13 +13,16 @@ QA site with Python/Django
     من با توسعه وب در دنیای منبع‌باز با استفاده از زبان برنامه‌نویسی
     پایتون و فریم‌ورک وب جنگو بود.
 </p>
-<p>
-    تکنولوژی‌های بکار رفته:
-    <ul>
-    <li>زبان برنامه‌نویسی:‌ <a href="https://www.python.org/">پایتون</a></li>
-    <li>فریم‌ورک وب: <a href="https://www.djangoproject.com/">جنگو</a></li>
-    <li>فریم‌ورک رابط‌کاربری: <a href="https://getbootstrap.com/">بوت‌استرپ</a></li>
-    <li>پایگاه‌داده: <a href="https://www.postgresql.org/">پست‌گرس</a></li>
-    <li>پلتفرم دیپلوی: <a href="https://liara.ir/">لیارا</a></li>
-    </ul>
-</p>
+
+<div dir="rtl">
+    <p>
+        تکنولوژی‌های بکار رفته:
+        <ul>
+        <li>زبان برنامه‌نویسی:‌ <a href="https://www.python.org/">پایتون</a></li>
+        <li>فریم‌ورک وب: <a href="https://www.djangoproject.com/">جنگو</a></li>
+        <li>فریم‌ورک رابط‌کاربری: <a href="https://getbootstrap.com/">بوت‌استرپ</a></li>
+        <li>پایگاه‌داده: <a href="https://www.postgresql.org/">پست‌گرس</a></li>
+        <li>پلتفرم دیپلوی: <a href="https://liara.ir/">لیارا</a></li>
+        </ul>
+    </p>
+</div>
