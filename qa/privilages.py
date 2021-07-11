@@ -1,6 +1,6 @@
 class Privilages:
     """
-    Privilages control what user can do in system.
+    Privilages control what user can do in system based on reputation.
     """
 
     _privilages = {

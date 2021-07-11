@@ -22,6 +22,10 @@ from .search import QuestionSearch
 
 
 class QuestionList(ListView):
+    """
+    List of Questions by newest ones.
+    """
+
     queryset = Question.objects.all().prefetch_related("user", "answer_set")
     context_object_name = "questions"
     paginate_by = settings.PAGE_SIZE
@@ -35,6 +39,10 @@ class QuestionList(ListView):
 
 @method_decorator(login_required, name="dispatch")
 class Ask(PrivilageRequiredMixin, View):
+    """
+    Create new question.
+    """
+
     privilage_required = "create_post"
 
     def get(self, request):
@@ -55,6 +63,10 @@ class Ask(PrivilageRequiredMixin, View):
 
 @method_decorator(login_required, name="dispatch")
 class EditQuestion(View):
+    """
+    Update question.
+    """
+
     def get(self, request, question_id):
         q = get_object_or_404(Question, pk=question_id)
         return render(
@@ -107,6 +119,10 @@ class DeleteAnswer(DeleteView):
 
 
 def show(request, id, slug):
+    """
+    Show detail of question with answers.
+    """
+
     question = get_object_or_404(Question, pk=id, slug=slug)
     QuestionHitCount.objects.create(
         question=question, fingerprint=get_finger_print(request)
@@ -123,6 +139,10 @@ def show(request, id, slug):
 
 
 class Search(ListView):
+    """
+    Search in all questions.
+    """
+
     context_object_name = "questions"
     paginate_by = settings.PAGE_SIZE
     template_name = "qa/index.html"
@@ -314,6 +334,10 @@ class AcceptAnswer(View):
 
 
 class UserQuestionList(ListView):
+    """
+    List of user's question for showing in profile
+    """
+
     context_object_name = "questions"
     paginate_by = settings.PAGE_SIZE
     template_name = "qa/questions_list.html"
@@ -335,6 +359,10 @@ class UserQuestionList(ListView):
 
 
 class UserAnswerList(ListView):
+    """
+    List of user's answers for showing in profile
+    """
+
     context_object_name = "answers"
     paginate_by = settings.PAGE_SIZE
     template_name = "qa/answers_list.html"
@@ -357,6 +385,11 @@ class UserAnswerList(ListView):
 
 @method_decorator(login_required, name="dispatch")
 class TagList(View):
+    """
+    Retrive all tag names for adding in questions. (Ask Question)
+    This method calls with ajax request.
+    """
+
     def get(self, request):
         return JsonResponse(
             {"status": 200, "tags_list": [t.name for t in Tag.objects.all()]}
@@ -364,6 +397,10 @@ class TagList(View):
 
 
 class QuestionByTag(ListView):
+    """
+    List questions by tag name.
+    """
+
     context_object_name = "questions"
     paginate_by = settings.PAGE_SIZE
     template_name = "qa/index.html"
@@ -375,6 +412,10 @@ class QuestionByTag(ListView):
 
 
 class QuestionTagList(ListView):
+    """
+    List of tags for showing all tags.
+    """
+
     queryset = Tag.objects.all()
     context_object_name = "tags"
     paginate_by = settings.PAGE_SIZE

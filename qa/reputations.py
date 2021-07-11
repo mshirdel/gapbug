@@ -2,6 +2,10 @@ from enum import Enum
 
 
 class Reputation(Enum):
+    """
+    Reputation list for using privilages
+    """
+
     QUESTION_VOTE_UP = 10
     ANSWER_VOTE_UP = 10
     ANSWER_MARKED_ACCEPTED = 15

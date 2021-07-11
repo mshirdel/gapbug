@@ -3,6 +3,10 @@ from .privilages import Privilages
 
 
 class PrivilageRequiredMixin(PermissionRequiredMixin):
+    """
+    Check required privilages in views.
+    """
+
     privilage_required = None
 
     def has_permission(self) -> bool:
