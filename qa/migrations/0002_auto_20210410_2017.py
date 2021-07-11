@@ -7,28 +7,36 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('qa', '0001_initial'),
+        ("qa", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='answer',
-            name='vote',
+            model_name="answer",
+            name="vote",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='question',
-            name='vote',
+            model_name="question",
+            name="vote",
             field=models.IntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='answervote',
-            name='answer',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='number_of_votes', to='qa.answer'),
+            model_name="answervote",
+            name="answer",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="number_of_votes",
+                to="qa.answer",
+            ),
         ),
         migrations.AlterField(
-            model_name='questionvote',
-            name='question',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='number_of_votes', to='qa.question'),
+            model_name="questionvote",
+            name="question",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="number_of_votes",
+                to="qa.question",
+            ),
         ),
     ]

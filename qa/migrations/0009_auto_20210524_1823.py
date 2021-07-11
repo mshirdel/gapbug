@@ -6,22 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('qa', '0008_auto_20210509_1737'),
+        ("qa", "0008_auto_20210509_1737"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='answer',
-            options={'ordering': ('-vote',)},
+            name="answer",
+            options={"ordering": ("-vote",)},
         ),
         migrations.AddField(
-            model_name='answer',
-            name='accepted',
+            model_name="answer",
+            name="accepted",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='answer',
-            name='accepted_date',
+            model_name="answer",
+            name="accepted_date",
             field=models.DateTimeField(blank=True, null=True),
         ),
     ]

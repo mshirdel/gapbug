@@ -7,21 +7,23 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('qa', '0004_auto_20210413_1809'),
+        ("qa", "0004_auto_20210413_1809"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='answer',
-            options={'ordering': ('vote',)},
+            name="answer",
+            options={"ordering": ("vote",)},
         ),
         migrations.AlterModelOptions(
-            name='question',
-            options={'ordering': ('vote', 'created')},
+            name="question",
+            options={"ordering": ("vote", "created")},
         ),
         migrations.AlterField(
-            model_name='answer',
-            name='question',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='qa.question'),
+            model_name="answer",
+            name="question",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="qa.question"
+            ),
         ),
     ]

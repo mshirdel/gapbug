@@ -6,14 +6,17 @@ from .models import Profile
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('title', 'about_me',)
+        fields = (
+            "title",
+            "about_me",
+        )
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'about_me': forms.HiddenInput(attrs={'id': 'aboutMeEditor'})
+            "title": forms.TextInput(attrs={"class": "form-control"}),
+            "about_me": forms.HiddenInput(attrs={"id": "aboutMeEditor"}),
         }
 
 
 class ProfileAvatarForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('avatar',)
+        fields = ("avatar",)

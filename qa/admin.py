@@ -3,7 +3,7 @@ from .models import Question
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'user')
+    list_display = ("title", "user")
 
 
 admin.site.register(Question, QuestionAdmin)

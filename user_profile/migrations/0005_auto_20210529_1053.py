@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('user_profile', '0004_reputationhistory'),
+        ("user_profile", "0004_reputationhistory"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='about_me',
-            field=models.TextField(default=''),
+            model_name="profile",
+            name="about_me",
+            field=models.TextField(default=""),
         ),
         migrations.AddField(
-            model_name='profile',
-            name='title',
-            field=models.CharField(default='', max_length=400),
+            model_name="profile",
+            name="title",
+            field=models.CharField(default="", max_length=400),
         ),
     ]

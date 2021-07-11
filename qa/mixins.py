@@ -7,6 +7,7 @@ class PrivilageRequiredMixin(PermissionRequiredMixin):
 
     def has_permission(self) -> bool:
         if self.privilage_required:
-            return Privilages(self.request.user) \
-                .check_privilage(self.privilage_required)
+            return Privilages(self.request.user).check_privilage(
+                self.privilage_required
+            )
         return False

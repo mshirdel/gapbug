@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('qa', '0002_auto_20210410_2017'),
+        ("qa", "0002_auto_20210410_2017"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='question',
-            name='slug',
-            field=models.SlugField(allow_unicode=True, default='---'),
+            model_name="question",
+            name="slug",
+            field=models.SlugField(allow_unicode=True, default="---"),
             preserve_default=False,
         ),
     ]

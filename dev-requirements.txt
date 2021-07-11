@@ -5,3 +5,4 @@ django-extensions
 Werkzeug
 coverage
 pycodestyle
+black

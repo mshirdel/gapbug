@@ -11,18 +11,17 @@ from common.utils import handle_uploaded_file
 
 def index(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('qa:index'))
+        return HttpResponseRedirect(reverse("qa:index"))
     else:
-        return render(request, 'web/index.html')
+        return render(request, "web/index.html")
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name="dispatch")
 class TrixUploadFile(View):
     def post(self, request):
         form = FileUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            handle_uploaded_file(form.cleaned_data['file'],
-                                 form.cleaned_data['key'])
-            return JsonResponse({'status': 200})
+            handle_uploaded_file(form.cleaned_data["file"], form.cleaned_data["key"])
+            return JsonResponse({"status": 200})
         else:
-            return JsonResponse({'status': 500, 'errors': form.errors})
+            return JsonResponse({"status": 500, "errors": form.errors})
