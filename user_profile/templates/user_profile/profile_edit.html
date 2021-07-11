@@ -89,6 +89,7 @@
 {% block js %}
     {% if user.is_authenticated %}
     <script src="{% static 'js/trix.js' %}"></script>
+    <script src="{% static 'js/trixUpload.js' %}"></script>
     {% endif %}
     <script src="{% static 'js/profile_edit.js' %}"></script>
 {% endblock js %}

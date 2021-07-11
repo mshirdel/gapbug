@@ -48,6 +48,7 @@
 {% block js %}
     {% if user.is_authenticated %}
         <script src="{% static 'js/trix.js' %}"></script>
+        <script src="{% static 'js/trixUpload.js' %}"></script>
     {% endif %}
     <script type="text/javascript">
         {% if user.is_authenticated %}

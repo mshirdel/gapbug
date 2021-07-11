@@ -1,4 +1,5 @@
 import hashlib
+from django.conf import settings
 
 
 def get_finger_print(request):
@@ -8,3 +9,9 @@ def get_finger_print(request):
     if (request.user.id):
         h.update(bytes(request.user.id))
     return h.hexdigest()
+
+
+def handle_uploaded_file(f, path):
+    with open(settings.MEDIA_ROOT + path, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
