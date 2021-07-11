@@ -1,11 +1,14 @@
 (function () {
-    //var HOST = "https://d13txem1unpe48.cloudfront.net/"
     var mediaPath = '/media/'
     var HOST = "/trix/upload/";
 
     addEventListener("trix-attachment-add", function (event) {
         if (event.attachment.file) {
-            uploadFileAttachment(event.attachment);
+            if (event.attachment.file.type.startsWith('image'))
+                uploadFileAttachment(event.attachment);
+            else {
+                alert('Just upload image file. please.');
+            }
         }
     });
 
