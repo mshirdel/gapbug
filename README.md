@@ -26,3 +26,50 @@ QA site with Python/Django
         </ul>
     </p>
 </div>
+
+# Install locally
+```bash
+python -m venv env
+source env/bin/activate
+git clone https://github.com/mshirdel/gapbug.git
+cd gapbug
+pip install -r requirements.txt
+pip install -r dev-requirements.txt
+```
+
+For local development setting use this config as gapbug/settings/development.py
+
+```python
+SECRET_KEY = '[your-secret-key]'
+
+ALLOWED_HOSTS = []
+
+DEBUG = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'gapbug',
+        'USER': '[your-database-user]',
+        'PASSWORD': '[your-database-password]',
+        'HOST': '',
+        'PORT': '5432',
+    }
+}
+
+INSTALLED_APPS.append('rosetta')
+INSTALLED_APPS.append('django_extensions')
+INSTALLED_APPS.append('debug_toolbar')
+
+MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_INFO = 'email_name@example.com'
+DEFAULT_FROM_EMAIL = 'email_name@example.com'
+```
+
+Migrate database and run project:
+```
+python manage.py migrate
+python manage.py runserver
+```
