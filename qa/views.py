@@ -184,7 +184,7 @@ class QuestionVoteUp(PrivilageRequiredMixin, View):
             return JsonResponse(
                 {"status": "ok", "vote": Question.objects.get(pk=question_id).vote}
             )
-        except Exception as ex:
+        except Exception:
             return JsonResponse({"status": "error"})
 
 
@@ -207,7 +207,7 @@ class QuestionVoteDown(PrivilageRequiredMixin, View):
             return JsonResponse(
                 {"status": "ok", "vote": Question.objects.get(pk=question_id).vote}
             )
-        except Exception as ex:
+        except Exception:
             return JsonResponse({"status": "error"})
 
 
@@ -226,7 +226,7 @@ class EditAnswer(View):
                 ans.body_html = request.POST["body_html"]
                 ans.save()
                 messages.add_message(request, messages.INFO, _("Answer updated"))
-        except Exception as ex:
+        except Exception:
             # TODO log ex
             messages.add_message(
                 request, messages.WARNING, _("Some error in edditing answer.")
@@ -253,7 +253,7 @@ class AnswerVoteUp(PrivilageRequiredMixin, View):
             return JsonResponse(
                 {"status": "ok", "vote": Answer.objects.get(pk=answer_id).vote}
             )
-        except Exception as ex:
+        except Exception:
             return JsonResponse({"status": "error"})
 
 
@@ -276,7 +276,7 @@ class AnswerVoteDown(PrivilageRequiredMixin, View):
             return JsonResponse(
                 {"status": "ok", "vote": Answer.objects.get(pk=answer_id).vote}
             )
-        except Exception as ex:
+        except Exception:
             return JsonResponse({"status": "error"})
 
 

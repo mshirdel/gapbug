@@ -1,4 +1,3 @@
-from uuid import uuid4
 from django.http.response import JsonResponse
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse

@@ -6,3 +6,4 @@ Werkzeug
 coverage
 pycodestyle
 black
+flake8
