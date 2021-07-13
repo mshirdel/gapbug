@@ -110,6 +110,10 @@ class ProfileEdit(View):
 
 @method_decorator(login_required, name="dispatch")
 class ProfileImageUplade(View):
+    """
+    Handle ajax requests for uploading profile image.
+    """
+
     def post(self, request):
         user = get_object_or_404(User, pk=request.user.id)
         form = ProfileAvatarForm(request.POST, request.FILES, instance=user.profile)
@@ -126,7 +130,13 @@ class ProfileImageUplade(View):
 
 
 class UsersList(ListView):
-    queryset = User.objects.order_by("-profile__reputation")
+    """
+    Show list of all users that have profile. Admin user don't have profile!
+    """
+
+    queryset = User.objects.filter(profile__isnull=False).order_by(
+        "-profile__reputation"
+    )
     context_object_name = "users"
     paginate_by = settings.PAGE_SIZE
     template_name = "user_profile/users_list.html"

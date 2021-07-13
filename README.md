@@ -1,31 +1,19 @@
 # gapbug
 QA site with Python/Django
 
-<p dir="rtl">
-    اینجا مکانیست برای پرسش و پاسخ درباره برنامه‌نویسی مشابه سایت
-    استک‌اورفلو. مکانیزم‌های بکار رفته در اینجا تقریبا شبیه به
-    استک‌اورفلو است که باعث می‌شود تمرکز بیشتر بر پرسش و رسیدن به جواب
-    آن باشد نه مانند فروم‌ها مکانی برای گفتگو در مورد مسایل. امکاناتی
-    برای بهتر شدن در آینده نزدیک اضافه می‌شود که هم در استک‌اورفلو وجود
-    دارد یا با توجه به نیاز امکاناتی جدید نسبت به استک‌اورفلو. کد این
-    سایت به صورت منبع‌باز بوده و در <a href="https://github.com/mshirdel/gapbug">گیت‌هاب</a> قرار دارد. به تمام مشارکت
-    کنندگان خوش‌آمد گفته می‌شود. هدف اولیه از ایجاد چنین سیستمی آشنایی
-    من با توسعه وب در دنیای منبع‌باز با استفاده از زبان برنامه‌نویسی
-    پایتون و فریم‌ورک وب جنگو بود.
-</p>
+Gapbug is a Question and Answers Django project like stackoverflow created for personal learning web application development with python. 
 
-<div dir="rtl">
-    <p>
-        تکنولوژی‌های بکار رفته:
-        <ul>
-        <li>زبان برنامه‌نویسی:‌ <a href="https://www.python.org/">پایتون</a></li>
-        <li>فریم‌ورک وب: <a href="https://www.djangoproject.com/">جنگو</a></li>
-        <li>فریم‌ورک رابط‌کاربری: <a href="https://getbootstrap.com/">بوت‌استرپ</a></li>
-        <li>پایگاه‌داده: <a href="https://www.postgresql.org/">پست‌گرس</a></li>
-        <li>پلتفرم دیپلوی: <a href="https://liara.ir/">لیارا</a></li>
-        </ul>
-    </p>
-</div>
+The mechanisms used here are almost similar to Stockflow, which makes the focus more on the question and the answer, rather than on forums, a place to discuss issues. 
+
+We will be happy to report any problems with the code or any idea to make this project better.
+
+Tech Stack:
+* Programming language: [Python](https://www.python.org/)
+* Backend Web framework: [Django](https://www.djangoproject.com/)
+* UI framework: [Bootstrap](https://getbootstrap.com/)
+* Database: [Postgresql](https://www.postgresql.org/)
+* Deoploy platform: [Liara](https://liara.ir/)
+
 
 # Install locally
 ```bash

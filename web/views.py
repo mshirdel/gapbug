@@ -9,9 +9,9 @@ from common.utils import handle_uploaded_file
 
 
 def index(request):
-    '''
+    """
     Homepage view. Show question list for authenticated user.
-    '''
+    """
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse("qa:index"))
     else:
