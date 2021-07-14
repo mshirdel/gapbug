@@ -12,7 +12,7 @@ Tech Stack:
 * Backend Web framework: [Django](https://www.djangoproject.com/)
 * UI framework: [Bootstrap](https://getbootstrap.com/)
 * Database: [Postgresql](https://www.postgresql.org/)
-* Deoploy platform: [Liara](https://liara.ir/)
+* Deoploy platform: [Liara](https://liara.ir/) - [More info for deployment](https://docs.liara.ir/app-deploy/django/getting-started)
 
 
 # Install locally
@@ -61,3 +61,13 @@ Migrate database and run project:
 python manage.py migrate
 python manage.py runserver
 ```
+
+# Todo features:
+- [ ] Add comment to questions and answers
+- [ ] Help center
+- [ ] Add more test
+- [ ] Search users in user section
+- [ ] Show online status of users (django-channels)
+- [ ] Flag questions as spam
+- [ ] Add SEO features
+- [ ] Add social links to user profile
