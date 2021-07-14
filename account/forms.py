@@ -1,10 +1,11 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.db.models import fields
 from django.utils.translation import gettext as _
+from .fields import ASCIIUsernameField
 
 
 class UserRegistrationForm(forms.ModelForm):
+    email = forms.EmailField(required=True)
     password = forms.CharField(
         label=_("Passwrod"), widget=forms.PasswordInput(attrs={"class": "form-control"})
     )
@@ -15,11 +16,12 @@ class UserRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ("username", "email")
+        fields = ("username",)
         widgets = {
             "username": forms.TextInput(attrs={"class": "form-control"}),
             "email": forms.EmailInput(attrs={"class": "form-control"}),
         }
+        field_classes = {"username": ASCIIUsernameField}
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -28,12 +30,16 @@ class UserRegistrationForm(forms.ModelForm):
         return cd["password2"]
 
     def clean_email(self):
-        cd = self.cleaned_data
-        try:
-            User.objects.get(email=cd["email"])
-        except User.DoesNotExist:
-            return cd["email"]
-        raise forms.ValidationError(_("Email must be unique."))
+        email = self.cleaned_data["email"]
+        if User.objects.filter(email__iexact=email).exists():
+            self.add_error("email", _("Email must be unique."))
+        return email
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        if User.objects.filter(username__iexact=username).exists():
+            self.add_error("username", _("A user with this username already exists."))
+        return username
 
 
 class UserForm(forms.ModelForm):

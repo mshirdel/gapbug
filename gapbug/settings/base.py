@@ -125,3 +125,4 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 PAGE_SIZE = 10
+LARGE_PAGE_SIZE = 50

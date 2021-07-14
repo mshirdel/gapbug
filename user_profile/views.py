@@ -138,5 +138,5 @@ class UsersList(ListView):
         "-profile__reputation"
     )
     context_object_name = "users"
-    paginate_by = settings.PAGE_SIZE
+    paginate_by = settings.LARGE_PAGE_SIZE
     template_name = "user_profile/users_list.html"

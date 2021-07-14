@@ -2,7 +2,6 @@
 {% include 'web/common/render_form_errors.html' %}
 {% for field in form %}
     <div class="mb-3">
-        {{ field.errors }}
         {{ field.label_tag }} 
         {{ field }}
         {% if field.help_text %}

@@ -418,5 +418,5 @@ class QuestionTagList(ListView):
 
     queryset = Tag.objects.all()
     context_object_name = "tags"
-    paginate_by = settings.PAGE_SIZE
+    paginate_by = settings.LARGE_PAGE_SIZE
     template_name = "qa/tags_list.html"

@@ -1,11 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from django.contrib import messages
 from django.views import View
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.conf import settings
 from django.utils.translation import gettext as _
 
 from .forms import UserRegistrationForm, LoginForm
