@@ -1,6 +1,6 @@
 from django.utils import timezone
 from django.db import models
-from django.db.models import Sum, constraints
+from django.db.models import Sum
 from django.utils.text import slugify
 from django.urls import reverse
 from common.models import TimeStampModel

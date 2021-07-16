@@ -16,13 +16,11 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.normpath(os.path.join(os.path.dirname(BASE_DIR)))
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
 SECRET_KEY = "1234567890"
-
-DEBUG = True
 
 # Application definition
 
@@ -68,20 +66,7 @@ TEMPLATES = [
     },
 ]
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gapbug', 
-        'USER': os.getenv("db_user", "postgres"), 
-        'PASSWORD': os.getenv("db_password", "pawndarby"),
-        'HOST': '127.0.0.1', 
-        'PORT': '5432',
-        'TEST': {
-            'NAME': 'gapbug_test',
-        },
-    }
-}
-
+DATABASES = {"default": {}}
 
 WSGI_APPLICATION = "gapbug.wsgi.application"
 
