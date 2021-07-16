@@ -63,7 +63,7 @@ python manage.py runserver
 ```
 
 # Todo features:
-- [ ] Add comment to questions and answers (Work in progress with @MojixCoder)
+- [ ] Add comment to questions and answers (Work in progress with [MojixCoder](https://github.com/MojixCoder))
 - [ ] Help center
 - [ ] Add more test
 - [ ] Search users in user section
