@@ -11,7 +11,7 @@ class PrivilagesTest(TestCase):
         u = User.objects.create_user("john", "lennon@google.com", "thepassword")
         Profile.objects.create(user=u)
 
-        q = Question.objects.create(
+        Question.objects.create(
             user=u, title="question1 title", body_md="<p>question1 body</p>"
         )
 
@@ -55,7 +55,7 @@ class QuestionsTest(TestCase):
         u150 = User.objects.create_user("user_150", "user150@gmail.com", "thepassword")
         Profile.objects.create(user=u150, reputation=150)
 
-        q = Question.objects.create(
+        Question.objects.create(
             user=u, title="question1 title", body_md="<p>question1 body</p>"
         )
 
