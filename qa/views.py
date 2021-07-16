@@ -1,5 +1,8 @@
+import json
+
 from common.utils import get_finger_print
 from django.contrib import messages
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -13,10 +16,11 @@ from django.views.generic import ListView
 from django.views.generic.edit import DeleteView
 from taggit.models import Tag
 from user_profile.models import ReputationHistory
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import QuestionForm, SearchForm
-from .mixins import PrivilageRequiredMixin
-from .models import Answer, AnswerVote, Question, QuestionHitCount, QuestionVote
+from .forms import QuestionForm, SearchForm, CommentCreateForm, CommentUpdateForm
+from .mixins import PrivilageRequiredMixin, OnlyCommentOwnerMixin
+from .models import Answer, AnswerVote, Comment, Question, QuestionHitCount, QuestionVote
 from .reputations import Reputation
 from .search import QuestionSearch
 
@@ -423,3 +427,86 @@ class QuestionTagList(ListView):
 
 
 #TODO use LoginRequiredMixin for class-based-views instead of @method_decorator(login_required, name="dispatch")
+
+class CommentCreateView(LoginRequiredMixin, PrivilageRequiredMixin, View):
+    privilage_required = "comment_everywhere"
+    
+    def post(self, request):
+        
+        post_json_data = json.loads(request.body.decode("utf-8"))
+        
+        form = CommentCreateForm(post_json_data)
+        
+        if form.is_valid():
+            comment = Comment(
+                **form.cleaned_data,
+                user=User.objects.first(),
+            )
+            comment.save()
+            return JsonResponse(
+                {"message": "created"},
+                status=201,
+            )
+        else:
+            return JsonResponse(
+                {"detail": form.errors},
+                status=400,
+            )
+    
+
+class CommentUpdateView(LoginRequiredMixin, OnlyCommentOwnerMixin, View):
+    
+    def post(self, request, pk):
+        
+        post_json_data = json.loads(request.body.decode("utf-8"))
+        
+        form = CommentUpdateForm(post_json_data)
+        
+        if form.is_valid():
+            try:
+                comment = Comment.objects.get(id=pk)
+                comment.text = form.cleaned_data.get("text")
+                comment.save()
+            except Comment.DoesNotExist:
+                return JsonResponse(
+                    {"detail": "Comment not Found"},
+                    status=404,
+                )
+            
+            return JsonResponse(
+                {"message": "OK"},
+                status=200,
+            )
+        else:
+            return JsonResponse(
+                {"detail": form.errors},
+                status=400,
+            )
+            
+
+class CommentDeleteView(LoginRequiredMixin, OnlyCommentOwnerMixin, DeleteView):
+    
+    model = Comment
+    
+    def get_success_url(self):
+        success_url = "/"
+        if isinstance(self.object.content_object, Question):
+            success_url = reverse(
+                "qa:show", 
+                kwargs={
+                    "id": self.object.content_object.id, 
+                    "slug": self.object.content_object.slug,
+                },
+            )
+        elif isinstance(self.object.content_object, Answer):
+            success_url = reverse(
+                "qa:show",
+                kwargs={
+                    "id": self.object.content_object.question.id,
+                    "slug": self.object.content_object.question.slug,
+                },
+            )
+        return success_url
+    
+
+#TODO Add CommentVote Views

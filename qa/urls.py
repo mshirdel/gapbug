@@ -1,5 +1,6 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
+from django.views.decorators.csrf import csrf_exempt
 
 
 app_name = "qa"
@@ -50,4 +51,9 @@ urlpatterns = [
     path("tags/", views.TagList.as_view(), name="tags_list"),
     path("tags/<str:tag>/", views.QuestionByTag.as_view(), name="by_tag"),
     path("tagslist/", views.QuestionTagList.as_view(), name="all_tags"),
+    
+    # Comment Urls
+    path("comment/new/", views.CommentCreateView.as_view(), name="comment_new"),
+    path("comment/<int:pk>/edit/", views.CommentUpdateView.as_view(), name="comment_edit"),
+    path("comment/<int:pk>/delete/", views.CommentDeleteView.as_view(), name="comment_delete"),
 ]

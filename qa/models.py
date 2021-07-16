@@ -9,6 +9,7 @@ from taggit.managers import TaggableManager
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.core.validators import MinLengthValidator, MaxLengthValidator
+from django.contrib.contenttypes.fields import GenericRelation
 
 
 class Question(TimeStampModel):
@@ -24,6 +25,7 @@ class Question(TimeStampModel):
     views = models.IntegerField(default=0)
     content_modified_date = models.DateTimeField(null=True, blank=True)
     tags = TaggableManager(blank=True)
+    comments = GenericRelation("Comment")
 
     def get_absolute_url(self):
         return reverse("qa:show", kwargs={"id": self.id, "slug": self.slug})
@@ -71,6 +73,7 @@ class Answer(TimeStampModel):
     vote = models.IntegerField(default=0)
     accepted = models.BooleanField(default=False)
     accepted_date = models.DateTimeField(blank=True, null=True)
+    comments = GenericRelation("Comment")
 
     class Meta:
         ordering = (
