@@ -6,8 +6,8 @@ from django.apps import apps
 
 # Comment Serializers
 
-class CommentListSerializer(serializers.ModelSerializer):
-    """ Comment Serializer for list action """
+class CommentListRetrieveSerializer(serializers.ModelSerializer):
+    """ Comment Serializer for list, retrieve actions """
     
     # model__in=["question", "answer"] because we only leave comments under Questions or Answers
     content_type = serializers.SlugRelatedField(
@@ -19,8 +19,7 @@ class CommentListSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Comment
-        exclude = ["text",]
-
+        fields = "__all__"
 
 class CommentCreateSerializer(serializers.ModelSerializer):
     """ Comment Serializer for create action """
@@ -50,18 +49,6 @@ class CommentCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         exclude = ["user", "vote",]
-
-
-class CommentRetrieveSerializer(serializers.ModelSerializer):
-    """ Comment Serializer for retrieve action """
-    
-    # Add additional read-only fields to serialzier like this
-    user__username = serializers.ReadOnlyField(source="user.username")
-    
-    class Meta:
-        model = Comment
-        fields = "__all__"
-
 
 class CommentPartialUpdateSerializer(serializers.ModelSerializer):
     """  
