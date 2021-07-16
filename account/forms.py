@@ -5,7 +5,11 @@ from .fields import ASCIIUsernameField
 
 
 class UserRegistrationForm(forms.ModelForm):
-    email = forms.EmailField(required=True)
+    # email = forms.EmailField(
+    #     label=_("Email"),
+    #     required=True,
+    #     widget=forms.EmailInput(attrs={"class": "form-control"}),
+    # )
     password = forms.CharField(
         label=_("Passwrod"), widget=forms.PasswordInput(attrs={"class": "form-control"})
     )
@@ -16,7 +20,7 @@ class UserRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ("username",)
+        fields = ("username", "email")
         widgets = {
             "username": forms.TextInput(attrs={"class": "form-control"}),
             "email": forms.EmailInput(attrs={"class": "form-control"}),
@@ -31,6 +35,8 @@ class UserRegistrationForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data["email"]
+        if not email:
+            raise forms.ValidationError(_("Email field is mandatory."))
         if User.objects.filter(email__iexact=email).exists():
             self.add_error("email", _("Email must be unique."))
         return email
