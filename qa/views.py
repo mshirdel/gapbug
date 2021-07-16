@@ -440,7 +440,7 @@ class CommentCreateView(LoginRequiredMixin, PrivilageRequiredMixin, View):
         if form.is_valid():
             comment = Comment(
                 **form.cleaned_data,
-                user=User.objects.first(),
+                user=request.user,
             )
             comment.save()
             return JsonResponse(
