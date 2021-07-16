@@ -1,13 +1,5 @@
 from django.urls import path, include
-from rest_framework import routers
-from . import views, apis
-
-
-router = routers.DefaultRouter()
-
-# Comment, CommentVote ViewSet
-#TODO Add CommentVoteViewSet
-router.register('comment', apis.CommentViewSet, basename="comment")
+from . import views
 
 
 app_name = "qa"
@@ -58,7 +50,4 @@ urlpatterns = [
     path("tags/", views.TagList.as_view(), name="tags_list"),
     path("tags/<str:tag>/", views.QuestionByTag.as_view(), name="by_tag"),
     path("tagslist/", views.QuestionTagList.as_view(), name="all_tags"),
-    
-    # Router Urls
-    path("api/", include(router.urls)),
 ]

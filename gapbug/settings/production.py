@@ -23,8 +23,6 @@ DATABASES = {
 INSTALLED_APPS.append('rosetta')
 INSTALLED_APPS.append('django_extensions')
 INSTALLED_APPS.append('debug_toolbar')
-INSTALLED_APPS.append('rest_framework')
-INSTALLED_APPS.append('django_filters')
 
 MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
 
