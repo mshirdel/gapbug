@@ -1,7 +1,6 @@
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -14,11 +13,11 @@ from qa.privilages import Privilages
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     is_email_verified = models.BooleanField(default=False)
     email_verify_date = models.DateTimeField(blank=True, null=True)
     reputation = models.IntegerField(default=1)
-    title = models.CharField(max_length=400, default="")
+    title = models.CharField(max_length=400)
     about_me = models.TextField(blank=True, null=True)
     avatar = models.ImageField(upload_to="users/%Y/%m/%d/", blank=True)
 
