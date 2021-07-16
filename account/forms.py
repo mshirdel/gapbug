@@ -5,11 +5,7 @@ from .fields import ASCIIUsernameField
 
 
 class UserRegistrationForm(forms.ModelForm):
-    # email = forms.EmailField(
-    #     label=_("Email"),
-    #     required=True,
-    #     widget=forms.EmailInput(attrs={"class": "form-control"}),
-    # )
+
     password = forms.CharField(
         label=_("Passwrod"), widget=forms.PasswordInput(attrs={"class": "form-control"})
     )

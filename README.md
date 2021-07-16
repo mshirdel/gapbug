@@ -71,3 +71,4 @@ python manage.py runserver
 - [ ] Flag questions as spam
 - [ ] Add SEO features
 - [ ] Add social links to user profile
+- [ ] Add contact us
