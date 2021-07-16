@@ -23,9 +23,22 @@ DATABASES = {
 INSTALLED_APPS.append('rosetta')
 INSTALLED_APPS.append('django_extensions')
 INSTALLED_APPS.append('debug_toolbar')
+INSTALLED_APPS.append('rest_framework')
+INSTALLED_APPS.append('django_filters')
 
 MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_INFO = 'email_name@example.com'
 DEFAULT_FROM_EMAIL = 'email_name@example.com'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100,
+}

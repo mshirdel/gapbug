@@ -139,7 +139,7 @@ class Comment(TimeStampModel):
             MaxLengthValidator(600),
         ]
     )
-    vote = models.SmallIntegerField()
+    vote = models.SmallIntegerField(default=0)
     
     def __str__(self):
         return f"{self.user.username}-{self.text[:14]}"

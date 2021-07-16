@@ -420,3 +420,6 @@ class QuestionTagList(ListView):
     context_object_name = "tags"
     paginate_by = settings.LARGE_PAGE_SIZE
     template_name = "qa/tags_list.html"
+
+
+#TODO use LoginRequiredMixin for class-based-views instead of @method_decorator(login_required, name="dispatch")
