@@ -6,6 +6,7 @@ Gapbug is a Question and Answers Django project like stackoverflow created for p
 The mechanisms used here are almost similar to Stockflow, which makes the focus more on the question and the answer, rather than on forums, a place to discuss issues. 
 
 We will be happy to report any problems with the code or any idea to make this project better.
+User [Github Discussions](https://github.com/mshirdel/gapbug/discussions)
 
 Tech Stack:
 * Programming language: [Python](https://www.python.org/)
@@ -72,3 +73,4 @@ python manage.py runserver
 - [ ] Add SEO features
 - [ ] Add social links to user profile
 - [ ] Add contact us
+- [ ] Notification System
