@@ -6,6 +6,10 @@ from django.urls import reverse
 from common.models import TimeStampModel
 from django.conf import settings
 from taggit.managers import TaggableManager
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+from django.core.validators import MinLengthValidator, MaxLengthValidator
+from django.contrib.contenttypes.fields import GenericRelation
 
 
 class Question(TimeStampModel):
@@ -21,6 +25,7 @@ class Question(TimeStampModel):
     views = models.IntegerField(default=0)
     content_modified_date = models.DateTimeField(null=True, blank=True)
     tags = TaggableManager(blank=True)
+    comments = GenericRelation("Comment")
 
     def get_absolute_url(self):
         return reverse("qa:show", kwargs={"id": self.id, "slug": self.slug})
@@ -68,6 +73,7 @@ class Answer(TimeStampModel):
     vote = models.IntegerField(default=0)
     accepted = models.BooleanField(default=False)
     accepted_date = models.DateTimeField(blank=True, null=True)
+    comments = GenericRelation("Comment")
 
     class Meta:
         ordering = (
@@ -106,9 +112,56 @@ class AnswerVote(Vote):
 
     class Meta:
         unique_together = ["user", "answer"]
+        #TODO use models.UniqueConstraint instead of unique_together.
+        # check out this link for the reason https://docs.djangoproject.com/en/dev/ref/models/options/#unique-together
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         qs = AnswerVote.objects.filter(answer=self.answer)
         self.answer.vote = qs.aggregate(Sum("rate"))["rate__sum"]
         self.answer.save()
+
+
+class Comment(TimeStampModel):
+    """ 
+    Comment Model
+        Note:
+            Supports leaving comments for Questions or Answers.
+    """
+    # Foreign Keys
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="comments")
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    
+    # Comment Fields
+    text = models.TextField(
+        validators=[
+            MinLengthValidator(15),
+            MaxLengthValidator(600),
+        ]
+    )
+    vote = models.SmallIntegerField(default=0)
+    
+    def __str__(self):
+        return f"{self.user.username}-{self.text[:14]}"
+    
+    class Meta:
+        ordering = "-created",
+        
+
+class CommentVote(Vote):
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name="comment_votes")
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'comment'], name='unique_comment_vote')
+        ]
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        qs = CommentVote.objects.filter(comment=self.comment)
+        self.comment.vote = qs.aggregate(Sum("rate"))["rate__sum"]
+        self.comment.save()
+        
