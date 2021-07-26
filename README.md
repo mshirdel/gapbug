@@ -1,5 +1,3 @@
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg?style=for-the-badge
-    :target: https://github.com/psf/black
 # gapbug
 QA site with Python/Django
 
