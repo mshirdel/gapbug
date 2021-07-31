@@ -18,16 +18,6 @@
         }
     },
     {
-        "model": "user_profile.profile",
-        "pk": 1,
-        "fields": {
-            "user": 1,
-            "is_email_verified": true,
-            "email_verify_date": "2021-04-06T16:46:26.648Z",
-            "reputation": 1
-        }
-    },
-    {
         "model": "auth.user",
         "pk": 2,
         "fields": {
@@ -43,16 +33,6 @@
             "date_joined": "2021-03-16T15:16:56.118Z",
             "groups": [],
             "user_permissions": []
-        }
-    },
-    {
-        "model": "user_profile.profile",
-        "pk": 2,
-        "fields": {
-            "user": 2,
-            "is_email_verified": true,
-            "email_verify_date": "2021-04-06T16:46:26.648Z",
-            "reputation": 15
         }
     },
     {
@@ -74,16 +54,6 @@
         }
     },
     {
-        "model": "user_profile.profile",
-        "pk": 3,
-        "fields": {
-            "user": 3,
-            "is_email_verified": true,
-            "email_verify_date": "2021-04-06T16:46:26.648Z",
-            "reputation": 50
-        }
-    },
-    {
         "model": "auth.user",
         "pk": 4,
         "fields": {
@@ -99,16 +69,6 @@
             "date_joined": "2021-03-16T15:16:56.118Z",
             "groups": [],
             "user_permissions": []
-        }
-    },
-    {
-        "model": "user_profile.profile",
-        "pk": 4,
-        "fields": {
-            "user": 4,
-            "is_email_verified": true,
-            "email_verify_date": "2021-04-06T16:46:26.648Z",
-            "reputation": 150
         }
     },
     {

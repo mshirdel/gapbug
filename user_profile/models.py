@@ -7,6 +7,9 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.utils.translation import gettext as _
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
 from user_profile.tokens import email_verification_token
 from common.models import TimeStampModel
 from qa.privilages import Privilages
@@ -50,6 +53,11 @@ class Profile(models.Model):
     def update_reputation(self, reputation_value):
         self.reputation += reputation_value
         self.save()
+
+    @receiver(post_save, sender=User)
+    def create_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
 
 
 class ReputationHistory(TimeStampModel):

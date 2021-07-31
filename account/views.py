@@ -6,7 +6,6 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 
 from .forms import UserRegistrationForm, LoginForm
-from user_profile.models import Profile
 
 
 def register(request):
@@ -17,8 +16,7 @@ def register(request):
             new_user.set_password(form.cleaned_data["password"])
             new_user.is_active = False
             new_user.save()
-            profile = Profile.objects.create(user=new_user)
-            profile.send_verification_email(request)
+            new_user.profile.send_verification_email(request)
             return render(request, "account/register_done.html", {"new_user": new_user})
     else:
         form = UserRegistrationForm()

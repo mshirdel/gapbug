@@ -1,7 +1,6 @@
 from qa.privilages import Privilages
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
-from user_profile.models import Profile
 from .models import Question, Answer
 from .reputations import Reputation
 
@@ -9,7 +8,6 @@ from .reputations import Reputation
 class PrivilagesTest(TestCase):
     def setUp(self):
         u = User.objects.create_user("john", "lennon@google.com", "thepassword")
-        Profile.objects.create(user=u)
 
         Question.objects.create(
             user=u, title="question1 title", body_md="<p>question1 body</p>"
@@ -47,13 +45,14 @@ class PrivilagesTest(TestCase):
 class QuestionsTest(TestCase):
     def setUp(self) -> None:
         u = User.objects.create_user("john", "lennon@google.com", "thepassword")
-        Profile.objects.create(user=u)
 
         u15 = User.objects.create_user("user_15", "user15@gmail.com", "thepassword")
-        Profile.objects.create(user=u15, reputation=15)
+        u15.profile.reputation = 15
+        u15.profile.save()
 
         u150 = User.objects.create_user("user_150", "user150@gmail.com", "thepassword")
-        Profile.objects.create(user=u150, reputation=150)
+        u150.profile.reputation = 150
+        u150.profile.save()
 
         Question.objects.create(
             user=u, title="question1 title", body_md="<p>question1 body</p>"
@@ -124,17 +123,18 @@ class QuestionsTest(TestCase):
 class AnswersTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user("john", "lennon@google.com", "thepassword")
-        Profile.objects.create(user=self.user)
 
         self.u15 = User.objects.create_user(
             "user_15", "user15@gmail.com", "thepassword"
         )
-        Profile.objects.create(user=self.u15, reputation=15)
+        self.u15.profile.reputation = 15
+        self.u15.profile.save()
 
         self.u150 = User.objects.create_user(
             "user_150", "user150@gmail.com", "thepassword"
         )
-        Profile.objects.create(user=self.u150, reputation=150)
+        self.u150.profile.reputation = 150
+        self.u150.profile.save()
 
         self.question = Question.objects.create(
             user=self.user, title="question1 title", body_md="<p>question1 body</p>"
