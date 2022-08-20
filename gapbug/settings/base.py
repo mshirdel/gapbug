@@ -126,3 +126,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 PAGE_SIZE = 10
 LARGE_PAGE_SIZE = 50
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

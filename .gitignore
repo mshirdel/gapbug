@@ -133,3 +133,4 @@ gapbug/settings_dev.py
 web/templates/web/common/debug.html
 gapbug/settings/development.py
 gapbug/media/
+.idea/

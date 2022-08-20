@@ -1,9 +1,9 @@
-asgiref==3.3.1
-Django==3.1.12
-Markdown==3.3.4
-psycopg2-binary==2.8.6
+asgiref==3.5.2
+Django==4.1
+django-taggit==3.0.0
+Markdown==3.4.1
+Pillow==9.2.0
+psycopg2-binary==2.9.3
 pytz==2021.1
 sqlparse==0.4.2
 toml==0.10.2
-Pillow==8.3.2
-django-taggit==1.5.0
