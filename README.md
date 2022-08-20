@@ -63,14 +63,3 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-# Todo features:
-- [ ] Add comment to questions and answers (Work in progress with [MojixCoder](https://github.com/MojixCoder))
-- [ ] Help center
-- [ ] Add more test
-- [ ] Search users in user section
-- [ ] Show online status of users (django-channels)
-- [ ] Flag questions as spam
-- [ ] Add SEO features
-- [ ] Add social links to user profile
-- [ ] Add contact us
-- [ ] Notification System
